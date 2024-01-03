@@ -429,8 +429,8 @@ document.addEventListener('mousemove', e => {
     if (isDragging) {
         e.preventDefault()
         if (draggedElement) {
-            const offsetX = e.clientX + window.scrollX - initialX
-            const offsetY = e.clientY + window.scrollY - initialY
+            var offsetX = e.clientX + window.scrollX - initialX
+            var offsetY = e.clientY + window.scrollY - initialY
             if(offsetX < 0) {
                 offsetX = 0
             }

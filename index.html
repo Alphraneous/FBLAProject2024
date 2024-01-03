@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -24,39 +25,40 @@
     </div>
 
     <div class="secondary_background"></div>
-    <div class="add_container draggable" id="addContainer">
-        <div class="add_container_inner" id="addContainerInner">
-            <p class="add_title"><b>Add New Company</b></p>
-            <p class="add_label"><b>Name*</b></p>
-            <input type="text" id="newCompanyName" class="add_input" placeholder="Company XYZ">
-            <p class="add_label"><b>Services Provided* (Enter multiple separated by commas)</b></p>
-            <input type="text" id="newCompanyServices" class="add_input" placeholder="Digital Marketing">
-            <p class="add_label"><b>Description</b></p>
-            <input type="text" id="newCompanyDesc" class="add_input"
-                placeholder="Providing excellent service for 15 years">
-            <p class="add_label"><b>Address</b></p>
-            <input type="text" id="newCompanyAddr" class="add_input" placeholder="1234 Magic Road">
-            <p class="add_label"><b>Year Founded</b></p>
-            <input type="text" id="newCompanyFoundingYear" class="add_input" placeholder="2001">
-            <p class="add_label"><b>Website</b></p>
-            <input type="url" id="newCompanyWebsite" class="add_input" placeholder="https://example.com">
-            <p class="add_label"><b>Contact Name*</b></p>
-            <input type="text" id="newCompanyContactName" class="add_input" placeholder="John Doe">
-            <p class="add_label"><b>Contact Phone*</b></p>
-            <input type="text" id="newCompanyContactPhone" class="add_input" placeholder="123-456-7890">
-            <p class="add_label"><b>Contact Email</b></p>
-            <input type="email" id="newCompanyContactEmail" class="add_input" placeholder="j_doe@example.com">
-            <div>
-                <button id="addSubmitButton" class="submit_button" type="submit"><b>Submit</b></button>
-                <button id="addCancelButton" class="submit_button" type="button"><b>Cancel</b></button>
+        <div class="add_container draggable" id="addContainer">
+            <div class="add_container_inner" id="addContainerInner">
+                <p class="add_title"><b>Add New Company</b></p>
+                <p class="add_label"><b>Name*</b></p>
+                <input type="text" id="newCompanyName" class="add_input" placeholder="Company XYZ">
+                <p class="add_label"><b>Services Provided* (Enter multiple separated by commas)</b></p>
+                <input type="text" id="newCompanyServices" class="add_input" placeholder="Digital Marketing">
+                <p class="add_label"><b>Description</b></p>
+                <input type="text" id="newCompanyDesc" class="add_input"
+                    placeholder="Providing excellent service for 15 years">
+                <p class="add_label"><b>Address</b></p>
+                <input type="text" id="newCompanyAddr" class="add_input" placeholder="1234 Magic Road">
+                <p class="add_label"><b>Year Founded</b></p>
+                <input type="text" id="newCompanyFoundingYear" class="add_input" placeholder="2001">
+                <p class="add_label"><b>Website</b></p>
+                <input type="url" id="newCompanyWebsite" class="add_input" placeholder="https://example.com">
+                <p class="add_label"><b>Contact Name*</b></p>
+                <input type="text" id="newCompanyContactName" class="add_input" placeholder="John Doe">
+                <p class="add_label"><b>Contact Phone*</b></p>
+                <input type="text" id="newCompanyContactPhone" class="add_input" placeholder="123-456-7890">
+                <p class="add_label"><b>Contact Email</b></p>
+                <input type="email" id="newCompanyContactEmail" class="add_input" placeholder="j_doe@example.com">
+                <div>
+                    <button id="addSubmitButton" class="submit_button" type="submit"><b>Submit</b></button>
+                    <button id="addCancelButton" class="submit_button" type="button"><b>Cancel</b></button>
+                </div>
             </div>
-        </div>
     </div>
-    <button id="addButton" class="add_button"  type="button"><b>Add Company</b></button>
+    <button id="addButton" class="add_button" type="button"><b>Add Company</b></button>
     <div id="buttonBox" class="button_box">
         <div id="infoId" class="info_page">
-            <button id="exitButton" class="exit_button"  type="button"><span class="material-symbols-outlined">close</span></button>
-            <div class = "info_chunk">
+            <button id="exitButton" class="exit_button" type="button"><span
+                    class="material-symbols-outlined">close</span></button>
+            <div class="info_chunk">
                 <h3 id="titleHeader" class="title_header">Example</h3>
                 <p id="yearTitle" class="year_title">est 2001</p>
                 <p id="addrTitle" class="addr_title">est 2001</p>
@@ -64,18 +66,18 @@
                     <a id="companyLink" class="company_link" href="null">Test</a>
                 </p>
             </div>
-            <div class = "info_chunk">
+            <div class="info_chunk">
                 <p class="info_label">Services Offered:</p>
                 <p id="servicesTitle" class="resources_title">Test<br>Test<br></p>
             </div>
-            <div class = "info_chunk">
+            <div class="info_chunk">
                 <p class="info_label">Contact:</p>
                 <p id="contactNameTitle" class="resources_title">Name: </p>
                 <p id="contactPhoneTitle" class="resources_title">Phone:</p>
                 <p id="contactEmailTitle" class="resources_title">Email: </p>
             </div>
             <p class="company_link_wrap">
-                <button id="removeButton" class="remove_button"  type="button"><b>Remove</b></button>
+                <button id="removeButton" class="remove_button" type="button"><b>Remove</b></button>
             </p>
 
         </div>
