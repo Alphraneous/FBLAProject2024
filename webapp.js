@@ -60,35 +60,35 @@ var exampleCompanies = [
         "https://wagner-machine.com",
         {
             name: "Kurt Wagner",
-            number: "+1-217-384-0072",
+            number: "(217) 384-0072",
             email: "kurt.wagner@wagner-machine.com"
         }
     ),
     
     new Company(
-        "Carle Foundation Hospital",
-        ["Healthcare"],
-        "Provides healthcare services.",
-        "611 W Park St, Urbana, IL 61801",
-        "1946",
-        "https://carle.org",
+        "Wright Photography",
+        ["Art, Design, Media"],
+        "Photographer: Weddings, Special Events",
+        "1826 Parkdale Dr. Champaign IL 61821",
+        "2008",
+        "https://www.wright-photographs.com",
         {
-            name: "Not Available",
-            number: "+1-217-902-5201",
-            email: "publicrelations@carle.com"
+            name: "Kelsey Wright",
+            number: "(217) 637-0671",
+            email: "connect@wright-photographs.com"
         }
     ),
     
     new Company(
-        "A&R Mechanical Contractors",
-        ["HVAC"],
-        "Offers heating, ventilation, and air conditioning services.",
-        "1006 N Country Fair Dr, Champaign, IL 61821",
-        "1925",
-        "https://ar-mech.com/",
+        "Maatuka Al-Heeti Emkes Attornys at Law",
+        ["Attorneys/Legal"],
+        "Legal Services",
+        "303 S. Mattis Ave. Suite 201 Champaign IL 61821",
+        "1975",
+        "https://www.maelaw.net",
         {
             name: "HVAC Manager",
-            number: "+1-XXX-XXX-XXXX",
+            number: "(217) 356-9500",
             email: "hvac_manager@arcontractors.com"
         }
     ),
