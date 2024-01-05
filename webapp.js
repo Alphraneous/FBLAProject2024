@@ -56,12 +56,12 @@ var exampleCompanies = [
         ["Machining"],
         "Offers machining services.",
         "1804 N Market St, Champaign, IL 61822",
-        "No Founding Year Given",
-        "No Website Available",
+        "1982",
+        "https://wagner-machine.com/",
         {
-            name: "General Manager",
-            number: "+1-XXX-XXX-XXXX",
-            email: "general_manager@wagnermachineco.com"
+            name: "Kurt Wagner",
+            number: "+1-217-384-0072",
+            email: "kurt.wagner@wagner-machine.com"
         }
     ),
     
