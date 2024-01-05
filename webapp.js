@@ -51,68 +51,422 @@ const submitButton                = document.getElementById('addSubmitButton')
 const cancelButton                = document.getElementById('addCancelButton')
 
 var exampleCompanies = [
-    new Company("MAN Floorings, Inc.",
-        ["Floorings", "Tile Repair"],
-        "We provide floors.",
-        "1684 East St",
-        2009,
-        "http://manfloorings.com",
+    new Company(
+        "Wagner Machine Co",
+        ["Machining"],
+        "Offers machining services.",
+        "1804 N Market St, Champaign, IL 61822",
+        "No Founding Year Given",
+        "No Website Available",
         {
-            name: "John Hawthorne",
-            number: "+1-218-777-8888",
-            email: "j_hawthorne@gmail.com"
+            name: "General Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "general_manager@wagnermachineco.com"
         }
     ),
+    
     new Company(
-        "XYZ Consulting",
-        ["Consulting", "Business Services"],
-        "Your strategic partner for business success.",
-        "123 Main Street, Suite 456",
-        2012,
-        "http://xyzconsulting.com",
+        "Carle Foundation Hospital",
+        ["Healthcare"],
+        "Provides healthcare services.",
+        "611 W Park St, Urbana, IL 61801",
+        "No Founding Year Given",
+        "No Website Available",
         {
-            name: "Jane Doe",
-            number: "+1-555-123-4567",
-            email: "jane.doe@xyzconsulting.com"
+            name: "Hospital Administrator",
+            number: "+1-XXX-XXX-XXXX",
+            email: "admin@carlehospital.org"
         }
     ),
+    
     new Company(
-        "GreenGrove Landscapes",
-        ["Landscaping", "Gardening"],
-        "Creating beautiful outdoor spaces for your home.",
-        "789 Green Avenue",
-        2014,
-        "http://greengrovelandscapes.com",
+        "A&R Mechanical Contractors",
+        ["HVAC"],
+        "Offers heating, ventilation, and air conditioning services.",
+        "1006 N Country Fair Dr, Champaign, IL 61821",
+        "No Founding Year Given",
+        "No Website Available",
         {
-            name: "Robert Green",
-            number: "+1-987-654-3210",
-            email: "robert@greengrovelandscapes.com"
+            name: "HVAC Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "hvac_manager@arcontractors.com"
         }
     ),
+    
     new Company(
-        "TechSprint Innovations",
-        ["Technology", "Software Development"],
-        "Innovating the future with cutting-edge technology.",
-        "567 Tech Plaza",
-        2018,
-        "http://techsprintinnovations.com",
+        "Checkered Records",
+        ["Vinyl Record Store"],
+        "Provides vinyl record store services.",
+        "1702 W. State St., Urbana, IL 61801",
+        "No Founding Year Given",
+        "No Website Available",
         {
-            name: "Alex Turner",
-            number: "+1-777-888-9999",
-            email: "alex@techsprintinnovations.com"
+            name: "Record Store Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@checkeredrecords.com"
         }
     ),
+    
     new Company(
-        "GreenHarbor Sustainable Solutions",
-        ["Environmental", "Green Energy"],
-        "Promoting sus for a greener tomorrow.",
-        "101 Harbor Way",
+        "The Blind Man Company",
+        ["Window Treatment"],
+        "Offers window treatment services.",
+        "909 Pioneer St, Champaign, IL 61820",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Window Treatment Specialist",
+            number: "+1-XXX-XXX-XXXX",
+            email: "specialist@blindmancompany.com"
+        }
+    ),
+    
+    new Company(
+        "Illini Recycling",
+        ["Recycling"],
+        "Provides recycling services.",
+        "2611 S Staley Rd, Champaign, IL 61822",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Recycling Coordinator",
+            number: "+1-XXX-XXX-XXXX",
+            email: "coordinator@illinirecycling.com"
+        }
+    ),
+    
+    new Company(
+        "Gomez Heating & Air Conditioning",
+        ["HVAC"],
+        "Offers HVAC services.",
+        "2502 N Mattis Ave, Champaign, IL 61822",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "HVAC Specialist",
+            number: "+1-XXX-XXX-XXXX",
+            email: "specialist@gomezhvac.com"
+        }
+    ),
+    
+    new Company(
+        "Busey Bank",
+        ["Banking", "Financial Services"],
+        "Provides banking and financial services.",
+        "201 W Main St, Urbana, IL 61801",
+        1868,
+        "https://www.busey.com",
+        {
+            name: "Bank Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@buseybank.com"
+        }
+    ),
+    
+    new Company(
+        "Birkey's Farm Store",
+        ["Agricultural Equipment"],
+        "Offers agricultural equipment and services.",
+        "2202 N High Cross Rd, Urbana, IL 61802",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Farm Equipment Specialist",
+            number: "+1-XXX-XXX-XXXX",
+            email: "specialist@birkeysfarmstore.com"
+        }
+    ),
+    
+    new Company(
+        "Furniture Lounge",
+        ["Furniture Store"],
+        "Provides furniture store services.",
+        "6 E University Ave, Champaign, IL 61820",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Store Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@furniturelounge.com"
+        }
+    ),
+
+    new Company(
+        "Yoder's Amish Furniture",
+        ["Furniture Store"],
+        "Offers handcrafted Amish furniture.",
+        "105 W Main St, Arthur, IL 61911",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Store Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@yodersamishfurniture.com"
+        }
+    ),
+    
+    new Company(
+        "Green Thumb Garden Center",
+        ["Garden Center"],
+        "Provides a variety of plants, tools, and gardening services.",
+        "1501 S Neil St, Champaign, IL 61820",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Garden Center Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@greenthumbgardencenter.com"
+        }
+    ),
+    
+    new Company(
+        "Express Clean Laundromat",
+        ["Laundromat", "Dry Cleaning"],
+        "Offers laundry and dry cleaning services.",
+        "123 E University Ave, Urbana, IL 61801",
+        2010,
+        "http://expresscleanlaundry.com",
+        {
+            name: "Laundromat Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@expresscleanlaundromat.com"
+        }
+    ),
+    
+    new Company(
+        "Tech Solutions IT Services",
+        ["IT Services"],
+        "Provides comprehensive IT solutions for businesses.",
+        "789 Technology Dr, Champaign, IL 61820",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "IT Services Director",
+            number: "+1-XXX-XXX-XXXX",
+            email: "director@techsolutionsit.com"
+        }
+    ),
+    
+    new Company(
+        "Sweet Serenity Bakery",
+        ["Bakery"],
+        "Specializes in custom cakes, pastries, and desserts.",
+        "202 S Broadway Ave, Urbana, IL 61801",
         2015,
-        "http://greenharborsolutions.com",
+        "http://sweetserenitybakery.com",
         {
-            name: "Emily Green",
-            number: "+1-333-444-5555",
-            email: "emily@greenharborsolutions.com"
+            name: "Bakery Owner",
+            number: "+1-XXX-XXX-XXXX",
+            email: "owner@sweetserenitybakery.com"
+        }
+    ),
+    
+    new Company(
+        "Champaign-Urbana Fitness Center",
+        ["Fitness Center", "Personal Training"],
+        "Offers fitness classes and personalized training.",
+        "500 E Peabody Dr, Champaign, IL 61820",
+        2007,
+        "http://cufitnesscenter.com",
+        {
+            name: "Fitness Center Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@cufitnesscenter.com"
+        }
+    ),
+    
+    new Company(
+        "Paws and Whiskers Pet Grooming",
+        ["Pet Grooming"],
+        "Provides grooming services for dogs and cats.",
+        "777 W Springfield Ave, Champaign, IL 61820",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Pet Grooming Specialist",
+            number: "+1-XXX-XXX-XXXX",
+            email: "grooming@pawsandwhiskers.com"
+        }
+    ),
+    
+    new Company(
+        "Java Junction Coffee House",
+        ["Coffee Shop"],
+        "Serves a variety of coffee and snacks.",
+        "301 E Green St, Champaign, IL 61820",
+        2005,
+        "http://javajunctioncoffee.com",
+        {
+            name: "Coffee House Owner",
+            number: "+1-XXX-XXX-XXXX",
+            email: "owner@javajunctioncoffee.com"
+        }
+    ),
+    
+    new Company(
+        "Champaign-Urbana Courier Service",
+        ["Courier Service"],
+        "Offers reliable and timely courier services.",
+        "450 N Neil St, Champaign, IL 61820",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Courier Service Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@cucourierservice.com"
+        }
+    ),
+    
+    new Company(
+        "The Painted Canvas Art Studio",
+        ["Art Studio", "Art Classes"],
+        "Provides art classes and studio space for artists.",
+        "700 S Gregory St, Urbana, IL 61801",
+        2012,
+        "http://paintedcanvasartstudio.com",
+        {
+            name: "Art Studio Director",
+            number: "+1-XXX-XXX-XXXX",
+            email: "director@paintedcanvasartstudio.com"
+        }
+    ),
+    new Company(
+        "Champaign Cleaners",
+        ["Dry Cleaning"],
+        "Provides dry cleaning and laundry services.",
+        "1234 W Springfield Ave, Champaign, IL 61821",
+        1995,
+        "http://champaigncleaners.com",
+        {
+            name: "Cleaning Services Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@champaigncleaners.com"
+        }
+    ),
+    
+    new Company(
+        "TechHub Solutions",
+        ["Technology Solutions"],
+        "Offers innovative technology solutions for businesses.",
+        "567 Technology Pkwy, Urbana, IL 61802",
+        2002,
+        "http://techhubsolutions.com",
+        {
+            name: "Tech Solutions CEO",
+            number: "+1-XXX-XXX-XXXX",
+            email: "ceo@techhubsolutions.com"
+        }
+    ),
+    
+    new Company(
+        "Green Valley Florist",
+        ["Florist"],
+        "Provides a wide range of floral arrangements and gifts.",
+        "789 Garden Way, Champaign, IL 61820",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Florist Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@greenvalleyflorist.com"
+        }
+    ),
+    
+    new Company(
+        "Epic Fitness Studio",
+        ["Fitness Studio", "Yoga Classes"],
+        "Offers fitness and yoga classes for all levels.",
+        "876 Wellness Blvd, Urbana, IL 61801",
+        2014,
+        "http://epicfitnessstudio.com",
+        {
+            name: "Fitness Studio Owner",
+            number: "+1-XXX-XXX-XXXX",
+            email: "owner@epicfitnessstudio.com"
+        }
+    ),
+    
+    new Company(
+        "Pet Haven Veterinary Clinic",
+        ["Veterinary Services"],
+        "Provides comprehensive veterinary care for pets.",
+        "432 Animal Ave, Champaign, IL 61822",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Veterinary Clinic Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@pethavenvetclinic.com"
+        }
+    ),
+    
+    new Company(
+        "Bookworm Bookstore",
+        ["Bookstore"],
+        "Sells a variety of books, including new and used titles.",
+        "321 Reading St, Urbana, IL 61801",
+        1990,
+        "http://bookwormbookstore.com",
+        {
+            name: "Bookstore Owner",
+            number: "+1-XXX-XXX-XXXX",
+            email: "owner@bookwormbookstore.com"
+        }
+    ),
+    
+    new Company(
+        "Golden Spoon Catering",
+        ["Catering"],
+        "Provides catering services for events and special occasions.",
+        "555 Celebration Blvd, Champaign, IL 61820",
+        2008,
+        "http://goldenspooncatering.com",
+        {
+            name: "Catering Manager",
+            number: "+1-XXX-XXX-XXXX",
+            email: "manager@goldenspooncatering.com"
+        }
+    ),
+    
+    new Company(
+        "Artisanal Craft Brewery",
+        ["Brewery"],
+        "Crafts a variety of unique and flavorful beers.",
+        "789 Craftsmanship Ln, Urbana, IL 61802",
+        2016,
+        "http://artisanalbrewery.com",
+        {
+            name: "Brewery Owner",
+            number: "+1-XXX-XXX-XXXX",
+            email: "owner@artisanalbrewery.com"
+        }
+    ),
+    
+    new Company(
+        "Elite Security Services",
+        ["Security Services"],
+        "Provides professional security services for businesses.",
+        "987 Security Way, Champaign, IL 61821",
+        "No Founding Year Given",
+        "No Website Available",
+        {
+            name: "Security Services Director",
+            number: "+1-XXX-XXX-XXXX",
+            email: "director@elitesecurityservices.com"
+        }
+    ),
+    
+    new Company(
+        "Sculpted Edge Hair Salon",
+        ["Hair Salon"],
+        "Offers hairstyling, coloring, and beauty services.",
+        "456 Style St, Champaign, IL 61820",
+        2004,
+        "http://sculptededgehairsalon.com",
+        {
+            name: "Salon Owner",
+            number: "+1-XXX-XXX-XXXX",
+            email: "owner@sculptededgehairsalon.com"
         }
     )
 
