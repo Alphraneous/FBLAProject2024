@@ -57,7 +57,7 @@ var exampleCompanies = [
         "Offers machining services.",
         "1804 N Market St, Champaign, IL 61822",
         "1982",
-        "https://wagner-machine.com/",
+        "https://wagner-machine.com",
         {
             name: "Kurt Wagner",
             number: "+1-217-384-0072",
@@ -70,12 +70,12 @@ var exampleCompanies = [
         ["Healthcare"],
         "Provides healthcare services.",
         "611 W Park St, Urbana, IL 61801",
-        "No Founding Year Given",
-        "No Website Available",
+        "1946",
+        "https://carle.org",
         {
-            name: "Hospital Administrator",
-            number: "+1-XXX-XXX-XXXX",
-            email: "admin@carlehospital.org"
+            name: "Not Available",
+            number: "+1-217-902-5201",
+            email: "publicrelations@carle.com"
         }
     ),
     
@@ -84,8 +84,8 @@ var exampleCompanies = [
         ["HVAC"],
         "Offers heating, ventilation, and air conditioning services.",
         "1006 N Country Fair Dr, Champaign, IL 61821",
-        "No Founding Year Given",
-        "No Website Available",
+        "1925",
+        "https://ar-mech.com/",
         {
             name: "HVAC Manager",
             number: "+1-XXX-XXX-XXXX",
