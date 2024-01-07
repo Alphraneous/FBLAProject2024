@@ -22,14 +22,6 @@ var companyElements = []
 var companiesList = []
 var currentIndex = -1;
 
-var oldListLength = null
-var infoPage = null
-var exitButton = null
-var titleHeader = null
-var miniTitle = null
-var resourcesText = null
-var companyLink = null
-var companyLinkWrap = null
 var dropdown = document.getElementById('dropdown')
 var inputElement = document.getElementById('textSearch')
 
@@ -55,15 +47,6 @@ var newCompanyInput = new Company(
     }
 )
 
-// const newCompanyNameInput = document.getElementById('newCompanyName')
-// const newCompanyServicesInput = document.getElementById('newCompanyServices')
-// const newCompanyDescInput = document.getElementById('newCompanyDesc')
-// const newCompanyAddrInput = document.getElementById('newCompanyAddr')
-// const newCompanyFoundingYearInput = document.getElementById('newCompanyFoundingYear')
-// const newCompanyWebsiteInput = document.getElementById('newCompanyWebsite')
-// const newCompanyContactNameInput = document.getElementById('newCompanyContactName')
-// const newCompanyContactPhoneInput = document.getElementById('newCompanyContactPhone')
-// const newCompanyContactEmailInput = document.getElementById('newCompanyContactEmail')
 const submitButton = document.getElementById('addSubmitButton')
 const cancelButton = document.getElementById('addCancelButton')
 
@@ -505,6 +488,7 @@ var exampleCompanies = [
 
 if (getCompaniesList()) {
     companiesList = getCompaniesList();
+    console.log("existing user data found, loading")
 }
 //console.log(companiesList[0].contact.name);
 refreshList(false)
@@ -513,7 +497,6 @@ refreshList(false)
 function refreshList(deletion) {
     
     var list = companiesList
-    console.log(companiesList.length)
     if (document.getElementById("button0") !== null) {
         //Remove all previous buttons
         Array.from(document.getElementById("buttonBox").querySelectorAll('[id^="button"]')).forEach(element => element.remove());
@@ -586,7 +569,6 @@ function companyInfoClicked(company, index) {
         }
     }
     currentIndex = index;
-    console.log("companyInfoClicked executed")
 
 
     //panel
@@ -605,6 +587,15 @@ function companyInfoClicked(company, index) {
     //address title
     addrTitle = document.getElementById("addrTitle")
     addrTitle.innerHTML = company.address !== undefined ? company.address : "No address given"
+
+    //Company description
+    descTitle = document.getElementById("descTitle")
+    if (company.description !== undefined)  {
+        descTitle.innerHTML = company.description
+    }
+    else {
+        descTitle.innerHTML = "No description given"
+    }
 
     //Company resources
     resourcesText = document.getElementById("servicesTitle")
@@ -762,9 +753,9 @@ const isValidPhoneNumber = number => {
     return phoneRegex.test(number)  // Blank number already accounted for
 }
 
-const isValidURL = URL => {
+const isValidURL = url => {
     const urlRegex = /^(?:(?:https?):\/\/)?(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?$/
-    return url.test()
+    return url.trim() === "" || urlRegex.test(url)   // Site URL is not a required field
 }
 
 submitButton.addEventListener("click", () => {
@@ -779,7 +770,8 @@ submitButton.addEventListener("click", () => {
 
     if(!isValidEmail(newCompanyInput.contact.email.value.toString()) || 
        !isValidPhoneNumber(newCompanyInput.contact.number.value.toString()) || 
-       !isValidYearFounded(newCompanyInput.yearFounded.value.toString()))
+       !isValidYearFounded(newCompanyInput.yearFounded.value.toString()) ||
+       !isValidURL(newCompanyInput.websiteURL.value.toString()))
     {
         alert("Invalid data entered")
         return
