@@ -331,12 +331,21 @@
     padding-bottom: 0.6%;
     margin-top: 1%;
     align-items: center;
-    background-color: #1d52bc;
+    background-color: var(--universalBlue);
     width: 96%;
     font-size: 1.4em;
-    border-width: 0px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: var(--universalBlue);
     border-radius: 25px;
     transition: all 0.3s ease-in-out;
+}
+
+.company_button:hover {
+    background-color: var(--universalBlueLight);
+    border-width: 4px;
+    border-style: solid;
+    border-color: var(--universalBlueDark);
 }
 
 .wide {
