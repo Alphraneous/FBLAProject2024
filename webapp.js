@@ -60,7 +60,7 @@ var exampleCompanies = [
         "https://wagner-machine.com",
         {
             name: "Kurt Wagner",
-            number: "(217) 384-0072",
+            number: "217-384-0072",
             email: "kurt.wagner@wagner-machine.com"
         }
     ),
@@ -69,12 +69,12 @@ var exampleCompanies = [
         "Wright Photography",
         ["Art, Design, Media"],
         "Photographer: Weddings, Special Events",
-        "1826 Parkdale Dr. Champaign IL 61821",
+        "1826 Parkdale Dr. Champaign, IL 61821",
         "2008",
         "https://www.wright-photographs.com",
         {
             name: "Kelsey Wright",
-            number: "(217) 637-0671",
+            number: "217-637-0671",
             email: "connect@wright-photographs.com"
         }
     ),
@@ -83,69 +83,69 @@ var exampleCompanies = [
         "Maatuka Al-Heeti Emkes Attornys at Law",
         ["Attorneys/Legal"],
         "Legal Services",
-        "303 S. Mattis Ave. Suite 201 Champaign IL 61821",
+        "303 S. Mattis Ave. Suite 201 Champaign, IL 61821",
         "1975",
         "https://www.maelaw.net",
         {
             name: "Jennifer L. Zang",
-            number: "(217) 337-0700",
+            number: "217-337-0700",
             email: "receptionist@maelaw.net"
         }
     ),
     
     new Company(
-        "Checkered Records",
-        ["Vinyl Record Store"],
-        "Provides vinyl record store services.",
-        "1702 W. State St., Urbana, IL 61801",
-        "No Founding Year Given",
-        "No Website Available",
+        "Dixon Graphics",
+        ["Commercial Printing"],
+        "Large-format printing, art printing, bookmaking, and full-color screen-printed t-shirts",
+        "105 West John Street, Champaign, IL 61820",
+        "2012",
+        "https://www.dixongraphics.com",
         {
-            name: "Record Store Manager",
-            number: "+1-XXX-XXX-XXXX",
-            email: "manager@checkeredrecords.com"
+            name: "Lance Dixon",
+            number: "217-351-6100",
+            email: "lance@dixongraphics.com"
         }
     ),
     
     new Company(
-        "The Blind Man Company",
-        ["Window Treatment"],
-        "Offers window treatment services.",
-        "909 Pioneer St, Champaign, IL 61820",
-        "No Founding Year Given",
-        "No Website Available",
+        "Art Mart",
+        ["Modern Living"],
+        "Deli, bakery, wine, housewares groceries, toys, gifts, and catering",
+        "1705 S Prospect Ave, Champaign, IL 61820",
+        "1958",
+        "https://www.shopartmart.com",
         {
-            name: "Window Treatment Specialist",
-            number: "+1-XXX-XXX-XXXX",
-            email: "specialist@blindmancompany.com"
+            name: "Not Available",
+            number: "217-344-7979",
+            email: "artmartfood@gmail.com"
         }
     ),
     
     new Company(
-        "Illini Recycling",
-        ["Recycling"],
-        "Provides recycling services.",
-        "2611 S Staley Rd, Champaign, IL 61822",
-        "No Founding Year Given",
-        "No Website Available",
+        "Fire Doll Studio",
+        ["Art, Design"],
+        "Artisan chandlery with a passion for health, sustainability, and the art of candle making.",
+        "29 East Main Street, Champaign, IL 61820",
+        "2011",
+        "https://www.firedollstudio.com",
         {
-            name: "Recycling Coordinator",
-            number: "+1-XXX-XXX-XXXX",
-            email: "coordinator@illinirecycling.com"
+            name: "Kayla Brown",
+            number: "217-689-0045",
+            email: "info@firedollstudio.com"
         }
     ),
     
     new Company(
-        "Gomez Heating & Air Conditioning",
-        ["HVAC"],
-        "Offers HVAC services.",
-        "2502 N Mattis Ave, Champaign, IL 61822",
-        "No Founding Year Given",
-        "No Website Available",
+        "Jos. Kuhn & Co",
+        ["Formal Wear"],
+        "Now selling men’s clothing, Kunh’s caters to regular sizes as well as big and tall.",
+        "33 East Main Street, Champaign, IL 61820",
+        "1874",
+        "https://joskuhn.com",
         {
-            name: "HVAC Specialist",
-            number: "+1-XXX-XXX-XXXX",
-            email: "specialist@gomezhvac.com"
+            name: "Not Available",
+            number: "217-352-7666",
+            email: "Not Available"
         }
     ),
     
