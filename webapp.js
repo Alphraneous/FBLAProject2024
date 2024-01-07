@@ -41,15 +41,29 @@ const fileInput = document.getElementById('fileInput')
 const exportButton = document.getElementById('exportButton')
 const removeButton = document.getElementById('removeButton')
 
-const newCompanyNameInput = document.getElementById('newCompanyName')
-const newCompanyServicesInput = document.getElementById('newCompanyServices')
-const newCompanyDescInput = document.getElementById('newCompanyDesc')
-const newCompanyAddrInput = document.getElementById('newCompanyAddr')
-const newCompanyFoundingYearInput = document.getElementById('newCompanyFoundingYear')
-const newCompanyWebsiteInput = document.getElementById('newCompanyWebsite')
-const newCompanyContactNameInput = document.getElementById('newCompanyContactName')
-const newCompanyContactPhoneInput = document.getElementById('newCompanyContactPhone')
-const newCompanyContactEmailInput = document.getElementById('newCompanyContactEmail')
+var newCompanyInput = new Company(
+    document.getElementById('newCompanyName'),
+    document.getElementById('newCompanyServices'),
+    document.getElementById('newCompanyDesc'),
+    document.getElementById('newCompanyAddr'),
+    document.getElementById('newCompanyFoundingYear'),
+    document.getElementById('newCompanyWebsite'),
+    {
+        name: document.getElementById('newCompanyContactName'),
+        number: document.getElementById('newCompanyContactPhone'),
+        email: document.getElementById('newCompanyContactEmail'),
+    }
+)
+
+// const newCompanyNameInput = document.getElementById('newCompanyName')
+// const newCompanyServicesInput = document.getElementById('newCompanyServices')
+// const newCompanyDescInput = document.getElementById('newCompanyDesc')
+// const newCompanyAddrInput = document.getElementById('newCompanyAddr')
+// const newCompanyFoundingYearInput = document.getElementById('newCompanyFoundingYear')
+// const newCompanyWebsiteInput = document.getElementById('newCompanyWebsite')
+// const newCompanyContactNameInput = document.getElementById('newCompanyContactName')
+// const newCompanyContactPhoneInput = document.getElementById('newCompanyContactPhone')
+// const newCompanyContactEmailInput = document.getElementById('newCompanyContactEmail')
 const submitButton = document.getElementById('addSubmitButton')
 const cancelButton = document.getElementById('addCancelButton')
 
@@ -516,10 +530,9 @@ function refreshList(deletion) {
         )
 
         //Create and set attributes of button
-        companyElements[i].button.style.width = currentIndex == -1 ? "90%" : "65%"
+        companyElements[i].button.style.width = currentIndex == -1 ? "96%" : "71%"
         companyElements[i].button.setAttribute("id", "button" + i)
         companyElements[i].button.classList.add("company_button")
-        companyElements[i].button.style.top = 120 + 65 * i + "px"
 
         //Create and set attributes of name label
         companyElements[i].nameLabel.classList.add("company_name_button")
@@ -545,11 +558,12 @@ function listSearch(textInput, searchParam) {
     for (var l = 0; l < companiesList.length; l++) {
         companyElements[l].button.style.width = "";
         if (simpleSearch(companiesList[l][searchParam].toString(), textInput.toString())) {
-            companyElements[l].button.style.top = 120 + 65 * trueTimes + "px"
-            companyElements[l].button.style.scale = "1"
+            companyElements[l].button.style.position = "relative"
+            companyElements[l].button.scale = "0"
             trueTimes++
         } else {
-            companyElements[l].button.style.scale = "0"
+            companyElements[l].button.style.position = "absolute"
+            companyElements[l].button.style.scale = "1"
         }
     }
 
@@ -564,15 +578,15 @@ function simpleSearch(text, input) {
 
 
 //this creates the info panel when a buttons on a row are made
-function buttonClicked(company, index) {
+function companyInfoClicked(company, index) {
     if (currentIndex == -1) {
         for (let i = 0; i < companyElements.length; i++) {
             companyElements[i].button.classList.remove("wide")
-            companyElements[i].button.classList.add("thin")
+            addWidthClass(companyElements[i].button, "thin")
         }
     }
     currentIndex = index;
-    console.log("buttonClicked executed")
+    console.log("companyInfoClicked executed")
 
 
     //panel
@@ -668,7 +682,7 @@ function removeListItem(index) {
     refreshList(true);
     for (let i = 0; i < companyElements.length; i++) {
         companyElements[i].button.classList.remove("thin")
-        companyElements[i].button.classList.add("wide")
+        addWidthClass(companyElements[i].button, "wide")
     }
     currentIndex = -1;
 }
@@ -678,7 +692,7 @@ function removeListItem(index) {
 function buttonEvents() {
     for (let i = 0; i < companiesList.length; i++) {
         companyElements[i].button.addEventListener('click', () => {
-            buttonClicked(companiesList[i], i)
+            companyInfoClicked(companiesList[i], i)
         })
     }
 
@@ -686,7 +700,7 @@ function buttonEvents() {
     exitButton.addEventListener('click', () => {
         for (let i = 0; i < companyElements.length; i++) {
             companyElements[i].button.classList.remove("thin")
-            companyElements[i].button.classList.add("wide")
+            addWidthClass(companyElements[i].button, "wide")
         }
         containerPower.style.right = "-25%";
         currentIndex = -1;
@@ -733,65 +747,86 @@ removeButton.addEventListener('click', () => {
     storeCompaniesList();
 })
 
+const isValidEmail = email => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return email.trim() === "" || emailRegex.test(email)   // Email is not a required field
+}
 
+const isValidYearFounded = year => {
+    const yearRegex = /^(?!0{4})\d{4}$/;
+    return year.trim() === "" || yearRegex.test(year)   // Year is not a required field
+}
 
-submitButton.addEventListener("click", function () {
-    if (newCompanyNameInput.value.toString().trim() == "" ||
-        newCompanyServicesInput.value.toString().trim() == "" ||
-        newCompanyContactNameInput.value.toString().trim() == "" ||
-        newCompanyContactPhoneInput.value.toString().trim() == "" ||
-        newCompanyNameInput.value.toString().trim() == "")
+const isValidPhoneNumber = number => {
+    const phoneRegex = /^(\+\d{1,2}\s?)?(\(\d{3}\)|\d{3})[-.\s]?\d{3}[-.\s]?\d{4}$/
+    return phoneRegex.test(number)  // Blank number already accounted for
+}
+
+submitButton.addEventListener("click", () => {
+    if (newCompanyInput.name.value.toString().trim()           == "" ||
+        newCompanyInput.services.value.toString().trim()       == "" ||
+        newCompanyInput.contact.name.value.toString().trim()   == "" ||
+        newCompanyInput.contact.number.value.toString().trim() == "")
+    {
         alert("Please fill all required fields!")
-    else {
-        let newCompany = new Company(
-            newCompanyNameInput.value.toString().trim(),
-            newCompanyServicesInput.value.toString().split(',').map(service => service.trim()),
-            newCompanyDescInput.value.toString().trim(),
-            newCompanyAddrInput.value.toString().trim(),
-            newCompanyFoundingYearInput.value.toString().trim(),
-            newCompanyWebsiteInput.value.toString().trim(),
-            {
-                name: newCompanyContactNameInput.value.toString().trim(),
-                number: newCompanyContactPhoneInput.value.toString().trim(),
-                email: newCompanyContactEmailInput.value.toString().trim()
-            }
-        );
-
-        addListItem(newCompany)
-        storeCompaniesList();
+        return
     }
+
+    if(!isValidEmail(newCompanyInput.contact.email.value.toString()) || 
+       !isValidPhoneNumber(newCompanyInput.contact.number.value.toString()) || 
+       !isValidYearFounded(newCompanyInput.yearFounded.value.toString()))
+    {
+        alert("Invalid data entered")
+        return
+    }
+
+    addListItem(new Company(
+        newCompanyInput.name.value.toString().trim(),
+        newCompanyInput.services.value.toString().split(',').map(service => service.trim()),
+        newCompanyInput.description.value.toString().trim(),
+        newCompanyInput.address.value.toString().trim(),
+        newCompanyInput.yearFounded.value.toString().trim(),
+        newCompanyInput.websiteURL.value.toString().trim(),
+        {
+            name: newCompanyInput.contact.name.value.toString().trim(),
+            number: newCompanyInput.contact.number.value.toString().trim(),
+            email: (newCompanyInput.contact.email.value.toString().trim()) == "" ? "No email given" : newCompanyInput.contact.email.value.toString().trim()
+        }
+    ))
+    storeCompaniesList()
 })
 
 function addListItem(newCompany) {
     companiesList.push(newCompany)
     refreshList(false)
-    buttonClicked(newCompany, companiesList.length - 1)
+    companyInfoClicked(newCompany, companiesList.length - 1)
     document.getElementById("addContainer").classList.remove("appear")
     document.getElementById("addContainer").classList.add("disappear")
-    newCompanyNameInput.value = '';
-    newCompanyServicesInput.value = '';
-    newCompanyDescInput.value = '';
-    newCompanyAddrInput.value = '';
-    newCompanyFoundingYearInput.value = '';
-    newCompanyWebsiteInput.value = '';
-    newCompanyContactNameInput.value = '';
-    newCompanyContactPhoneInput.value = '';
-    newCompanyContactEmailInput.value = '';
 
+    newCompanyInput.name.value           = ""
+    newCompanyInput.services.value       = ""
+    newCompanyInput.description.value    = ""
+    newCompanyInput.address.value        = ""
+    newCompanyInput.yearFounded.value    = ""
+    newCompanyInput.websiteURL.value     = ""
+    newCompanyInput.contact.name.value   = ""
+    newCompanyInput.contact.number.value = ""
+    newCompanyInput.contact.email.value  = ""
 }
 
 cancelButton.addEventListener('click', () => {
     document.getElementById("addContainer").classList.remove("appear")
     document.getElementById("addContainer").classList.add("disappear")
-    newCompanyNameInput.value = '';
-    newCompanyServicesInput.value = '';
-    newCompanyDescInput.value = '';
-    newCompanyAddrInput.value = '';
-    newCompanyFoundingYearInput.value = '';
-    newCompanyWebsiteInput.value = '';
-    newCompanyContactNameInput.value = '';
-    newCompanyContactPhoneInput.value = '';
-    newCompanyContactEmailInput.value = '';
+    
+    newCompanyInput.name.value           = ""
+    newCompanyInput.services.value       = ""
+    newCompanyInput.description.value    = ""
+    newCompanyInput.address.value        = ""
+    newCompanyInput.yearFounded.value    = ""
+    newCompanyInput.websiteURL.value     = ""
+    newCompanyInput.contact.name.value   = ""
+    newCompanyInput.contact.number.value = ""
+    newCompanyInput.contact.email.value  = ""
 })
 
 let isDragging = false
@@ -893,6 +928,21 @@ document.getElementById('importButton').addEventListener('click', function () {
     document.getElementById('fileInput').click();
 });
 
+function addWidthClass(button, className) {
+    if(button.classList.contains("scale_out")) {
+        button.classList.remove("scale_out")
+        button.classList.add(className)
+        button.classList.add("scale_out")
+    } 
+    else if(button.classList.contains("scale_in")) {
+        button.classList.remove("scale_in")
+        button.classList.add(className)
+        button.classList.add("scale_in")
+    } else {
+        button.classList.add(className)
+    }
+}
+
 //Cookie stuff
 function storeCompaniesList() {
     sessionStorage.setItem('companiesList', JSON.stringify(companiesList));
@@ -902,5 +952,6 @@ function getCompaniesList() {
     const storedCompaniesList = sessionStorage.getItem('companiesList');
     return storedCompaniesList ? JSON.parse(storedCompaniesList) : false;
 }
+
 
 

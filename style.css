@@ -45,12 +45,45 @@
 }
 
 .top_bar {
+    display: flex;
+    height: 120px;
+    align-items: center;
     background-color: white;
     background-image: linear-gradient(to top right, #0a2e7f 40% , #1b3c88);
 }
 
 .import_button {
     display: none;
+}
+
+.logo {
+    padding: 20px;
+    width: 250px;
+}
+.text_search {
+    align-self: center;
+    width: 30%;
+    height: 50px;
+    font-size: 2em;
+    border-radius: 30px;
+    outline: none;
+    padding-left: 1%;
+    padding-right: 1%;
+    border: 3px solid #2d2b2b;
+}
+
+.dropdown_search {
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    width: 10%;
+    height: 50px;
+    left: 56%;
+    transform: translateX(-110%);
+    font-family: abel;
+    font-weight: bold;
+    text-align: right;
+    border-width: 0px;
+    font-size: 1em;
 }
 
 .import_button_label {
@@ -94,7 +127,7 @@
     height: fit-content;
     overflow: visible;
     right: 2%;
-    top: 28px;
+    top: 40px;
     width: 8.5%;
 }
 
@@ -279,10 +312,78 @@
 }
 
 .button_box {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: top;
+    padding-left: 2%;
+    padding-right: 2%;
+
     background-color: #2d2b2b;
+
     width: 100%;
-    height: 100px
 }
+
+.company_button {
+    display: flex;
+    position: relative;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 1%;
+    align-items: center;
+    background-color: #1d52bc;
+    width: 96%;
+    font-size: 1.4em;
+    border-width: 0px;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.wide {
+    animation: widen 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.thin {
+    animation: shrink 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes widen {
+    0% {
+        width: 71%;
+    }
+
+    100% {
+        width: 96%;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        width: 96%;
+    }
+
+    100% {
+        width: 71%;
+    }
+}
+
+
+.company_name_button {
+    margin-left: 2%;
+    align-self: left;
+    text-align: left;
+}
+
+.company_resources_button {
+    
+    margin-left: auto;
+    margin-right: 2%;
+    text-align: right;
+    font-size: 0.7em;
+}
+
 
 .secondary_background {
     width: 100%;
@@ -297,7 +398,6 @@
     width: 25%;
     height: 100%;
     background-color: var(--universalBlue);
-    
     position: absolute;
     transition: all 0.3s ease-in-out;
 }
@@ -388,91 +488,7 @@
     transition: 0.3s ease-in-out;
 }
 
-.company_button {
-    background-color: #1d52bc;
-    width: 90%;
-    height: 50px;
-    left: 5%;
-    position: absolute;
-    font-size: 1.4em;
-    border-width: 0px;
-    border-radius: 25px;
-    transition: all 0.3s ease-in-out;
-}
 
-.wide {
-    animation: widen 0.3s ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-.thin {
-    animation: shrink 0.3s ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-@keyframes widen {
-    0% {
-        width: 65%;
-    }
-
-    100% {
-        width: 90%;
-    }
-}
-
-@keyframes shrink {
-    0% {
-        width: 90%;
-    }
-
-    100% {
-        width: 65%;
-    }
-}
-
-.company_name_button {
-    left: 1vw;
-    position: absolute;
-    text-align: left;
-    top: 25%;
-}
-
-.company_resources_button {
-    right: 2vw;
-    top: 32%;
-    position: absolute;
-    text-align: center;
-    font-size: 0.7em;
-}
-
-.text_search {
-    position: absolute;
-    top: 25px;
-    left: 35%;
-    width: 30%;
-    height: 50px;
-    font-size: 2em;
-    border-radius: 30px;
-    outline: none;
-    padding-left: 1%;
-    padding-right: 1%;
-    border: 3px solid #2d2b2b;
-}
-
-.dropdown_search {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0);
-    outline: none;
-    width: 10%;
-    height: 50px;
-    top: 28px;
-    left: 56%;
-    font-family: abel;
-    font-weight: bold;
-    text-align: right;
-    border-width: 0px;
-    font-size: 1em;
-}
 
 .exit_button {
     height: 35px;
