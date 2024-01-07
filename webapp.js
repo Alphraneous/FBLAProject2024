@@ -809,3 +809,13 @@ document.addEventListener('mouseup', () => {
     isDragging = false
     draggedElement = null
 })
+
+document.querySelector('.add_button').addEventListener('mouseover', function() {
+    document.querySelector('.additional_buttons').style.scale = '1';
+    document.querySelector('.container').style.height = '140px';
+});
+
+document.querySelector('.container').addEventListener('mouseleave', function() {
+    document.querySelector('.additional_buttons').style.scale = '0';
+    document.querySelector('.container').style.height = '';
+});

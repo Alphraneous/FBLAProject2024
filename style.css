@@ -63,11 +63,10 @@
 }
 
 .add_button {
-    position: absolute;
-    right: 2%;
-    top: 28px;
+
+    /* background-color: var(--universalBlue); */
     background-color: var(--universalBlue);
-    width: 8.5%;
+    width: 100%;
     color:black;
     height: 40px;
     border-radius: 10px;
@@ -77,9 +76,55 @@
     overflow: hidden;
 }
 
+.container {
+    right: 2%;
+    z-index: 8;
+    position: absolute;
+    height: fit-content;
+    overflow: visible;
+    right: 2%;
+    top: 28px;
+    width: 8.5%;
+}
+
 .add_button:hover {
     background-color: var(--universalBlueLight);
     transition: 0.3s ease-in-out;
+}
+
+.additional_buttons {
+    position: absolute;
+    width: 100%;
+    top: 45px; /* Adjust the distance from the main button */
+    left: 0;
+    display: block;
+    scale: 0;
+    transition: scale 0.3s ease-in-out;
+}
+
+
+.additional_button {
+    display: block;
+    background-color: var(--universalBlue);
+    width: 100%;
+    color: black;
+    height: 40px;
+    border-radius: 10px;
+    border: 3px solid black;
+    font-size: 1em;
+    font-family: abel;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 5px; /* Adjust the spacing between additional buttons */
+}
+
+.additional_button:hover {
+    background-color: var(--universalBlueLight);
+    transition: 0.3s ease-in-out;
+}
+
+.additional_buttons a:hover {
+    background-color: var(--universalBlueLight);
 }
 
 .appear {
@@ -205,7 +250,8 @@
     width: 100%;
     height: 100%;
     position: fixed;
-    background: linear-gradient(to top, #3a3939, #2d2b2b);
+    /* background: linear-gradient(to top, #3a3939, #2d2b2b); */
+    background: linear-gradient(to right, #ce1cce 0%, #c9bc07 75%, #04d1ec 100%);
   }
   
 
