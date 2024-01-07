@@ -489,19 +489,9 @@ var exampleCompanies = [
 
 ]
 
-const existingCompaniesJson = getCookie('companiesList');
-console.log(existingCompaniesJson)
-
-if (existingCompaniesJson != 0 && existingCompaniesJson != "") {
-    // Parse the existing cookie value and use it if available
-    companiesList = JSON.parse(existingCompaniesJson);
-    
-} else {
-    // If no cookie exists, create one with the initial companiesList
-    updateCompaniesListCookie();
-    console.log("no cookie found")
+if (getCompaniesList() != -1) {
+    companiesList = getCompaniesList();
 }
-
 //console.log(companiesList[0].contact.name);
 refreshList(false)
 
@@ -726,7 +716,7 @@ addButton.addEventListener('click', () => {
 fileInput.addEventListener('change', async () => {
     try {
         companiesList = await importFromJson(fileInput)
-        updateCompaniesListCookie();
+        storeCompaniesList();
         refreshList(false)
     } catch (error) {
         console.error('Error reading the JSON file:', error);
@@ -740,7 +730,7 @@ exportButton.addEventListener('click', () => {
 
 removeButton.addEventListener('click', () => {
     removeListItem(currentIndex);
-    updateCompaniesListCookie();
+    storeCompaniesList();
 })
 
 
@@ -768,7 +758,7 @@ submitButton.addEventListener("click", function () {
         );
 
         addListItem(newCompany)
-        updateCompaniesListCookie();
+        storeCompaniesList();
     }
 })
 
@@ -904,33 +894,12 @@ document.getElementById('importButton').addEventListener('click', function () {
 });
 
 //Cookie stuff
-// Function to set a cookie
-function setCookie(name, value, days) {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/`;
+function storeCompaniesList() {
+    sessionStorage.setItem('companiesList', JSON.stringify(companiesList));
 }
 
-// Function to get a cookie value by name
-function getCookie(name) {
-    let cookies = document.cookie
-    console.log(cookies)
-    let cookieData = cookies
-    .split("; ")
-    .find((cookie) => cookie.startsWith(name+"="))
-    if (cookieData) {
-        let jsonData = decodeURIComponent(cookieData.split("=")[1])
-        return jsonData
-    } else {
-        return 0;
-    }
+function getCompaniesList() {
+    const storedCompaniesList = sessionStorage.getItem('companiesList');
+    return storedCompaniesList ? JSON.parse(storedCompaniesList) : -1;
 }
-
-// Function to update the companiesList cookie whenever it changes
-function updateCompaniesListCookie() {
-    console.log("cookie saved");
-    console.log(companiesList)
-    setCookie('companiesList', JSON.stringify(companiesList), 30); // Update the cookie with a 30-day expiration
-}
-
 
