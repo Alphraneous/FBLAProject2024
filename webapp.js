@@ -542,11 +542,11 @@ function listSearch(textInput, searchParam) {
         companyElements[l].button.style.width = "";
         if (simpleSearch(companiesList[l][searchParam].toString(), textInput.toString())) {
             companyElements[l].button.style.position = "relative"
-            companyElements[l].button.scale = "0"
+            companyElements[l].button.scale = "1"
             trueTimes++
         } else {
             companyElements[l].button.style.position = "absolute"
-            companyElements[l].button.style.scale = "1"
+            companyElements[l].button.style.scale = "0"
         }
     }
 
