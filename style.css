@@ -327,8 +327,8 @@
 .company_button {
     display: flex;
     position: relative;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
     margin-top: 1%;
     align-items: center;
     background-color: #1d52bc;
@@ -395,6 +395,7 @@
 
 .info_page {
     right: -25%;
+    border-radius: 0 0 0 20px;
     width: 25%;
     height: 100%;
     background-color: var(--universalBlue);

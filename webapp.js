@@ -762,6 +762,11 @@ const isValidPhoneNumber = number => {
     return phoneRegex.test(number)  // Blank number already accounted for
 }
 
+const isValidURL = URL => {
+    const urlRegex = /^(?:(?:https?):\/\/)?(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+(?:\/[^\s]*)?$/
+    return url.test()
+}
+
 submitButton.addEventListener("click", () => {
     if (newCompanyInput.name.value.toString().trim()           == "" ||
         newCompanyInput.services.value.toString().trim()       == "" ||
@@ -790,7 +795,7 @@ submitButton.addEventListener("click", () => {
         {
             name: newCompanyInput.contact.name.value.toString().trim(),
             number: newCompanyInput.contact.number.value.toString().trim(),
-            email: (newCompanyInput.contact.email.value.toString().trim()) == "" ? "No email given" : newCompanyInput.contact.email.value.toString().trim()
+            email: (email => email === ""? "No email given": email)(newCompanyInput.contact.email.value.toString().trim())
         }
     ))
     storeCompaniesList()
