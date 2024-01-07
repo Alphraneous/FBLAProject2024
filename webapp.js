@@ -19,36 +19,39 @@ class CompanyElement {
 }
 
 var companyElements = []
-var companiesList   = []
-var currentIndex    = -1;
+var companiesList = []
+var currentIndex = -1;
 
-var oldListLength   = null
-var infoPage        = null
-var exitButton      = null
-var titleHeader     = null
-var miniTitle       = null
-var resourcesText   = null
-var companyLink     = null
+var oldListLength = null
+var infoPage = null
+var exitButton = null
+var titleHeader = null
+var miniTitle = null
+var resourcesText = null
+var companyLink = null
 var companyLinkWrap = null
-var dropdown        = document.getElementById('dropdown')
-var inputElement    = document.getElementById('textSearch')
+var dropdown = document.getElementById('dropdown')
+var inputElement = document.getElementById('textSearch')
 
 
 const buttonContainer = document.getElementById("buttonBox")
-const addButton       = document.getElementById('addButton')
-const removeButton    = document.getElementById('removeButton')
+const addButton = document.getElementById('addButton')
+const importButton = document.getElementById('importButton')
+const fileInput = document.getElementById('fileInput')
+const exportButton = document.getElementById('exportButton')
+const removeButton = document.getElementById('removeButton')
 
-const newCompanyNameInput         = document.getElementById('newCompanyName')
-const newCompanyServicesInput     = document.getElementById('newCompanyServices')
-const newCompanyDescInput         = document.getElementById('newCompanyDesc')
-const newCompanyAddrInput         = document.getElementById('newCompanyAddr')
+const newCompanyNameInput = document.getElementById('newCompanyName')
+const newCompanyServicesInput = document.getElementById('newCompanyServices')
+const newCompanyDescInput = document.getElementById('newCompanyDesc')
+const newCompanyAddrInput = document.getElementById('newCompanyAddr')
 const newCompanyFoundingYearInput = document.getElementById('newCompanyFoundingYear')
-const newCompanyWebsiteInput      = document.getElementById('newCompanyWebsite')
-const newCompanyContactNameInput  = document.getElementById('newCompanyContactName')
+const newCompanyWebsiteInput = document.getElementById('newCompanyWebsite')
+const newCompanyContactNameInput = document.getElementById('newCompanyContactName')
 const newCompanyContactPhoneInput = document.getElementById('newCompanyContactPhone')
 const newCompanyContactEmailInput = document.getElementById('newCompanyContactEmail')
-const submitButton                = document.getElementById('addSubmitButton')
-const cancelButton                = document.getElementById('addCancelButton')
+const submitButton = document.getElementById('addSubmitButton')
+const cancelButton = document.getElementById('addCancelButton')
 
 var exampleCompanies = [
     new Company(
@@ -64,10 +67,10 @@ var exampleCompanies = [
             email: "kurt.wagner@wagner-machine.com"
         }
     ),
-    
+
     new Company(
         "Wright Photography",
-        ["Art, Design, Media"],
+        ["Art", "Design", "Media"],
         "Photographer: Weddings, Special Events",
         "1826 Parkdale Dr. Champaign, IL 61821",
         "2008",
@@ -78,10 +81,10 @@ var exampleCompanies = [
             email: "connect@wright-photographs.com"
         }
     ),
-    
+
     new Company(
         "Maatuka Al-Heeti Emkes Attornys at Law",
-        ["Attorneys/Legal"],
+        ["Attorneys", "Legal"],
         "Legal Services",
         "303 S. Mattis Ave. Suite 201 Champaign, IL 61821",
         "1975",
@@ -92,7 +95,7 @@ var exampleCompanies = [
             email: "receptionist@maelaw.net"
         }
     ),
-    
+
     new Company(
         "Dixon Graphics",
         ["Commercial Printing"],
@@ -106,7 +109,7 @@ var exampleCompanies = [
             email: "lance@dixongraphics.com"
         }
     ),
-    
+
     new Company(
         "Art Mart",
         ["Modern Living"],
@@ -120,10 +123,10 @@ var exampleCompanies = [
             email: "artmartfood@gmail.com"
         }
     ),
-    
+
     new Company(
         "Fire Doll Studio",
-        ["Art, Design"],
+        ["Art", "Design"],
         "Artisan chandlery with a passion for health, sustainability, and the art of candle making.",
         "29 East Main Street, Champaign, IL 61820",
         "2011",
@@ -134,7 +137,7 @@ var exampleCompanies = [
             email: "info@firedollstudio.com"
         }
     ),
-    
+
     new Company(
         "Jos. Kuhn & Co",
         ["Formal Wear"],
@@ -148,133 +151,147 @@ var exampleCompanies = [
             email: "Not Available"
         }
     ),
-    
+
     new Company(
-        "Busey Bank",
-        ["Banking", "Financial Services"],
-        "Provides banking and financial services.",
-        "201 W Main St, Urbana, IL 61801",
-        1868,
-        "https://www.busey.com",
+        "Sunset Funeral Home",
+        ["Funeral Services"],
+        "providing the finest facilities, best value, friendly and caring staff to meet the needs of all served.",
+        "710 North Neil Street, Champaign, IL 61820",
+        1984,
+        "https://www.sunsetfuneralhome.com",
         {
-            name: "Bank Manager",
-            number: "+1-XXX-XXX-XXXX",
-            email: "manager@buseybank.com"
-        }
-    ),
-    
-    new Company(
-        "Birkey's Farm Store",
-        ["Agricultural Equipment"],
-        "Offers agricultural equipment and services.",
-        "2202 N High Cross Rd, Urbana, IL 61802",
-        "No Founding Year Given",
-        "No Website Available",
-        {
-            name: "Farm Equipment Specialist",
-            number: "+1-XXX-XXX-XXXX",
-            email: "specialist@birkeysfarmstore.com"
-        }
-    ),
-    
-    new Company(
-        "Furniture Lounge",
-        ["Furniture Store"],
-        "Provides furniture store services.",
-        "6 E University Ave, Champaign, IL 61820",
-        "No Founding Year Given",
-        "No Website Available",
-        {
-            name: "Store Manager",
-            number: "+1-XXX-XXX-XXXX",
-            email: "manager@furniturelounge.com"
+            name: "Stephanie Bailey",
+            number: "217-239-2874",
+            email: "Not Available"
         }
     ),
 
     new Company(
-        "Yoder's Amish Furniture",
+        "The Literary",
+        ["Bookstore, Bar"],
+        "Bookstore & bar serving up the finest wine, beer, and reads on planet earth.",
+        "124 North Neil Street, Champaign, IL 61821",
+        "2021",
+        "https://www.literarybookbar.com",
+        {
+            name: "Jenny Shima",
+            number: "217-954-1500",
+            email: "gm@literarybookbar.com"
+        }
+    ),
+
+    new Company(
+        "Wurth Chiropractic Center",
+        ["Medical Services"],
+        "Affordable chiropractic services for the Champaign community",
+        "201 W Springfield Ave, Champaign, IL 61820",
+        "2020",
+        "https://wurthchiropracticcenter.com",
+        {
+            name: "Dave Wurth",
+            number: "217-552-1098",
+            email: "Not Available"
+        }
+    ),
+
+    new Company(
+        "Clanin Marketing",
+        ["Business Marketing"],
+        "Helps businesses strengthen their brand, streamline marketing efforts, and develop strategies to reach their goals.",
+        "348 North Neil St, Champaign, IL 61820",
+        "2014",
+        "https://www.claninmarketing.com",
+        {
+            name: "Scott Clanin",
+            number: "217-402-8077",
+            email: "Not Available"
+        }
+    ),
+
+    new Company(
+        "Glass FX",
+        ["Glass Works"],
+        "Making and repairing stained and decorative glass",
+        "103 E Clark St, Champaign, IL 61820",
+        "1971",
+        "https://www.glassfx.com",
+        {
+            name: "Richard Taylor",
+            number: "217-359-0048",
+            email: "rltaylor48@sbcglobal.net"
+        }
+    ),
+
+    new Company(
+        "Furniture Lounge",
         ["Furniture Store"],
-        "Offers handcrafted Amish furniture.",
-        "105 W Main St, Arthur, IL 61911",
-        "No Founding Year Given",
-        "No Website Available",
+        "Specializing in mid-century modern furniture, home décor, vintage clothing, and records",
+        "11 East University Avenue, Champaign, IL 61820",
+        2002,
+        "http://www.furniturelounge.net",
         {
-            name: "Store Manager",
-            number: "+1-XXX-XXX-XXXX",
-            email: "manager@yodersamishfurniture.com"
+            name: "Not Available",
+            number: "217-418-5388",
+            email: "furniturelounge@sbcglobal.net"
         }
     ),
-    
+
     new Company(
-        "Green Thumb Garden Center",
-        ["Garden Center"],
-        "Provides a variety of plants, tools, and gardening services.",
-        "1501 S Neil St, Champaign, IL 61820",
-        "No Founding Year Given",
-        "No Website Available",
+        "mLAB Fitness",
+        ["Fitness"],
+        "Personal Training and Group Fitness Studio",
+        "122 North 1st Street, Champaign, IL 61822",
+        2013,
+        "https://slurbon-champaign.com",
         {
-            name: "Garden Center Manager",
-            number: "+1-XXX-XXX-XXXX",
-            email: "manager@greenthumbgardencenter.com"
+            name: "Matt Rossbach",
+            number: "217-305-5859",
+            email: "mlabfitness@gmail.com"
         }
     ),
-    
+
     new Company(
-        "Express Clean Laundromat",
-        ["Laundromat", "Dry Cleaning"],
-        "Offers laundry and dry cleaning services.",
-        "123 E University Ave, Urbana, IL 61801",
-        2010,
-        "http://expresscleanlaundry.com",
+        "Martinelli’s Market",
+        ["Deli, Bakery"],
+        "Wholesale bakery and deli items",
+        "500 N Walnut St, Champaign, IL 61820",
+        "1990",
+        "https://www.martinellismarketchampaign.com",
         {
-            name: "Laundromat Manager",
-            number: "+1-XXX-XXX-XXXX",
-            email: "manager@expresscleanlaundromat.com"
+            name: "Jeffrey Brokish",
+            number: "217-607-1306",
+            email: "office@martinellismarket.com"
         }
     ),
-    
+
     new Company(
-        "Tech Solutions IT Services",
-        ["IT Services"],
-        "Provides comprehensive IT solutions for businesses.",
-        "789 Technology Dr, Champaign, IL 61820",
-        "No Founding Year Given",
-        "No Website Available",
+        "Merrybeth Farm Carriage",
+        ["Horse Rides"],
+        "Horse & carriage service or wagon rides for weddings, anniversaries, birthdays, and other special events.",
+        "1566 County Road 400 E, Champaign, IL 61822",
+        1927,
+        "http://merrybethfarms.webs.com",
         {
-            name: "IT Services Director",
-            number: "+1-XXX-XXX-XXXX",
-            email: "director@techsolutionsit.com"
+            name: "Not Available",
+            number: "217-369-4205",
+            email: "mb2farm@gmail.com"
         }
     ),
-    
+
     new Company(
-        "Sweet Serenity Bakery",
-        ["Bakery"],
-        "Specializes in custom cakes, pastries, and desserts.",
-        "202 S Broadway Ave, Urbana, IL 61801",
-        2015,
-        "http://sweetserenitybakery.com",
+        "Planted",
+        ["Plants"],
+        "Boutique plant shop with a wide variety of house plants, planters and gifts.",
+        "16 East Washington Street, Champaign, IL 61820",
+        2017,
+        "https://www.plantedcu.com",
         {
-            name: "Bakery Owner",
-            number: "+1-XXX-XXX-XXXX",
-            email: "owner@sweetserenitybakery.com"
+            name: "Not Available",
+            number: "217-974-1880",
+            email: "plantedcu@gmail.com"
         }
     ),
-    
-    new Company(
-        "Champaign-Urbana Fitness Center",
-        ["Fitness Center", "Personal Training"],
-        "Offers fitness classes and personalized training.",
-        "500 E Peabody Dr, Champaign, IL 61820",
-        2007,
-        "http://cufitnesscenter.com",
-        {
-            name: "Fitness Center Manager",
-            number: "+1-XXX-XXX-XXXX",
-            email: "manager@cufitnesscenter.com"
-        }
-    ),
-    
+
     new Company(
         "Paws and Whiskers Pet Grooming",
         ["Pet Grooming"],
@@ -288,7 +305,7 @@ var exampleCompanies = [
             email: "grooming@pawsandwhiskers.com"
         }
     ),
-    
+
     new Company(
         "Java Junction Coffee House",
         ["Coffee Shop"],
@@ -302,7 +319,7 @@ var exampleCompanies = [
             email: "owner@javajunctioncoffee.com"
         }
     ),
-    
+
     new Company(
         "Champaign-Urbana Courier Service",
         ["Courier Service"],
@@ -316,7 +333,7 @@ var exampleCompanies = [
             email: "manager@cucourierservice.com"
         }
     ),
-    
+
     new Company(
         "The Painted Canvas Art Studio",
         ["Art Studio", "Art Classes"],
@@ -343,7 +360,7 @@ var exampleCompanies = [
             email: "manager@champaigncleaners.com"
         }
     ),
-    
+
     new Company(
         "TechHub Solutions",
         ["Technology Solutions"],
@@ -357,7 +374,7 @@ var exampleCompanies = [
             email: "ceo@techhubsolutions.com"
         }
     ),
-    
+
     new Company(
         "Green Valley Florist",
         ["Florist"],
@@ -371,7 +388,7 @@ var exampleCompanies = [
             email: "manager@greenvalleyflorist.com"
         }
     ),
-    
+
     new Company(
         "Epic Fitness Studio",
         ["Fitness Studio", "Yoga Classes"],
@@ -385,7 +402,7 @@ var exampleCompanies = [
             email: "owner@epicfitnessstudio.com"
         }
     ),
-    
+
     new Company(
         "Pet Haven Veterinary Clinic",
         ["Veterinary Services"],
@@ -399,7 +416,7 @@ var exampleCompanies = [
             email: "manager@pethavenvetclinic.com"
         }
     ),
-    
+
     new Company(
         "Bookworm Bookstore",
         ["Bookstore"],
@@ -413,7 +430,7 @@ var exampleCompanies = [
             email: "owner@bookwormbookstore.com"
         }
     ),
-    
+
     new Company(
         "Golden Spoon Catering",
         ["Catering"],
@@ -427,7 +444,7 @@ var exampleCompanies = [
             email: "manager@goldenspooncatering.com"
         }
     ),
-    
+
     new Company(
         "Artisanal Craft Brewery",
         ["Brewery"],
@@ -441,7 +458,7 @@ var exampleCompanies = [
             email: "owner@artisanalbrewery.com"
         }
     ),
-    
+
     new Company(
         "Elite Security Services",
         ["Security Services"],
@@ -455,7 +472,7 @@ var exampleCompanies = [
             email: "director@elitesecurityservices.com"
         }
     ),
-    
+
     new Company(
         "Sculpted Edge Hair Salon",
         ["Hair Salon"],
@@ -472,14 +489,25 @@ var exampleCompanies = [
 
 ]
 
-companiesList = exampleCompanies
+const existingCompaniesJson = getCookie('companiesList');
+console.log(existingCompaniesJson)
+
+if (existingCompaniesJson != 0 && existingCompaniesJson != "") {
+    // Parse the existing cookie value and use it if available
+    companiesList = JSON.parse(existingCompaniesJson);
+    
+} else {
+    // If no cookie exists, create one with the initial companiesList
+    updateCompaniesListCookie();
+    console.log("no cookie found")
+}
 
 //console.log(companiesList[0].contact.name);
 refreshList(false)
 
 //will create the buttons and or replace them
-function refreshList(deletion) 
-{
+function refreshList(deletion) {
+    
     var list = companiesList
     console.log(companiesList.length)
     if (document.getElementById("button0") !== null) {
@@ -492,24 +520,24 @@ function refreshList(deletion)
     for (let i = 0; i < list.length; i++) {
 
         companyElements[i] = new CompanyElement(
-            document.createElement("button"), 
+            document.createElement("button"),
             document.createElement("p"),
             document.createElement("p")
         )
 
         //Create and set attributes of button
-        companyElements[i].button.style.width = currentIndex == -1? "90%": "65%"
+        companyElements[i].button.style.width = currentIndex == -1 ? "90%" : "65%"
         companyElements[i].button.setAttribute("id", "button" + i)
         companyElements[i].button.classList.add("company_button")
         companyElements[i].button.style.top = 120 + 65 * i + "px"
-    
+
         //Create and set attributes of name label
         companyElements[i].nameLabel.classList.add("company_name_button")
-        companyElements[i].nameLabel.innerHTML = list[i].name !== undefined? '<b>' + list[i].name + '</b>': "<b>No company name</b>"
+        companyElements[i].nameLabel.innerHTML = list[i].name !== undefined ? '<b>' + list[i].name + '</b>' : "<b>No company name</b>"
 
         //Create and set attributes of resourcesLabel 
         companyElements[i].resourcesLabel.classList.add("company_resources_button")
-        companyElements[i].resourcesLabel.innerHTML = list[i].services !== undefined? list[i].services.join(", "): "No services provided"
+        companyElements[i].resourcesLabel.innerHTML = list[i].services !== undefined ? list[i].services.join(", ") : "No services provided"
 
         //Add button to the buttonContainer
         buttonContainer.appendChild(companyElements[i].button)
@@ -525,7 +553,7 @@ function refreshList(deletion)
 function listSearch(textInput, searchParam) {
     let trueTimes = 0;
     for (var l = 0; l < companiesList.length; l++) {
-        companyElements[l].button.style.width = ""; 
+        companyElements[l].button.style.width = "";
         if (simpleSearch(companiesList[l][searchParam].toString(), textInput.toString())) {
             companyElements[l].button.style.top = 120 + 65 * trueTimes + "px"
             companyElements[l].button.style.scale = "1"
@@ -547,7 +575,7 @@ function simpleSearch(text, input) {
 
 //this creates the info panel when a buttons on a row are made
 function buttonClicked(company, index) {
-    if (currentIndex == -1) { 
+    if (currentIndex == -1) {
         for (let i = 0; i < companyElements.length; i++) {
             companyElements[i].button.classList.remove("wide")
             companyElements[i].button.classList.add("thin")
@@ -555,7 +583,7 @@ function buttonClicked(company, index) {
     }
     currentIndex = index;
     console.log("buttonClicked executed")
-    
+
 
     //panel
     containerPower = document.getElementById("infoId")
@@ -564,15 +592,15 @@ function buttonClicked(company, index) {
 
     //main title (company name)
     titleHeader = document.getElementById("titleHeader")
-    titleHeader.innerHTML = company.name !== undefined? company.name: "No company name given"
+    titleHeader.innerHTML = company.name !== undefined ? company.name : "No company name given"
 
     //mini infotitle (date created and location)
     yearTitle = document.getElementById("yearTitle")
-    yearTitle.innerHTML = company.yearFounded !== undefined? "est " + company.yearFounded: "No founding year given"
+    yearTitle.innerHTML = company.yearFounded !== undefined ? "est " + company.yearFounded : "No founding year given"
 
     //address title
     addrTitle = document.getElementById("addrTitle")
-    addrTitle.innerHTML = company.address !== undefined? company.address: "No address given"
+    addrTitle.innerHTML = company.address !== undefined ? company.address : "No address given"
 
     //Company resources
     resourcesText = document.getElementById("servicesTitle")
@@ -582,8 +610,8 @@ function buttonClicked(company, index) {
             resourcesTextWrite += company.services[v] + "<br>"
         }
         resourcesText.innerHTML = resourcesTextWrite
-    } 
-    else 
+    }
+    else
         resourcesText.innerHTML = "No resources given"
 
     //website(hyperlink)
@@ -595,7 +623,7 @@ function buttonClicked(company, index) {
         companyLink.innerHTML = company.websiteURL
         companyLink.setAttribute("href", company.websiteURL)
 
-    } 
+    }
     else {
         companyLink.innerHTML = "No website given"
         companyLink.style.color = "blue"
@@ -603,11 +631,11 @@ function buttonClicked(company, index) {
 
     //contact name title
     contactNameTitle = document.getElementById("contactNameTitle")
-    contactNameTitle.innerHTML = company.contact.name !== undefined? "Name: " + company.contact.name: "No contact name given"
+    contactNameTitle.innerHTML = company.contact.name !== undefined ? "Name: " + company.contact.name : "No contact name given"
 
     //contact phone title
     contactPhoneTitle = document.getElementById("contactPhoneTitle")
-    contactPhoneTitle.innerHTML = company.contact.number !== undefined? "Phone: " + company.contact.number: "No contact number given"
+    contactPhoneTitle.innerHTML = company.contact.number !== undefined ? "Phone: " + company.contact.number : "No contact number given"
 
     contactEmailTitle = document.getElementById("contactEmailTitle")
     if (company.contact.email == undefined || company.contact.email == "")
@@ -621,7 +649,7 @@ function buttonClicked(company, index) {
     if (window.scrollY > headerHeight) {
         containerPower.style.position = "fixed"
         containerPower.style.top = "0px"
-    } 
+    }
     else {
         containerPower.style.position = "absolute"
         containerPower.style.top = ""
@@ -638,7 +666,7 @@ function buttonClicked(company, index) {
         }
     });
 
-    
+
 
     containerPower.style.right = 0;
 }
@@ -647,7 +675,7 @@ function removeListItem(index) {
     console.log("removeListItemCalled")
     companiesList.splice(index, 1)
     containerPower.style.right = "-25%";
-    refreshList(true);  
+    refreshList(true);
     for (let i = 0; i < companyElements.length; i++) {
         companyElements[i].button.classList.remove("thin")
         companyElements[i].button.classList.add("wide")
@@ -673,7 +701,7 @@ function buttonEvents() {
         containerPower.style.right = "-25%";
         currentIndex = -1;
     })
-    
+
 }
 
 //buttonEvents
@@ -695,19 +723,35 @@ addButton.addEventListener('click', () => {
     document.getElementById("addContainer").classList.add("appear")
 })
 
+fileInput.addEventListener('change', async () => {
+    try {
+        companiesList = await importFromJson(fileInput)
+        updateCompaniesListCookie();
+        refreshList(false)
+    } catch (error) {
+        console.error('Error reading the JSON file:', error);
+    }
+});
+
+exportButton.addEventListener('click', () => {
+    exportToJson(companiesList, 'companiesList.json');
+
+})
+
 removeButton.addEventListener('click', () => {
     removeListItem(currentIndex);
+    updateCompaniesListCookie();
 })
 
 
 
 submitButton.addEventListener("click", function () {
-    if (newCompanyNameInput.value.toString().trim()         == "" ||
-        newCompanyServicesInput.value.toString().trim()     == "" ||
-        newCompanyContactNameInput.value.toString().trim()  == "" ||
+    if (newCompanyNameInput.value.toString().trim() == "" ||
+        newCompanyServicesInput.value.toString().trim() == "" ||
+        newCompanyContactNameInput.value.toString().trim() == "" ||
         newCompanyContactPhoneInput.value.toString().trim() == "" ||
         newCompanyNameInput.value.toString().trim() == "")
-            alert("Please fill all required fields!")
+        alert("Please fill all required fields!")
     else {
         let newCompany = new Company(
             newCompanyNameInput.value.toString().trim(),
@@ -724,13 +768,14 @@ submitButton.addEventListener("click", function () {
         );
 
         addListItem(newCompany)
+        updateCompaniesListCookie();
     }
 })
 
 function addListItem(newCompany) {
     companiesList.push(newCompany)
     refreshList(false)
-    buttonClicked(newCompany,companiesList.length-1)
+    buttonClicked(newCompany, companiesList.length - 1)
     document.getElementById("addContainer").classList.remove("appear")
     document.getElementById("addContainer").classList.add("disappear")
     newCompanyNameInput.value = '';
@@ -759,8 +804,6 @@ cancelButton.addEventListener('click', () => {
     newCompanyContactEmailInput.value = '';
 })
 
-
-
 let isDragging = false
 let initialX = 0
 let initialY = 0
@@ -785,20 +828,21 @@ document.addEventListener('mousemove', e => {
         if (draggedElement) {
             var offsetX = e.clientX + window.scrollX - initialX
             var offsetY = e.clientY + window.scrollY - initialY
-            if(offsetX < 0) {
+            if (offsetX < 0) {
                 offsetX = 0
             }
-            if(offsetY < 0) {
+            if (offsetY < 0) {
                 offsetX = 0
             }
 
-            if(offsetX > document.documentElement.clientWidth - document.getElementById("addContainer").clientWidth) {
-                offsetX = document.documentElement.clientWidth - document.getElementById("addContainer").clientWidth + "px"
-            }
+            const containerClientWidth = document.documentElement.clientWidth - document.getElementById("addContainer").clientWidth
+            if (offsetX > containerClientWidth)
+                offsetX += containerClientWidth + "px"
 
-            if(offsetY > document.documentElement.clientHeight - document.getElementById("addContainer").clientHeight+ 500) {
-                offsetY = document.documentElement.clientHeight - document.getElementById("addContainer").clientHeight + 500+ "px"
-            }
+            const containerClientHeight = document.documentElement.clientHeight - document.getElementById("addContainer").clientHeight + 500
+            if (offsetY > containerClientHeight)
+                offsetY += containerClientHeight + 500 + "px"
+
             draggedElement.style.left = offsetX + 'px'
             draggedElement.style.top = offsetY + 'px'
         }
@@ -810,12 +854,83 @@ document.addEventListener('mouseup', () => {
     draggedElement = null
 })
 
-document.querySelector('.add_button').addEventListener('mouseover', function() {
+//Funny CSS stuff ignore pls
+document.querySelector('.add_button').addEventListener('mouseover', function () {
     document.querySelector('.additional_buttons').style.scale = '1';
     document.querySelector('.container').style.height = '140px';
 });
 
-document.querySelector('.container').addEventListener('mouseleave', function() {
+document.querySelector('.container').addEventListener('mouseleave', function () {
     document.querySelector('.additional_buttons').style.scale = '0';
     document.querySelector('.container').style.height = '';
 });
+
+//JSON Stuff
+
+const exportToJson = (data, filename) => {
+    const jsonData = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+};
+
+const importFromJson = async (fileInput) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            try {
+                const data = JSON.parse(event.target.result);
+                resolve(data);
+            } catch (error) {
+                reject(error);
+            }
+        };
+
+        reader.readAsText(fileInput.files[0]);
+    });
+};
+
+//Some more css tomfoolery
+document.getElementById('importButton').addEventListener('click', function () {
+    document.getElementById('fileInput').click();
+});
+
+//Cookie stuff
+// Function to set a cookie
+function setCookie(name, value, days) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/`;
+}
+
+// Function to get a cookie value by name
+function getCookie(name) {
+    let cookies = document.cookie
+    console.log(cookies)
+    let cookieData = cookies
+    .split("; ")
+    .find((cookie) => cookie.startsWith(name+"="))
+    if (cookieData) {
+        let jsonData = decodeURIComponent(cookieData.split("=")[1])
+        return jsonData
+    } else {
+        return 0;
+    }
+}
+
+// Function to update the companiesList cookie whenever it changes
+function updateCompaniesListCookie() {
+    console.log("cookie saved");
+    console.log(companiesList)
+    setCookie('companiesList', JSON.stringify(companiesList), 30); // Update the cookie with a 30-day expiration
+}
+
+

@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     font-family: abel;
     --universalRed: #c72626;
     --universalRedLight:#c55d5d;
@@ -10,7 +9,19 @@
     --universalBlue: #1d52bc;
     --universalBlueDark: #1d52bc;
     --universalDarkBorder: #2d2b2b;
+    
 
+}
+
+.body {
+    background-color: var(--universalDarkBorder);
+}
+
+.wrapper {
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--universalDarkBorder);
+    height: 100vh;
 }
 
 .material-symbols-outlined {
@@ -95,6 +106,7 @@
 .additional_buttons {
     position: absolute;
     width: 100%;
+    overflow-x: visible;
     top: 45px; /* Adjust the distance from the main button */
     left: 0;
     display: block;
@@ -125,6 +137,35 @@
 
 .additional_buttons a:hover {
     background-color: var(--universalBlueLight);
+}
+
+.additional_buttons .file_input {
+    display: none;
+    text-align: center;
+    width: 100%;
+    z-index: 9;
+}
+
+.additional_buttons .file_input_label {
+    display: flex;
+    align-items: center;  /* Align vertically in the center */
+    justify-content: center;  /* Align horizontally in the center */
+    background-color: var(--universalBlue);
+    width: 100%;
+    color: black;
+    height: 40px;
+    border-radius: 10px;
+    border: 3px solid black;
+    font-size: 1em;
+    font-family: abel;
+    text-align: center;
+    margin-bottom: 5px; /* Adjust the spacing between additional buttons */
+    cursor: pointer;
+}
+
+.additional_buttons .file_input_label:hover {
+    background-color: var(--universalBlueLight);
+    transition: 0.3s ease-in-out;
 }
 
 .appear {
@@ -169,9 +210,6 @@
     }
 }
 
-.add_container_inner {
-   
-}
 .add_container {
     width: 100%;
     height: 80%;
@@ -249,10 +287,9 @@
 .secondary_background {
     width: 100%;
     height: 100%;
-    position: fixed;
-    /* background: linear-gradient(to top, #3a3939, #2d2b2b); */
-    background: linear-gradient(to right, #ce1cce 0%, #c9bc07 75%, #04d1ec 100%);
-  }
+    position: relative;
+    background: linear-gradient(to right, rgb(31, 29, 29) 0%, rgb(59, 55, 55) 75%, #413b3b 100%);
+}
   
 
 .info_page {
