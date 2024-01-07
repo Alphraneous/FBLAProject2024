@@ -87,9 +87,9 @@ var exampleCompanies = [
         "1975",
         "https://www.maelaw.net",
         {
-            name: "HVAC Manager",
-            number: "(217) 356-9500",
-            email: "hvac_manager@arcontractors.com"
+            name: "Jennifer L. Zang",
+            number: "(217) 337-0700",
+            email: "receptionist@maelaw.net"
         }
     ),
     
