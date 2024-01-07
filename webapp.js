@@ -894,12 +894,33 @@ document.getElementById('importButton').addEventListener('click', function () {
 });
 
 //Cookie stuff
-function storeCompaniesList() {
-    sessionStorage.setItem('companiesList', JSON.stringify(companiesList));
+// Function to set a cookie
+function setCookie(name, value, days) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/`;
 }
 
-function getCompaniesList() {
-    const storedCompaniesList = sessionStorage.getItem('companiesList');
-    return storedCompaniesList ? JSON.parse(storedCompaniesList) : false;
+// Function to get a cookie value by name
+function getCookie(name) {
+    let cookies = document.cookie
+    console.log(cookies)
+    let cookieData = cookies
+    .split("; ")
+    .find((cookie) => cookie.startsWith(name+"="))
+    if (cookieData) {
+        let jsonData = decodeURIComponent(cookieData.split("=")[1])
+        return jsonData
+    } else {
+        return 0;
+    }
 }
+
+// Function to update the companiesList cookie whenever it changes
+function updateCompaniesListCookie() {
+    console.log("cookie saved");
+    console.log(companiesList)
+    setCookie('companiesList', JSON.stringify(companiesList), 30); // Update the cookie with a 30-day expiration
+}
+
 
