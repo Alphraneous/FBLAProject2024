@@ -22,6 +22,8 @@ var companyElements = []
 var companiesList = []
 var currentIndex = -1;
 
+const wrapper = document.getElementById("wrapper")
+
 var dropdown = document.getElementById('dropdown')
 var inputElement = document.getElementById('textSearch')
 
@@ -650,19 +652,12 @@ function companyInfoClicked(company, index) {
         containerPower.style.top = ""
     }
 
-    //this is executed after the button has been created
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > headerHeight) {
-            containerPower.style.position = "fixed"
-            containerPower.style.top = "0px"
-        } else {
-            containerPower.style.position = "absolute"
-            containerPower.style.top = ""
-        }
-    });
-
-
-
+    if(wrapper.scrollTop > 120) {
+        containerPower.style.top = wrapper.scrollTop + "px"
+    } else {
+        containerPower.top = "120px";
+    }
+    
     containerPower.style.right = 0;
 }
 
@@ -683,7 +678,16 @@ function removeListItem(index) {
 function buttonEvents() {
     for (let i = 0; i < companiesList.length; i++) {
         companyElements[i].button.addEventListener('click', () => {
+            if(i != currentIndex) {
             companyInfoClicked(companiesList[i], i)
+            } else {
+                for (let i = 0; i < companyElements.length; i++) {
+                    companyElements[i].button.classList.remove("thin")
+                    addWidthClass(companyElements[i].button, "wide")
+                }
+                containerPower.style.right = "-25%";
+                currentIndex = -1;
+            }
         })
     }
 
@@ -939,6 +943,18 @@ function addWidthClass(button, className) {
         button.classList.add(className)
     }
 }
+
+
+wrapper.addEventListener('scroll', function () {
+    
+    const infoBox = document.getElementById("infoId")
+    if(wrapper.scrollTop > 120) {
+        console.log("greater than 120")
+        infoBox.style.top = wrapper.scrollTop + "px"
+    } else {
+        infoBox.style.top = "120px";
+    }
+});
 
 //Data persistence stuff
 function storeCompaniesList() {

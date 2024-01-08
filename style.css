@@ -404,12 +404,14 @@
 
 .info_page {
     right: -25%;
+    top:120px;
     border-radius: 0 0 0 20px;
     width: 25%;
-    height: 100%;
+    height: fit-content;
+    padding-bottom: 3%;
     background-color: var(--universalBlue);
     position: absolute;
-    transition: all 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out;
 }
 
 .resources_title {
