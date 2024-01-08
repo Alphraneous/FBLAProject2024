@@ -940,13 +940,13 @@ function addWidthClass(button, className) {
     }
 }
 
-//Cookie stuff
+//Data persistence stuff
 function storeCompaniesList() {
-    sessionStorage.setItem('companiesList', JSON.stringify(companiesList));
+    localStorage.setItem('companiesList', JSON.stringify(companiesList));
 }
 
 function getCompaniesList() {
-    const storedCompaniesList = sessionStorage.getItem('companiesList');
+    const storedCompaniesList = localStorage.getItem('companiesList');
     return storedCompaniesList ? JSON.parse(storedCompaniesList) : false;
 }
 
