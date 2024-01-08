@@ -544,11 +544,9 @@ function listSearch(textInput, searchParam) {
         companyElements[l].button.style.width = "";
         if (simpleSearch(companiesList[l][searchParam].toString(), textInput.toString())) {
             companyElements[l].button.style.display = "flex"
-            companyElements[l].button.style.scale = "1"
             trueTimes++
         } else {
             companyElements[l].button.style.display = "none"
-            companyElements[l].button.style.scale = "0"
         }
     }
 
@@ -657,7 +655,7 @@ function companyInfoClicked(company, index) {
     } else {
         containerPower.top = "120px";
     }
-    
+
     containerPower.style.right = 0;
 }
 
