@@ -1,0 +1,475 @@
+[
+  {
+    "name": "Wagner Machine Co",
+    "services": [
+      "Machining"
+    ],
+    "description": "Offers machining services.",
+    "address": "1804 N Market St, Champaign, IL 61822",
+    "yearFounded": "1982",
+    "websiteURL": "https://wagner-machine.com",
+    "contact": {
+      "name": "Kurt Wagner",
+      "number": "217-384-0072",
+      "email": "kurt.wagner@wagner-machine.com"
+    }
+  },
+  {
+    "name": "Wright Photography",
+    "services": [
+      "Art",
+      "Design",
+      "Media"
+    ],
+    "description": "Photographer: Weddings, Special Events",
+    "address": "1826 Parkdale Dr. Champaign, IL 61821",
+    "yearFounded": "2008",
+    "websiteURL": "https://www.wright-photographs.com",
+    "contact": {
+      "name": "Kelsey Wright",
+      "number": "217-637-0671",
+      "email": "connect@wright-photographs.com"
+    }
+  },
+  {
+    "name": "Maatuka Al-Heeti Emkes Attornys at Law",
+    "services": [
+      "Attorneys",
+      "Legal"
+    ],
+    "description": "Legal Services",
+    "address": "303 S. Mattis Ave. Suite 201 Champaign, IL 61821",
+    "yearFounded": "1975",
+    "websiteURL": "https://www.maelaw.net",
+    "contact": {
+      "name": "Jennifer L. Zang",
+      "number": "217-337-0700",
+      "email": "receptionist@maelaw.net"
+    }
+  },
+  {
+    "name": "Dixon Graphics",
+    "services": [
+      "Commercial Printing"
+    ],
+    "description": "Large-format printing, art printing, bookmaking, and full-color screen-printed t-shirts",
+    "address": "105 West John Street, Champaign, IL 61820",
+    "yearFounded": "2012",
+    "websiteURL": "https://www.dixongraphics.com",
+    "contact": {
+      "name": "Lance Dixon",
+      "number": "217-351-6100",
+      "email": "lance@dixongraphics.com"
+    }
+  },
+  {
+    "name": "Art Mart",
+    "services": [
+      "Modern Living"
+    ],
+    "description": "Deli, bakery, wine, housewares groceries, toys, gifts, and catering",
+    "address": "1705 S Prospect Ave, Champaign, IL 61820",
+    "yearFounded": "1958",
+    "websiteURL": "https://www.shopartmart.com",
+    "contact": {
+      "name": "Not Available",
+      "number": "217-344-7979",
+      "email": "artmartfood@gmail.com"
+    }
+  },
+  {
+    "name": "Fire Doll Studio",
+    "services": [
+      "Art",
+      "Design"
+    ],
+    "description": "Artisan chandlery with a passion for health, sustainability, and the art of candle making.",
+    "address": "29 East Main Street, Champaign, IL 61820",
+    "yearFounded": "2011",
+    "websiteURL": "https://www.firedollstudio.com",
+    "contact": {
+      "name": "Kayla Brown",
+      "number": "217-689-0045",
+      "email": "info@firedollstudio.com"
+    }
+  },
+  {
+    "name": "Jos. Kuhn & Co",
+    "services": [
+      "Formal Wear"
+    ],
+    "description": "Now selling men’s clothing, Kunh’s caters to regular sizes as well as big and tall.",
+    "address": "33 East Main Street, Champaign, IL 61820",
+    "yearFounded": "1874",
+    "websiteURL": "https://joskuhn.com",
+    "contact": {
+      "name": "Not Available",
+      "number": "217-352-7666",
+      "email": "Not Available"
+    }
+  },
+  {
+    "name": "Sunset Funeral Home",
+    "services": [
+      "Funeral Services"
+    ],
+    "description": "providing the finest facilities, best value, friendly and caring staff to meet the needs of all served.",
+    "address": "710 North Neil Street, Champaign, IL 61820",
+    "yearFounded": 1984,
+    "websiteURL": "https://www.sunsetfuneralhome.com",
+    "contact": {
+      "name": "Stephanie Bailey",
+      "number": "217-239-2874",
+      "email": "Not Available"
+    }
+  },
+  {
+    "name": "The Literary",
+    "services": [
+      "Bookstore, Bar"
+    ],
+    "description": "Bookstore & bar serving up the finest wine, beer, and reads on planet earth.",
+    "address": "124 North Neil Street, Champaign, IL 61821",
+    "yearFounded": "2021",
+    "websiteURL": "https://www.literarybookbar.com",
+    "contact": {
+      "name": "Jenny Shima",
+      "number": "217-954-1500",
+      "email": "gm@literarybookbar.com"
+    }
+  },
+  {
+    "name": "Wurth Chiropractic Center",
+    "services": [
+      "Medical Services"
+    ],
+    "description": "Affordable chiropractic services for the Champaign community",
+    "address": "201 W Springfield Ave, Champaign, IL 61820",
+    "yearFounded": "2020",
+    "websiteURL": "https://wurthchiropracticcenter.com",
+    "contact": {
+      "name": "Dave Wurth",
+      "number": "217-552-1098",
+      "email": "Not Available"
+    }
+  },
+  {
+    "name": "Clanin Marketing",
+    "services": [
+      "Business Marketing"
+    ],
+    "description": "Helps businesses strengthen their brand, streamline marketing efforts, and develop strategies to reach their goals.",
+    "address": "348 North Neil St, Champaign, IL 61820",
+    "yearFounded": "2014",
+    "websiteURL": "https://www.claninmarketing.com",
+    "contact": {
+      "name": "Scott Clanin",
+      "number": "217-402-8077",
+      "email": "Not Available"
+    }
+  },
+  {
+    "name": "Glass FX",
+    "services": [
+      "Glass Works"
+    ],
+    "description": "Making and repairing stained and decorative glass",
+    "address": "103 E Clark St, Champaign, IL 61820",
+    "yearFounded": "1971",
+    "websiteURL": "https://www.glassfx.com",
+    "contact": {
+      "name": "Richard Taylor",
+      "number": "217-359-0048",
+      "email": "rltaylor48@sbcglobal.net"
+    }
+  },
+  {
+    "name": "Furniture Lounge",
+    "services": [
+      "Furniture Store"
+    ],
+    "description": "Specializing in mid-century modern furniture, home décor, vintage clothing, and records",
+    "address": "11 East University Avenue, Champaign, IL 61820",
+    "yearFounded": 2002,
+    "websiteURL": "http://www.furniturelounge.net",
+    "contact": {
+      "name": "Not Available",
+      "number": "217-418-5388",
+      "email": "furniturelounge@sbcglobal.net"
+    }
+  },
+  {
+    "name": "Sugoma Human Services",
+    "services": [
+      "Cleaning",
+      "Relaxation"
+    ],
+    "description": "We offer the best sugon, ligon, slurbon, and gobblon",
+    "address": "651 Head Ave, Urbana IL 61801",
+    "yearFounded": 2006,
+    "websiteURL": "https://slurbon-champaign.com",
+    "contact": {
+      "name": "Sokdee Zbals",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "manager@slurbon-champaign.com"
+    }
+  },
+  {
+    "name": "Tech Solutions IT Services",
+    "services": [
+      "IT Services"
+    ],
+    "description": "Provides comprehensive IT solutions for businesses.",
+    "address": "789 Technology Dr, Champaign, IL 61820",
+    "yearFounded": "No Founding Year Given",
+    "websiteURL": "No Website Available",
+    "contact": {
+      "name": "IT Services Director",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "director@techsolutionsit.com"
+    }
+  },
+  {
+    "name": "Sweet Serenity Bakery",
+    "services": [
+      "Bakery"
+    ],
+    "description": "Specializes in custom cakes, pastries, and desserts.",
+    "address": "202 S Broadway Ave, Urbana, IL 61801",
+    "yearFounded": 2015,
+    "websiteURL": "http://sweetserenitybakery.com",
+    "contact": {
+      "name": "Bakery Owner",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "owner@sweetserenitybakery.com"
+    }
+  },
+  {
+    "name": "Champaign-Urbana Fitness Center",
+    "services": [
+      "Fitness Center",
+      "Personal Training"
+    ],
+    "description": "Offers fitness classes and personalized training.",
+    "address": "500 E Peabody Dr, Champaign, IL 61820",
+    "yearFounded": 2007,
+    "websiteURL": "http://cufitnesscenter.com",
+    "contact": {
+      "name": "Fitness Center Manager",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "manager@cufitnesscenter.com"
+    }
+  },
+  {
+    "name": "Paws and Whiskers Pet Grooming",
+    "services": [
+      "Pet Grooming"
+    ],
+    "description": "Provides grooming services for dogs and cats.",
+    "address": "777 W Springfield Ave, Champaign, IL 61820",
+    "yearFounded": "No Founding Year Given",
+    "websiteURL": "No Website Available",
+    "contact": {
+      "name": "Pet Grooming Specialist",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "grooming@pawsandwhiskers.com"
+    }
+  },
+  {
+    "name": "Java Junction Coffee House",
+    "services": [
+      "Coffee Shop"
+    ],
+    "description": "Serves a variety of coffee and snacks.",
+    "address": "301 E Green St, Champaign, IL 61820",
+    "yearFounded": 2005,
+    "websiteURL": "http://javajunctioncoffee.com",
+    "contact": {
+      "name": "Coffee House Owner",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "owner@javajunctioncoffee.com"
+    }
+  },
+  {
+    "name": "Champaign-Urbana Courier Service",
+    "services": [
+      "Courier Service"
+    ],
+    "description": "Offers reliable and timely courier services.",
+    "address": "450 N Neil St, Champaign, IL 61820",
+    "yearFounded": "No Founding Year Given",
+    "websiteURL": "No Website Available",
+    "contact": {
+      "name": "Courier Service Manager",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "manager@cucourierservice.com"
+    }
+  },
+  {
+    "name": "The Painted Canvas Art Studio",
+    "services": [
+      "Art Studio",
+      "Art Classes"
+    ],
+    "description": "Provides art classes and studio space for artists.",
+    "address": "700 S Gregory St, Urbana, IL 61801",
+    "yearFounded": 2012,
+    "websiteURL": "http://paintedcanvasartstudio.com",
+    "contact": {
+      "name": "Art Studio Director",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "director@paintedcanvasartstudio.com"
+    }
+  },
+  {
+    "name": "Champaign Cleaners",
+    "services": [
+      "Dry Cleaning"
+    ],
+    "description": "Provides dry cleaning and laundry services.",
+    "address": "1234 W Springfield Ave, Champaign, IL 61821",
+    "yearFounded": 1995,
+    "websiteURL": "http://champaigncleaners.com",
+    "contact": {
+      "name": "Cleaning Services Manager",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "manager@champaigncleaners.com"
+    }
+  },
+  {
+    "name": "TechHub Solutions",
+    "services": [
+      "Technology Solutions"
+    ],
+    "description": "Offers innovative technology solutions for businesses.",
+    "address": "567 Technology Pkwy, Urbana, IL 61802",
+    "yearFounded": 2002,
+    "websiteURL": "http://techhubsolutions.com",
+    "contact": {
+      "name": "Tech Solutions CEO",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "ceo@techhubsolutions.com"
+    }
+  },
+  {
+    "name": "Green Valley Florist",
+    "services": [
+      "Florist"
+    ],
+    "description": "Provides a wide range of floral arrangements and gifts.",
+    "address": "789 Garden Way, Champaign, IL 61820",
+    "yearFounded": "No Founding Year Given",
+    "websiteURL": "No Website Available",
+    "contact": {
+      "name": "Florist Manager",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "manager@greenvalleyflorist.com"
+    }
+  },
+  {
+    "name": "Epic Fitness Studio",
+    "services": [
+      "Fitness Studio",
+      "Yoga Classes"
+    ],
+    "description": "Offers fitness and yoga classes for all levels.",
+    "address": "876 Wellness Blvd, Urbana, IL 61801",
+    "yearFounded": 2014,
+    "websiteURL": "http://epicfitnessstudio.com",
+    "contact": {
+      "name": "Fitness Studio Owner",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "owner@epicfitnessstudio.com"
+    }
+  },
+  {
+    "name": "Pet Haven Veterinary Clinic",
+    "services": [
+      "Veterinary Services"
+    ],
+    "description": "Provides comprehensive veterinary care for pets.",
+    "address": "432 Animal Ave, Champaign, IL 61822",
+    "yearFounded": "No Founding Year Given",
+    "websiteURL": "No Website Available",
+    "contact": {
+      "name": "Veterinary Clinic Manager",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "manager@pethavenvetclinic.com"
+    }
+  },
+  {
+    "name": "Bookworm Bookstore",
+    "services": [
+      "Bookstore"
+    ],
+    "description": "Sells a variety of books, including new and used titles.",
+    "address": "321 Reading St, Urbana, IL 61801",
+    "yearFounded": 1990,
+    "websiteURL": "http://bookwormbookstore.com",
+    "contact": {
+      "name": "Bookstore Owner",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "owner@bookwormbookstore.com"
+    }
+  },
+  {
+    "name": "Golden Spoon Catering",
+    "services": [
+      "Catering"
+    ],
+    "description": "Provides catering services for events and special occasions.",
+    "address": "555 Celebration Blvd, Champaign, IL 61820",
+    "yearFounded": 2008,
+    "websiteURL": "http://goldenspooncatering.com",
+    "contact": {
+      "name": "Catering Manager",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "manager@goldenspooncatering.com"
+    }
+  },
+  {
+    "name": "Artisanal Craft Brewery",
+    "services": [
+      "Brewery"
+    ],
+    "description": "Crafts a variety of unique and flavorful beers.",
+    "address": "789 Craftsmanship Ln, Urbana, IL 61802",
+    "yearFounded": 2016,
+    "websiteURL": "http://artisanalbrewery.com",
+    "contact": {
+      "name": "Brewery Owner",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "owner@artisanalbrewery.com"
+    }
+  },
+  {
+    "name": "Elite Security Services",
+    "services": [
+      "Security Services"
+    ],
+    "description": "Provides professional security services for businesses.",
+    "address": "987 Security Way, Champaign, IL 61821",
+    "yearFounded": "No Founding Year Given",
+    "websiteURL": "No Website Available",
+    "contact": {
+      "name": "Security Services Director",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "director@elitesecurityservices.com"
+    }
+  },
+  {
+    "name": "Sculpted Edge Hair Salon",
+    "services": [
+      "Hair Salon"
+    ],
+    "description": "Offers hairstyling, coloring, and beauty services.",
+    "address": "456 Style St, Champaign, IL 61820",
+    "yearFounded": 2004,
+    "websiteURL": "http://sculptededgehairsalon.com",
+    "contact": {
+      "name": "Salon Owner",
+      "number": "+1-XXX-XXX-XXXX",
+      "email": "owner@sculptededgehairsalon.com"
+    }
+  }
+]
