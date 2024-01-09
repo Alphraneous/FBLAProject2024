@@ -110,11 +110,13 @@ function listSearch(textInput, searchParam) {
     for (var l = 0; l < companiesList.length; l++) {
         companyElements[l].button.style.width = currentIndex == -1 ? "96%" : "71%"
         if (simpleSearch(companiesList[l][searchParam].toString(), textInput.toString())) {
-            companyElements[l].button.style.display = "flex"
+            companyElements[l].button.style.position = "relative"
+            companyElements[l].button.style.zIndex = 2;
             
             trueTimes++
         } else {
-            companyElements[l].button.style.display = "none"
+            companyElements[l].button.style.position = "absolute"
+            companyElements[l].button.style.zIndex = -1;
         }
     }
 
