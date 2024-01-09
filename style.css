@@ -342,13 +342,12 @@
     margin-top: 1%;
     align-items: center;
     background-color: var(--universalBlue);
-    width: 96%;
     font-size: 1.4em;
     border-width: 4px;
     border-style: solid;
     border-color: var(--universalBlue);
     border-radius: 25px;
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .company_button:hover {
