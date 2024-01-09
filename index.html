@@ -25,7 +25,13 @@
                 <option value="4">Website</option>
             </select>
             <div class="container">
-                <button id="addButton" class="add_button" type="button"><b>Add Company</b></button>
+                <button id="addButton" class="add_button" type="button">
+                    <div style="display: flex; flex-direction: row; justify-content: center; padding-top: 2%; align-items: center;">
+                        <b>Add Company</b> 
+                        <span class="material-symbols-outlined" id="expand_more">expand_more</span>
+                    </div>
+                
+                </button>
                 <div class="additional_buttons">
                     <button id="importButton" class="additional_button file_input_label"><b>Import</b></button>
                     <input type="file" id="fileInput" class="file_input" style="display: none;" accept=".json">
@@ -37,7 +43,7 @@
         
         <div class="add_container draggable" id="addContainer">
             <div class="add_container_inner" id="addContainerInner">
-                <p class="add_title"><b>Add New Company</b></p>
+                <p id = "addTitle" class="add_title"><b>Add New Company</b></p>
                 <p class="add_label"><b>Name*</b></p>
                 <input type="text" id="newCompanyName" class="add_input" placeholder="Company XYZ">
                 <p class="add_label"><b>Services Provided* (Enter multiple separated by commas)</b></p>
@@ -90,7 +96,10 @@
                     <p id="contactEmailTitle" class="resources_title">Email: </p>
                 </div>
                 <p class="company_link_wrap">
+                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
                     <button id="removeButton" class="remove_button" type="button"><b>Remove</b></button>
+                    <button id="editButton" class="remove_button" type="button"><b>Edit</b></button>
+                    </div>
                 </p>
 
             </div>

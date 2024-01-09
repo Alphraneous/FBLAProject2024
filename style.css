@@ -113,11 +113,16 @@
     width: 100%;
     color:black;
     height: 40px;
+    font-size: 1em;
     border-radius: 10px;
     border: 3px solid black;
-    font-size: 1em;
     font-family: abel;
     overflow: hidden;
+}
+
+#expand_more {
+    width: 20%;
+    align-self: flex-end;
 }
 
 .container {
@@ -128,7 +133,7 @@
     overflow: visible;
     right: 2%;
     top: 40px;
-    width: 8.5%;
+    width: 9.5%;
 }
 
 .add_button:hover {
@@ -244,9 +249,7 @@
 }
 
 .add_container {
-    width: 100%;
-    height: 80%;
-    overflow-y: scroll;
+    overflow: hidden;
     align-items: left;
     text-align: left;
     border: 5px solid #4c82ee;
@@ -264,6 +267,13 @@
     background-color: #f1f1f1;
     z-index: -1;
     
+}
+
+.add_container_inner {
+    overflow-y: scroll;
+    position: relative;
+    box-sizing: content-box;
+    height: 80vh;
 }
 
 .add_label {
@@ -415,7 +425,7 @@
 }
 
 .resources_title {
-    font-size: 1.5em;
+    font-size: 2.3vh;
     margin: 10px;
     margin-left: 10%;
     font-family: abel;
@@ -427,12 +437,12 @@
     border: 2px solid var(--universalDarkBorder);
     border-radius: 15px;
     background-color: var(--universalBlueLight);
-    margin: 10px;
-    padding: 5px;
+    margin: 1vh;
+    padding: 1vh;
 }
 
 .info_label {
-    font-size: 1.5em;
+    font-size: 2.3vh;
     margin-left: 2%;
     font-family: abel;
     text-align: left;
@@ -441,7 +451,7 @@
 
 
 .title_header {
-    font-size: 35px;
+    font-size: 4vh;
     margin: 0px;
     margin-left: 10px;
     margin-right: 10px;
@@ -450,22 +460,15 @@
 }
 
 .year_title {
-    font-size: 1.5em;
+    font-size: 2vh;
     font-family: abel;
     text-align: center;
 }
 
 .addr_title {
-    font-size: 1em;
+    font-size: 2vh;
     font-family: abel;
     text-align: center;
-}
-
-.resources_title {
-    font-size: 1.5em;
-    margin-left: 2%;
-    font-family: abel;
-    text-align: left;
 }
 
 .company_link_wrap {
@@ -478,21 +481,32 @@
     background-color: "#2d2b2b";
     padding: 5px;
     border-radius: 10px;
-    font-size: 1.2em;
+    font-size: 1.8vh;
     font-family: abel;
 }
 
 .remove_button {
     background-color: #c72626;
-    width: 50%;
+    width: 25%;
     margin-top: 20px;
-    height: 40px;
+    height: 6vh;
     border-radius: 10px;
     border: 3px solid #5a0000;
-    font-size: 1em;
+    font-size: 2vh;
+    margin-left: 2%;
+    margin-right: 2%;
     text-align: center;
     font-family: abel;
     overflow: hidden;
+}
+
+#editButton {
+    background-color: var(--universalBlue);
+    border-color: var(--universalDarkBorder);
+}
+
+#editButton:hover {
+    background-color: var(--universalBlueLight);
 }
 
 .remove_button:hover {

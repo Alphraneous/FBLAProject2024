@@ -199,65 +199,63 @@
     }
   },
   {
-    "name": "Sugoma Human Services",
+    "name": "mLAB Fitness",
     "services": [
-      "Cleaning",
-      "Relaxation"
+      "Fitness"
     ],
-    "description": "We offer the best sugon, ligon, slurbon, and gobblon",
-    "address": "651 Head Ave, Urbana IL 61801",
-    "yearFounded": 2006,
+    "description": "Personal Training and Group Fitness Studio",
+    "address": "122 North 1st Street, Champaign, IL 61822",
+    "yearFounded": 2013,
     "websiteURL": "https://slurbon-champaign.com",
     "contact": {
-      "name": "Sokdee Zbals",
-      "number": "+1-XXX-XXX-XXXX",
-      "email": "manager@slurbon-champaign.com"
+      "name": "Matt Rossbach",
+      "number": "217-305-5859",
+      "email": "mlabfitness@gmail.com"
     }
   },
   {
-    "name": "Tech Solutions IT Services",
+    "name": "Martinelli’s Market",
     "services": [
-      "IT Services"
+      "Deli, Bakery"
     ],
-    "description": "Provides comprehensive IT solutions for businesses.",
-    "address": "789 Technology Dr, Champaign, IL 61820",
-    "yearFounded": "No Founding Year Given",
-    "websiteURL": "No Website Available",
+    "description": "Wholesale bakery and deli items",
+    "address": "500 N Walnut St, Champaign, IL 61820",
+    "yearFounded": "1990",
+    "websiteURL": "https://www.martinellismarketchampaign.com",
     "contact": {
-      "name": "IT Services Director",
-      "number": "+1-XXX-XXX-XXXX",
-      "email": "director@techsolutionsit.com"
+      "name": "Jeffrey Brokish",
+      "number": "217-607-1306",
+      "email": "office@martinellismarket.com"
     }
   },
   {
-    "name": "Sweet Serenity Bakery",
+    "name": "Merrybeth Farm Carriage",
     "services": [
-      "Bakery"
+      "Horse Rides"
     ],
-    "description": "Specializes in custom cakes, pastries, and desserts.",
-    "address": "202 S Broadway Ave, Urbana, IL 61801",
-    "yearFounded": 2015,
-    "websiteURL": "http://sweetserenitybakery.com",
+    "description": "Horse & carriage service or wagon rides for weddings, anniversaries, birthdays, and other special events.",
+    "address": "1566 County Road 400 E, Champaign, IL 61822",
+    "yearFounded": 1927,
+    "websiteURL": "http://merrybethfarms.webs.com",
     "contact": {
-      "name": "Bakery Owner",
-      "number": "+1-XXX-XXX-XXXX",
-      "email": "owner@sweetserenitybakery.com"
+      "name": "Not Available",
+      "number": "217-369-4205",
+      "email": "mb2farm@gmail.com"
     }
   },
   {
-    "name": "Champaign-Urbana Fitness Center",
+    "name": "Planted",
     "services": [
-      "Fitness Center",
-      "Personal Training"
+      "Plants"
     ],
-    "description": "Offers fitness classes and personalized training.",
-    "address": "500 E Peabody Dr, Champaign, IL 61820",
-    "yearFounded": 2007,
-    "websiteURL": "http://cufitnesscenter.com",
+    "description": "Boutique plant shop with a wide variety of house plants, planters and gifts.",
+    "address": "16 East Washington Street, Champaign, IL 61820",
+    "yearFounded": 2017,
+    "websiteURL": "https://www.plantedcu.com",
     "contact": {
-      "name": "Fitness Center Manager",
-      "number": "+1-XXX-XXX-XXXX",
-      "email": "manager@cufitnesscenter.com"
+      "name": "Not Available",
+      "number": "217-974-1880",
+      "email": "plantedcu@gmail.com"
     }
   },
   {
@@ -267,11 +265,11 @@
     ],
     "description": "Provides grooming services for dogs and cats.",
     "address": "777 W Springfield Ave, Champaign, IL 61820",
-    "yearFounded": "No Founding Year Given",
-    "websiteURL": "No Website Available",
+    "yearFounded": "2015",
+    "websiteURL": "https://www.petgrooming.com",
     "contact": {
       "name": "Pet Grooming Specialist",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-394-3814",
       "email": "grooming@pawsandwhiskers.com"
     }
   },
@@ -286,7 +284,7 @@
     "websiteURL": "http://javajunctioncoffee.com",
     "contact": {
       "name": "Coffee House Owner",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-928-4956",
       "email": "owner@javajunctioncoffee.com"
     }
   },
@@ -297,11 +295,11 @@
     ],
     "description": "Offers reliable and timely courier services.",
     "address": "450 N Neil St, Champaign, IL 61820",
-    "yearFounded": "No Founding Year Given",
-    "websiteURL": "No Website Available",
+    "yearFounded": "1971",
+    "websiteURL": "https://www.cucourier.com",
     "contact": {
       "name": "Courier Service Manager",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-992-4852",
       "email": "manager@cucourierservice.com"
     }
   },
@@ -317,7 +315,7 @@
     "websiteURL": "http://paintedcanvasartstudio.com",
     "contact": {
       "name": "Art Studio Director",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-458-9110",
       "email": "director@paintedcanvasartstudio.com"
     }
   },
@@ -332,7 +330,7 @@
     "websiteURL": "http://champaigncleaners.com",
     "contact": {
       "name": "Cleaning Services Manager",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-339-4284",
       "email": "manager@champaigncleaners.com"
     }
   },
@@ -347,7 +345,7 @@
     "websiteURL": "http://techhubsolutions.com",
     "contact": {
       "name": "Tech Solutions CEO",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-699-2994",
       "email": "ceo@techhubsolutions.com"
     }
   },
@@ -358,11 +356,11 @@
     ],
     "description": "Provides a wide range of floral arrangements and gifts.",
     "address": "789 Garden Way, Champaign, IL 61820",
-    "yearFounded": "No Founding Year Given",
-    "websiteURL": "No Website Available",
+    "yearFounded": "1989",
+    "websiteURL": "https://www.greenvalleycu.com",
     "contact": {
       "name": "Florist Manager",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-688-3356",
       "email": "manager@greenvalleyflorist.com"
     }
   },
@@ -378,7 +376,7 @@
     "websiteURL": "http://epicfitnessstudio.com",
     "contact": {
       "name": "Fitness Studio Owner",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-100-3849",
       "email": "owner@epicfitnessstudio.com"
     }
   },
@@ -389,11 +387,11 @@
     ],
     "description": "Provides comprehensive veterinary care for pets.",
     "address": "432 Animal Ave, Champaign, IL 61822",
-    "yearFounded": "No Founding Year Given",
-    "websiteURL": "No Website Available",
+    "yearFounded": "2009",
+    "websiteURL": "https://www.pethaven.com",
     "contact": {
       "name": "Veterinary Clinic Manager",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-688-4858",
       "email": "manager@pethavenvetclinic.com"
     }
   },
@@ -408,7 +406,7 @@
     "websiteURL": "http://bookwormbookstore.com",
     "contact": {
       "name": "Bookstore Owner",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-217-9288",
       "email": "owner@bookwormbookstore.com"
     }
   },
@@ -423,7 +421,7 @@
     "websiteURL": "http://goldenspooncatering.com",
     "contact": {
       "name": "Catering Manager",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-677-1010",
       "email": "manager@goldenspooncatering.com"
     }
   },
@@ -438,7 +436,7 @@
     "websiteURL": "http://artisanalbrewery.com",
     "contact": {
       "name": "Brewery Owner",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-100-3295",
       "email": "owner@artisanalbrewery.com"
     }
   },
@@ -449,11 +447,11 @@
     ],
     "description": "Provides professional security services for businesses.",
     "address": "987 Security Way, Champaign, IL 61821",
-    "yearFounded": "No Founding Year Given",
-    "websiteURL": "No Website Available",
+    "yearFounded": "2017",
+    "websiteURL": "https://eliteshield.com",
     "contact": {
       "name": "Security Services Director",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-711-9110",
       "email": "director@elitesecurityservices.com"
     }
   },
@@ -468,7 +466,7 @@
     "websiteURL": "http://sculptededgehairsalon.com",
     "contact": {
       "name": "Salon Owner",
-      "number": "+1-XXX-XXX-XXXX",
+      "number": "217-459-3485",
       "email": "owner@sculptededgehairsalon.com"
     }
   }

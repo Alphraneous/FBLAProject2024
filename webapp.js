@@ -21,6 +21,8 @@ class CompanyElement {
 var companyElements = []
 var companiesList = []
 var currentIndex = -1;
+var editingIndex = -1;
+
 
 const wrapper = document.getElementById("wrapper")
 
@@ -30,6 +32,7 @@ var inputElement = document.getElementById('textSearch')
 
 const buttonContainer = document.getElementById("buttonBox")
 const addButton = document.getElementById('addButton')
+const editButton = document.getElementById('editButton')
 const importButton = document.getElementById('importButton')
 const fileInput = document.getElementById('fileInput')
 const exportButton = document.getElementById('exportButton')
@@ -280,9 +283,31 @@ inputElement.addEventListener('input', () => {
 })
 
 addButton.addEventListener('click', () => {
+    document.getElementById("addTitle").innerHTML = "<b>Add New Company</b>"
+    submitButton.innerHTML = "<b>Submit</b>"
     document.getElementById("addContainer").classList.remove("disappear")
     document.getElementById("addContainer").classList.add("appear")
 })
+
+editButton.addEventListener('click', () => {
+    editIndex = currentIndex;
+    let currentCompany = companiesList[editIndex]
+    submitButton.innerHTML = "<b>Save</b>"
+    newCompanyInput.name.value           = currentCompany.name
+    newCompanyInput.services.value       = currentCompany.services.join(",")
+    newCompanyInput.description.value    = currentCompany.description
+    newCompanyInput.address.value        = currentCompany.address
+    newCompanyInput.yearFounded.value    = currentCompany.yearFounded
+    newCompanyInput.websiteURL.value     = currentCompany.websiteURL
+    newCompanyInput.contact.name.value   = currentCompany.contact.name
+    newCompanyInput.contact.number.value = currentCompany.contact.number
+    newCompanyInput.contact.email.value  = currentCompany.contact.email
+    document.getElementById("addTitle").innerHTML = "<b>Editing "+ companiesList[editIndex].name + " </b>"
+    document.getElementById("addContainer").classList.remove("disappear")
+    document.getElementById("addContainer").classList.add("appear")
+})
+
+
 
 fileInput.addEventListener('change', async () => {
     try {
@@ -343,6 +368,7 @@ submitButton.addEventListener("click", () => {
         return
     }
 
+
     addListItem(new Company(
         newCompanyInput.name.value.toString().trim(),
         newCompanyInput.services.value.toString().split(',').map(service => service.trim()),
@@ -360,9 +386,20 @@ submitButton.addEventListener("click", () => {
 })
 
 function addListItem(newCompany) {
-    companiesList.push(newCompany)
+    if(editIndex != -1) { 
+        companiesList[editIndex] = newCompany
+    }
+
     refreshList(false)
-    companyInfoClicked(newCompany, companiesList.length - 1)
+
+    if(editIndex != -1) { 
+        companyInfoClicked(newCompany, companiesList.length - 1)
+    } else {
+        companyInfoClicked(newCompany, editIndex)
+    }
+
+    editIndex = -1
+    
     document.getElementById("addContainer").classList.remove("appear")
     document.getElementById("addContainer").classList.add("disappear")
 
@@ -378,6 +415,7 @@ function addListItem(newCompany) {
 }
 
 cancelButton.addEventListener('click', () => {
+    editIndex = -1;
     document.getElementById("addContainer").classList.remove("appear")
     document.getElementById("addContainer").classList.add("disappear")
     
@@ -510,11 +548,16 @@ function addWidthClass(button, className) {
 wrapper.addEventListener('scroll', function () {
     
     const infoBox = document.getElementById("infoId")
-    if(wrapper.scrollTop > 120) {
-        console.log("greater than 120")
-        infoBox.style.top = wrapper.scrollTop + "px"
+    let offsetPx = 0;
+    if(infoBox.offsetHeight > wrapper.offsetHeight) {
+        offsetPx = infoBox.offsetHeight - wrapper.offsetHeight
     } else {
-        infoBox.style.top = "120px";
+        offsetPx = 0;
+    }
+    if(wrapper.scrollTop > 120 + offsetPx) {
+        infoBox.style.top = (wrapper.scrollTop - offsetPx) + "px"
+    } else {
+        infoBox.style.top = 120 + "px";
     }
 });
 
@@ -527,6 +570,3 @@ function getCompaniesList() {
     const storedCompaniesList = localStorage.getItem('companiesList');
     return storedCompaniesList ? JSON.parse(storedCompaniesList) : false;
 }
-
-
-
