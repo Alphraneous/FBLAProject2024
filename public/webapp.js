@@ -21,7 +21,7 @@ async function loginAuth()
         })
 
         if (response.ok) 
-            window.location.href = location.protocol + '//' + location.host + "/panel";
+            window.location.href = location.protocol + '//' + location.host + "/panel/";
         else 
         {    
             const errorData = await response.json()

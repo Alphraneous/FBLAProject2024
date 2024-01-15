@@ -79,6 +79,10 @@ function getPanelPage()
 }
 getPanelPage()
 
+app.get('/panel', authenticateUser, (req, res) => {
+    res.redirect("/panel/")
+});
+
 // Login route
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
