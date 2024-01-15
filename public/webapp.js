@@ -1,4 +1,22 @@
-const quotes = ["In war, there is no prize for the runner-up", "Never fear something simply because others do"]
+const quotes = [
+    "In war, there is no prize for the runner-up",
+    "Never fear something simply because others do",
+    "The only thing we have to fear is fear itself",
+    "You must be the change you wish to see in the world",
+    "The only limit to our realization of tomorrow will be our doubts of today",
+    "The greatest glory in living lies not in never falling, but in rising every time we fall",
+    "The purpose of our lives is to be happy",
+    "It is not enough to aim, you must hit",
+    "Life is what happens when you're busy making other plans",
+    "The only true wisdom is in knowing you know nothing",
+    "The journey of a thousand miles begins with one step",
+    "War does not determine who is right, only who is left",
+    "Life is really simple, but we insist on making it complicated",
+    "Victory outlasts truth"
+  ];
+  
+  // Feel free to use or modify these quotes as needed.
+  
 
 document.getElementById('easterEgg').innerHTML = quotes[Math.floor(Math.random() * quotes.length)]
 
