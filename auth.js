@@ -72,10 +72,9 @@ function getPanelPage()
     const pages = ['index.html', 'googleAPI.js', 'panel.css', 'panel.js']
     for(const page of pages)
     {
-        app.get(`panel/${page === 'index.html' ? "" : page}`, authenticateUser, (req, res) => {
-            res.sendFile(__dirname + `panel/${page}`)
+        app.get(`/panel/${page === 'index.html' ? "" : page}`, authenticateUser, (req, res) => {
+            res.sendFile(__dirname + `/panel/${page}`)
         })
-        console.log('suspect')
     }
 }
 getPanelPage()
@@ -86,7 +85,6 @@ app.post('/login', (req, res) => {
 
     // Simulated authentication logic (replace with your actual logic)
     const user = users.find(u => u.username === username && u.password === password);
-    console.log('Login clicked:', username, password)
     
     if (user) {
         req.session.user = user;
