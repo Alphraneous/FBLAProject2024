@@ -1,29 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: abel;
-    --universalRed: #c72626;
-    --universalRedLight:#c55d5d;
-    --universalRedDark: #5a0000;
-    --universalBlueLight: #376dda;
-    --universalBlue: #1d52bc;
-    --universalBlueDark: #1d52bc;
-    --universalDarkBorder: #2d2b2b;
-    
-
-}
-
-.body {
-    background-color: var(--universalDarkBorder);
-}
-
-.wrapper {
-    position: relative;
-    overflow-x: hidden;
-    background-color: var(--universalDarkBorder);
-    height: 100vh;
-}
-
 .material-symbols-outlined {
   width: 100%;
   height: 73%;
@@ -34,32 +8,11 @@
   'GRAD' 0,
   'opsz' 24
 }
-@font-face {
-    font-family: abel;
-    src: url(fonts/abel.ttf);
-}
-
-.logo {
-    background-color: #0a2e7f;
-    width: 100px;
-}
-
-.top_bar {
-    display: flex;
-    height: 120px;
-    align-items: center;
-    background-color: white;
-    background-image: linear-gradient(to top right, #0a2e7f 40% , #1b3c88);
-}
 
 .import_button {
     display: none;
 }
 
-.logo {
-    padding: 20px;
-    width: 250px;
-}
 .text_search {
     align-self: center;
     width: 30%;
@@ -106,20 +59,6 @@
     display: none;
 }
 
-.add_button {
-
-    /* background-color: var(--universalBlue); */
-    background-color: var(--universalBlue);
-    width: 100%;
-    color:black;
-    height: 40px;
-    font-size: 1em;
-    border-radius: 10px;
-    border: 3px solid black;
-    font-family: abel;
-    overflow: hidden;
-}
-
 #expand_more {
     width: 20%;
     align-self: flex-end;
@@ -136,11 +75,6 @@
     width: 9.5%;
 }
 
-.add_button:hover {
-    background-color: var(--universalBlueLight);
-    transition: 0.3s ease-in-out;
-}
-
 .additional_buttons {
     position: absolute;
     width: 100%;
@@ -151,7 +85,6 @@
     scale: 0;
     transition: scale 0.3s ease-in-out;
 }
-
 
 .additional_button {
     display: block;
@@ -260,7 +193,7 @@
     cursor: move;
     position: fixed;
     opacity: 0%;
-    padding: 15px;
+    padding: 20px;
     margin-right: 10%;
     top: 2%;
     left: 2%;
@@ -279,46 +212,6 @@
 .add_label {
     font-family: abel;
     font-size: 100%;
-}
-
-.add_title {
-    font-family: abel;
-    align-self: center;
-    text-align: center;
-    font-size: 1em;
-}
-
-.add_input {
-    width: 95%;
-    height: 50px;
-    font-size: 1em;
-    outline: none;
-    padding-left: 1%;
-    padding-right: 1%;
-    padding-bottom: 0;
-    margin-bottom: 2%;
-    border: 0;
-    background-color: #ffffff00;
-    border-bottom: 1.5px solid #666666;
-}
-
-.submit_button {
-    align-self: center;
-    align-content: center;
-    text-align: center;
-    background-color: #1d52bc;
-    color: white;
-    padding-left: 10%;
-    padding-right: 10%;
-    height: 40px;
-    border-radius: 10px;
-    border: 3px solid #2d2b2b;
-    font-size: 1em;
-}
-
-.submit_button:hover {
-    background-color: #376dda;
-    transition: 0.3s ease-in-out;
 }
 
 .button_box {
@@ -355,6 +248,13 @@
     border-width: 4px;
     border-style: solid;
     border-color: var(--universalBlueDark);
+}
+
+#map {
+    height: 200px; /* The height is 400 pixels */
+    width: 100%; /* The width is the width of the web page */
+    margin-top: 2%;
+    border-radius: 10px;
 }
 
 .wide {

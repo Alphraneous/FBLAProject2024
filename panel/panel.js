@@ -21,7 +21,7 @@ class CompanyElement {
 var companyElements = []
 var companiesList = []
 var currentIndex = -1;
-var editingIndex = -1;
+var editIndex = -1;
 
 
 const wrapper = document.getElementById("wrapper")
@@ -34,6 +34,7 @@ const buttonContainer = document.getElementById("buttonBox")
 const addButton = document.getElementById('addButton')
 const editButton = document.getElementById('editButton')
 const importButton = document.getElementById('importButton')
+const logoutButton = document.getElementById('logoutButton')
 const fileInput = document.getElementById('fileInput')
 const exportButton = document.getElementById('exportButton')
 const removeButton = document.getElementById('removeButton')
@@ -194,6 +195,9 @@ function companyInfoClicked(company, index) {
         companyLink.style.color = "blue"
     }
 
+    //map
+    initMap(company);
+
     //contact name title
     contactNameTitle = document.getElementById("contactNameTitle")
     contactNameTitle.innerHTML = company.contact.name !== undefined ? "Name: " + company.contact.name : "No contact name given"
@@ -317,6 +321,12 @@ fileInput.addEventListener('change', async () => {
         companiesList = await importFromJson(fileInput)
         storeCompaniesList();
         refreshList(false)
+        for (let i = 0; i < companyElements.length; i++) {
+            companyElements[i].button.classList.remove("thin")
+            addWidthClass(companyElements[i].button, "wide")
+        }
+        containerPower.style.right = "-25%";
+        currentIndex = -1;
     } catch (error) {
         console.error('Error reading the JSON file:', error);
     }
@@ -326,6 +336,32 @@ exportButton.addEventListener('click', () => {
     exportToJson(companiesList, 'companiesList.json');
 
 })
+
+logoutButton.addEventListener('click', () => {
+    logout()
+})
+
+async function logout()
+{
+    try {
+        const response = await fetch(location.protocol + '//' + location.host + "/logout", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+
+        if (response.ok) 
+            window.location.href = location.protocol + '//' + location.host + "/";
+        else 
+        {    
+            console.error("logout failed")
+        }
+    } 
+    catch {
+        console.error('Error during logout')
+    }
+}
 
 removeButton.addEventListener('click', () => {
     removeListItem(currentIndex);
@@ -371,7 +407,6 @@ submitButton.addEventListener("click", () => {
         return
     }
 
-
     addListItem(new Company(
         newCompanyInput.name.value.toString().trim(),
         newCompanyInput.services.value.toString().split(',').map(service => service.trim()),
@@ -391,14 +426,16 @@ submitButton.addEventListener("click", () => {
 function addListItem(newCompany) {
     if(editIndex != -1) { 
         companiesList[editIndex] = newCompany
+    } else {
+        companiesList.push(newCompany)
     }
 
     refreshList(false)
 
     if(editIndex != -1) { 
-        companyInfoClicked(newCompany, companiesList.length - 1)
-    } else {
         companyInfoClicked(newCompany, editIndex)
+    } else {
+        companyInfoClicked(newCompany, companiesList.length - 1)
     }
 
     editIndex = -1
@@ -440,7 +477,7 @@ let draggedElement = null
 
 const draggingElements = document.querySelectorAll('.draggable') // Assuming you have elements with the 'draggable' class
 
-draggingElements.forEach(function (element) {
+draggingElements.forEach(element => {
     element.addEventListener('mousedown', e => {
         isDragging = true
         draggedElement = element
@@ -485,17 +522,24 @@ document.addEventListener('mouseup', () => {
 
 //Funny CSS stuff ignore pls
 document.querySelector('.add_button').addEventListener('mouseover', function () {
+    // addButton.innerHTML = `<div style="display: flex; flex-direction: row; justify-content: center; padding-top: 2%; align-items: center;">
+    // <b>Add Company</b>
+    // <span class="material-symbols-outlined" id="expand_more">expand_more</span>
+    // </div>`
     document.querySelector('.additional_buttons').style.scale = '1';
-    document.querySelector('.container').style.height = '140px';
+    document.querySelector('.container').style.height = '170px';
 });
 
 document.querySelector('.container').addEventListener('mouseleave', function () {
+    // addButton.innerHTML = `<div style="display: flex; flex-direction: row; justify-content: center; padding-top: 2%; align-items: center;">
+    // <b>Menu</b>
+    // <span class="material-symbols-outlined" id="expand_more">expand_more</span>
+    // </div>`
     document.querySelector('.additional_buttons').style.scale = '0';
     document.querySelector('.container').style.height = '';
 });
 
 //JSON Stuff
-
 const exportToJson = (data, filename) => {
     const jsonData = JSON.stringify(data, null, 2);
     const blob = new Blob([jsonData], { type: 'application/json' });
@@ -573,3 +617,43 @@ function getCompaniesList() {
     const storedCompaniesList = localStorage.getItem('companiesList');
     return storedCompaniesList ? JSON.parse(storedCompaniesList) : false;
 }
+
+//Map stuff
+var map;
+
+async function initMap(company) {
+  // The location of Uluru
+  const position = { lat: -25.344, lng: 131.031 };
+  // Request needed libraries.
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  const geocoder = new google.maps.Geocoder();
+  
+  geocoder.geocode({ address: company.address }, (results, status) => {
+    if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+        const position = {
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng(),
+        };
+
+        map = new Map(document.getElementById("map"), {
+            zoom: 15, // Adjust the zoom level as needed
+            center: position,
+            mapId: "DEMO_MAP_ID",
+            disableDefaultUI: true,
+        });
+
+        // The marker, positioned at the company's address
+        const marker = new AdvancedMarkerElement({
+            map: map,
+            position: position,
+            title: company.name,
+        });
+    } else {
+        console.error("Geocoding failed:", status);
+    }
+  });
+}
+

@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: abel;
+    --universalRed: #c72626;
+    --universalRedLight:#c55d5d;
+    --universalRedDark: #5a0000;
+    --universalBlueLight: #376dda;
+    --universalBlue: #1d52bc;
+    --universalBlueDark: #1d52bc;
+    --universalDarkBorder: #2d2b2b;
+
+}
+
+@font-face {
+    font-family: abel;
+    src: url(/fonts/abel.ttf);
+}
+
+.body {
+    background-color: var(--universalDarkBorder);
+}
+
+.logo {
+    background-color: #0a2e7f;
+    width: 100px;
+    padding: 20px;
+    width: 250px;
+}
+
+.top_bar {
+    display: flex;
+    height: 120px;
+    align-items: center;
+    background-color: white;
+    background-image: linear-gradient(to top right, #0a2e7f 40% , #1b3c88);
+}
+
+.wrapper {
+    position: relative;
+    overflow-x: hidden;
+    background-color: var(--universalDarkBorder);
+    height: 100vh;
+}
+
+.add_button {
+    /* background-color: var(--universalBlue); */
+    background-color: var(--universalBlue);
+    width: 100%;
+    color:black;
+    height: 40px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 3px solid black;
+    font-family: abel;
+    overflow: hidden;
+}
+
+.add_button:hover {
+    background-color: var(--universalBlueLight);
+    transition: 0.3s ease-in-out;
+}
+
+.submit_button {
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    background-color: #1d52bc;
+    color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 40px;
+    border-radius: 10px;
+    border: 3px solid #2d2b2b;
+    font-size: 1em;
+}
+
+.submit_button:hover {
+    background-color: #376dda;
+    transition: 0.3s ease-in-out;
+}
+
+.add_title {
+    font-family: abel;
+    align-self: center;
+    text-align: center;
+    font-size: 1em;
+}
+
+.add_input {
+    width: 95%;
+    height: 50px;
+    font-size: 1em;
+    outline: none;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 0;
+    margin-bottom: 2%;
+    border: 0;
+    background-color: #ffffff00;
+    border-bottom: 1.5px solid #666666;
+}
