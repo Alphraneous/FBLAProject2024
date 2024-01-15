@@ -47,7 +47,7 @@ app.use("/", express.static('public'));
 
 
 // Your authentication routes go here
-app.get("/")
+// app.get("/")
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
