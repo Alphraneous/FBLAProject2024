@@ -44,7 +44,7 @@ pm2 start path/to/auth.js
 This will start a server on port 3000 (port can be changed in auth.js). You can then use a reverse proxy such as NGINX to turn it into a live server
 
 Made with love
-Enjoy!
+\nEnjoy!
 
 -Alphraneous
 
