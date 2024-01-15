@@ -352,7 +352,7 @@ async function logout()
         })
 
         if (response.ok) 
-            window.location.href = location.protocol + '//' + location.host + "/";
+            window.location.href = "/login/";
         else 
         {    
             console.error("logout failed")

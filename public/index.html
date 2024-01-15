@@ -6,17 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Business Beacon</title>
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-        <link href="/universalStyles.css?v=1.8" rel="stylesheet" type="text/css" />
-        <link href="/styles.css?v=1.8" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="universalStyles.css?v=1.8" rel="stylesheet" type="text/css" />
+        <link href="styles.css?v=1.8" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
         <div id="wrapper" class="wrapper">
             <div class="top_bar">
                 <img class="logo" src="images/bblogo.png" alt="fbla logo">
-                <button onclick="toPanel()" class="panel">To Panel</button>
+                <b id="easterEgg">In war, there is no prize for the runner-up</b>
             </div>
             
             <div class="login_wrapper">
@@ -25,7 +23,7 @@
                     <p class="add_label"><b>Username</b></p>
                     <input type="text" id="user" class="add_input" placeholder="JohnDoe123">
                     <p class="add_label"><b>Password</b></p>
-                    <input type="password" id="pass" class="add_input" placeholder="SuchAnAwesomeP@ssword">
+                    <input type="password" id="pass" class="add_input" placeholder="AwesomeP@ssword">
                     <button id="loginButton" class="submit_button" type="submit" onclick="loginAuth()"><b>Login</b></button>
                 </div>
             </div>

@@ -1,6 +1,10 @@
-function toPanel()
+const quotes = ["In war, there is no prize for the runner-up", "Never fear something simply because others do"]
+
+document.getElementById('easterEgg').innerHTML = quotes[Math.floor(Math.random() * quotes.length)]
+
+function toLogin()
 {
-    window.location.href = 'panel/'
+    window.location.href = '/login/'
 }
 
 async function loginAuth()
@@ -9,7 +13,7 @@ async function loginAuth()
     const pass = document.getElementById('pass').value
 
     try {
-        const response = await fetch(location.protocol + '//' + location.host + "/login", {
+        const response = await fetch(location.protocol + '//' + location.host + "/auth", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +25,7 @@ async function loginAuth()
         })
 
         if (response.ok) 
-            window.location.href = location.protocol + '//' + location.host + "/panel/";
+            window.location.href = "/";
         else 
         {    
             const errorData = await response.json()

@@ -17,7 +17,7 @@ app.use(session({
 }));
 
 // Serve your public files (like HTML, CSS, JS) from a public folder
-app.use("/", express.static('public'));
+app.use("/login/", express.static('public'));
 // app.get('/', (req, res) => {
 //     res.sendFile(__dirname + '/public/index.html');
     
@@ -64,7 +64,7 @@ const authenticateUser = (req, res, next) => {
     if (req.session && req.session.user) {
         return next();
     }
-    res.redirect('/'); // Redirect to login if not authenticated
+    res.redirect('/login/'); // Redirect to login if not authenticated
 };
 
 function getPanelPage()
@@ -72,19 +72,19 @@ function getPanelPage()
     const pages = ['index.html', 'googleAPI.js', 'panel.css', 'panel.js']
     for(const page of pages)
     {
-        app.get(`/panel/${page === 'index.html' ? "" : page}`, authenticateUser, (req, res) => {
+        app.get(`/${page === 'index.html' ? "" : page}`, authenticateUser, (req, res) => {
             res.sendFile(__dirname + `/panel/${page}`)
         })
     }
 }
 getPanelPage()
 
-app.get('/panel' , (req, res) => {
-    res.redirect("/panel/")
+app.get('/login' , (req, res) => {
+    res.redirect("/login/")
 });
 
 // Login route
-app.post('/login', (req, res) => {
+app.post('/auth', (req, res) => {
     const { username, password } = req.body;
 
     // Simulated authentication logic (replace with your actual logic)
@@ -102,6 +102,10 @@ app.post('/login', (req, res) => {
 app.post('/logout', (req, res) => {
     req.session.destroy()
     res.status(200).json({ success: true });
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + `/error/errorPage.html`)
 });
 
 // // Protected panel route

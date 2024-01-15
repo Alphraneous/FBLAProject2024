@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    height: 90%;
 }
 
 .login_box {
@@ -12,7 +12,7 @@
     width: 20%;
     height: fit-content;
     background-color: white;
-    padding: 3%;
+    padding: 2.5%;
     border-radius: 20px;
     border: 5px solid var(--universalBlue)
 }
@@ -21,4 +21,33 @@
     font-size: 3vh;
     color: var(--universalBlue);
     padding-bottom: 2%;
+}
+
+#loginButton {
+    margin-top: 5%;
+    width: 100%;
+}
+
+#toLoginButton {
+    margin-top: 5%;
+    width: 100%;
+}   
+
+#easterEgg {
+    position:absolute;
+    right: 2%;
+    text-align: right;
+    font-size: 1em;
+    color: white;
+}
+
+#errorText {
+    color: var(--universalBlue);
+    font-size: 3em;
+    text-align: center;
+}
+
+#errorText2 {
+    font-size: 2em;
+    text-align: center;
 }
