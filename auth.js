@@ -79,7 +79,7 @@ function getPanelPage()
 }
 getPanelPage()
 
-app.get('/panel', (req, res) => {
+app.get('/panel' , (req, res) => {
     res.redirect("/panel/")
 });
 
