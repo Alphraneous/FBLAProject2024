@@ -62,18 +62,19 @@ async function createAccountSubmit() {
             }),
         })
 
-        if (response.ok) 
+        switch(response.status)
         {
-            createAccountHide()
-            alert("Account successfully created, please login")
-        }
-        else if(response.status == 409)
-        {
-            alert("Username already exists")
-        }
-        else if(response.status == 500)
-        {
-            alert("Database connection error")
+            case 200:
+                alert("Account successfully created, please login")
+                createAccountHide()
+                break
+            case 409:
+                alert("Username already exists")
+                break
+            default:
+            case 500:
+                alert("Database connection error")
+                break
         }
     } 
     catch {

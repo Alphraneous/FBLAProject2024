@@ -6,7 +6,7 @@ const sql_lib = require('mysql')
 const app  = express();
 const port = 3000;
 const sql = sql_lib.createPool({
-    host: 'localhost',
+    host: '192.168.1.5',
     user: 'fbla_user',
     password: 'orlando2024',
     database: 'fblaproject2024_node',
@@ -65,21 +65,35 @@ function getPanelPage()
 }
 getPanelPage()
 
-function userExists(user, connection) 
+function userExists(user, connection, released, callback) 
 {
-    connection.query('SELECT COUNT(*) AS count FROM userData WHERE username = ?', [user], (queryError, results) => {
-
-        connection.release()
-  
-        if (queryError) 
+    connection.query('SELECT username FROM userData WHERE username = ?', [user], (queryError, results) => {
+        if(!released)
+            connection.release()
+        
+        if (queryError) {
+            callback(queryError,null)
             return -1
-  
-        const usernameExists = results[0].count > 0
-        return usernameExists
+        }
+        
+        callback(null, results.length > 0)
     })
 }
 
-app.get('/create', (req, res) => {
+function checkPassword(user, password, connection, callback)  {
+    connection.query('SELECT password FROM userData WHERE username = ?', [user], (queryError, results) => {
+        connection.release()
+        console.log(results)
+        if (queryError) {
+            callback(queryError,null)
+            return
+        }
+        
+        callback(null, results[0].password == password)
+    })
+}
+
+app.post('/create', (req, res) => {
     const { name, username, password } = req.body
 
     sql.getConnection((err, connection) => {
@@ -90,31 +104,39 @@ app.get('/create', (req, res) => {
             return
         }
 
-        const usernameExists = userExists(username, connection)
-        switch(usernameExists)
-        {
-            case -1:
-                console.error('Error executing query:', queryError)
+        userExists(username, connection, true, (queryError, userExistsResult) => {
+            if (queryError) {
+                console.error('Error checking user existence:', queryError)
                 res.status(500).send('Internal Server Error')
                 return
-            case 0:
-                connection.query('INSERT INTO userData (name, username, password) VALUES (?, ?, ?, ?)', [name, username, password, '[]'], (insertError) => {
-                    connection.release()
-        
-                    if (insertError) 
-                    {
-                        console.error('Error inserting record:', insertError)
-                        res.status(500).send('Internal Server Error')
-                        return
-                    }
-        
-                    res.status(200)
-                })
-                return
-            case 1:
-                res.status(409).send('Username Already Exists')
-                return
-        }
+            }
+            
+            switch(userExistsResult)
+            {
+                default:
+                case -1:
+                    console.error('Error executing query:', queryError)
+                    res.status(500).send('Internal Server Error')
+                    return
+                case false:
+                    connection.query('INSERT INTO userData (name, username, password, companyList) VALUES (?, ?, ?, ?)', [name, username, password, '[]'], (insertError) => {
+                        connection.release()
+            
+                        if (insertError) 
+                        {
+                            console.error('Error inserting record:', insertError)
+                            res.status(500).send('Internal Server Error')
+                            return
+                        }
+            
+                        res.status(200)
+                    })
+                    return
+                case true:
+                    res.status(409).send('Username Already Exists')
+                    return
+            }
+        })
     })
 })
 
@@ -134,13 +156,38 @@ app.post('/auth', (req, res) => {
             return
         }
 
-        if (userExists(username, connection)) 
-        {
-            req.session.user = user
-            res.status(200)
-        } 
-        else
-            res.status(401).json({ success: false, message: 'Invalid credentials' })
+        userExists(username, connection, true, (queryError, userExistsResult) => {
+            if (queryError) {
+                console.error('Error checking user existence:', queryError)
+                res.status(500).send('Internal Server Error')
+                return
+            }
+
+            if (!userExistsResult) 
+            {
+                res.status(401).json({ success: false, message: 'Username does not exist' })
+                return
+            } 
+            else 
+            {
+                checkPassword(username, password, connection, (queryError, passwordMatchResult) => {
+                    if (queryError) {
+                        console.error('Error checking user existence:', queryError)
+                        res.status(500).send('Internal Server Error')
+                        return
+                    }
+                    
+                    if (!passwordMatchResult) 
+                    {
+                        res.status(401).json({ success: false, message: 'Invalid Password' })
+                        return
+                    }
+                    
+                    req.session.user = true
+                    res.status(200).send('Authenticated')
+                })
+            }
+        })        
     })
 })
 
