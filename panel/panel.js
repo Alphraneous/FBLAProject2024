@@ -56,12 +56,24 @@ var newCompanyInput = new Company(
 const submitButton = document.getElementById('addSubmitButton')
 const cancelButton = document.getElementById('addCancelButton')
 
-if (getCompaniesList()) {
-    companiesList = getCompaniesList();
-    console.log("existing user data found, loading")
-}
+//companiesList = await retrieveList();
+    
+// Now you can use the companiesList variable in the rest of your code
+console.log(companiesList);
+
+// if (getCompaniesList()) {
+//     companiesList = getCompaniesList();
+//     console.log("existing user data found, loading")
+// }
 //console.log(companiesList[0].contact.name);
-refreshList(false)
+document.addEventListener('DOMContentLoaded', async function () {
+    companiesList = await retrieveList();
+    
+    refreshList(false)
+    //console.log(companiesList);
+
+    // Continue with the rest of your code...
+});
 
 //will create the buttons and or replace them
 function refreshList(deletion) {
@@ -610,7 +622,8 @@ wrapper.addEventListener('scroll', function () {
 
 //Data persistence stuff
 function storeCompaniesList() {
-    localStorage.setItem('companiesList', JSON.stringify(companiesList));
+    //localStorage.setItem('companiesList', JSON.stringify(companiesList));
+    storeList()
 }
 
 function getCompaniesList() {
@@ -655,5 +668,61 @@ async function initMap(company) {
         console.error("Geocoding failed:", status);
     }
   });
+}
+
+async function retrieveList()
+{
+    try {
+        const response = await fetch(location.protocol + '//' + location.host + "/getCList", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+
+        if (response.status == 200) 
+        {   
+            const resultsJson = await response.json()
+            return resultsJson
+        }
+        else 
+        {    
+            const errorData = await response.json()
+            return false
+        }
+    } 
+    catch(error) {
+        console.error('Error during login')
+        return false
+
+    }
+}
+
+async function storeList()
+{
+    try {
+        const response = await fetch(location.protocol + '//' + location.host + "/setCList", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(companiesList)
+        })
+
+        if (response.status == 200) 
+        {   
+            return true
+        }
+        else 
+        {    
+            return false
+        }
+    } 
+    catch(error) {
+        console.error('Error during list store')
+        console.error(error)
+        return false
+
+    }
 }
 

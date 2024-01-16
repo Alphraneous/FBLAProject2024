@@ -97,17 +97,19 @@ async function loginAuth()
         })
 
         if (response.ok) 
-            window.location.href = "/";
+            window.location.href = '/'
         else 
         {    
             const errorData = await response.json()
+            console.log(response.status)
             alert("Incorrect Username or Password")
         }
     } 
-    catch {
+    catch(error) {
         console.error('Error during login')
     }
 }
+
 
 
 // let isDragging = false
