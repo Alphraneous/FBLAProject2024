@@ -1,9 +1,17 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const sql_lib = require('mysql')
 
-const app = express();
+const app  = express();
 const port = 3000;
+const sql = sql_lib.createPool({
+    host: '192.168.1.5',
+    user: 'fbla_user',
+    password: 'orlando2024',
+    database: 'fblaproject2024_node',
+    waitForConnections: true
+})
 
 // Use middleware to parse request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,43 +19,21 @@ app.use(bodyParser.json());
 
 // Use session middleware
 app.use(session({
-    secret: 'your_secret_key',
+    secret: '8oieahtf98oresyg98oeashgoASHKUgh9898432uhijksfx@',
     resave: true,
     saveUninitialized: true
 }));
 
+// function uponConnection(req, res, next)
+// {
+//     req.session.counter = (req.session.counter || 0) + 1;
+//     console.log(`Custom code executed for user ${req.sessionID}. Counter: ${req.session.counter}`);
+//     next();
+// }
+
 // Serve your public files (like HTML, CSS, JS) from a public folder
 app.use("/login/", express.static('public'));
-// app.get('/', (req, res) => {
-//     res.sendFile(__dirname + '/public/index.html');
-    
-// });
-// app.get('/styles.css', (req, res) => {
-//     res.sendFile(__dirname + '/public/styles.css');
-    
-// });
-// app.get('/universalStyles.css', (req, res) => {
-//     res.sendFile(__dirname + '/public/universalStyles.css');
-    
-// });
-// app.get('/webapp.js', (req, res) => {
-//     res.sendFile(__dirname + '/public/webapp.js');
-    
-// });
-
-// app.get('/images', (req, res) => {
-//     res.sendFile(__dirname + '/public/webapp.js');
-    
-// });
-
-// app.get('/fonts/abel.ttf', (req, res) => {
-//     res.sendFile(__dirname + '/public/fonts/abel.ttf');
-    
-// });
-
-
-// Your authentication routes go here
-// app.get("/")
+// app.use(uponConnection)
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
@@ -79,6 +65,59 @@ function getPanelPage()
 }
 getPanelPage()
 
+function userExists(user, connection) 
+{
+    connection.query('SELECT COUNT(*) AS count FROM userData WHERE username = ?', [user], (queryError, results) => {
+
+        connection.release()
+  
+        if (queryError) 
+            return -1
+  
+        const usernameExists = results[0].count > 0
+        return usernameExists
+    })
+}
+
+app.get('/create', (req, res) => {
+    const { name, username, password } = req.body
+
+    sql.getConnection((err, connection) => {
+        if (err) 
+        {
+            console.error('Error connecting to database:', err)
+            res.status(500).send('Internal Server Error')
+            return
+        }
+
+        const usernameExists = userExists(username, connection)
+        switch(usernameExists)
+        {
+            case -1:
+                console.error('Error executing query:', queryError)
+                res.status(500).send('Internal Server Error')
+                return
+            case 0:
+                connection.query('INSERT INTO userData (name, username, password) VALUES (?, ?, ?, ?)', [name, username, password, '[]'], (insertError) => {
+                    connection.release()
+        
+                    if (insertError) 
+                    {
+                        console.error('Error inserting record:', insertError)
+                        res.status(500).send('Internal Server Error')
+                        return
+                    }
+        
+                    res.status(200)
+                })
+                return
+            case 1:
+                res.status(409).send('Username Already Exists')
+                return
+        }
+    })
+})
+
 app.get('/login' , (req, res) => {
     res.redirect("/login/")
 });
@@ -86,17 +125,24 @@ app.get('/login' , (req, res) => {
 // Login route
 app.post('/auth', (req, res) => {
     const { username, password } = req.body;
-
-    // Simulated authentication logic (replace with your actual logic)
-    const user = users.find(u => u.username === username && u.password === password);
     
-    if (user) {
-        req.session.user = user;
-        res.json({ success: true });
-    } else {
-        res.status(401).json({ success: false, message: 'Invalid credentials' });
-    }
-});
+    sql.getConnection((err, connection) => {
+        if (err) 
+        {
+            console.error('Error connecting to database:', err)
+            res.status(500).send('Internal Server Error')
+            return
+        }
+
+        if (userExists(username, connection)) 
+        {
+            req.session.user = user
+            res.status(200)
+        } 
+        else
+            res.status(401).json({ success: false, message: 'Invalid credentials' })
+    })
+})
 
 // Logout route
 app.post('/logout', (req, res) => {
@@ -107,40 +153,3 @@ app.post('/logout', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(__dirname + `/error/errorPage.html`)
 });
-
-// // Protected panel route
-// app.get('/panel', authenticateUser, (req, res) => {
-//     console.log(authenticateUser)
-//     if(authenticateUser) {
-//         res.sendFile(__dirname + '/panel/index.html');
-//     } else {
-//         res.redirect('/')
-//     }
-// });
-
-// app.get('/panel/panel.js', authenticateUser, (req, res) => {
-//     console.log(authenticateUser)
-//     if(authenticateUser) {
-//         res.sendFile(__dirname + '/panel/panel.js');
-//     } else {
-//         res.redirect('/')
-//     }
-// });
-
-// app.get('/panel/panel.css', authenticateUser, (req, res) => {
-//     console.log(authenticateUser)
-//     if(authenticateUser) {
-//         res.sendFile(__dirname + '/panel/panel.css');
-//     } else {
-//         res.redirect('/')
-//     }
-// });
-
-// app.get('/panel/googleAPI.js', authenticateUser, (req, res) => {
-//     console.log(authenticateUser)
-//     if(authenticateUser) {
-//         res.sendFile(__dirname + '/panel/googleAPI.js');
-//     } else {
-//         res.redirect('/')
-//     }
-// });

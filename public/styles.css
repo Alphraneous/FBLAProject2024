@@ -28,6 +28,25 @@
     width: 100%;
 }
 
+#createButton {
+    margin-top: 5%;
+    width: 100%;
+}
+
+#createBox {
+    display: none;
+}
+
+#createSubmitButton {
+    margin-top: 5%;
+    width: 100%;
+}
+
+#createCancelButton {
+    margin-top: 5%;
+    width: 100%;
+}
+
 #toLoginButton {
     margin-top: 5%;
     width: 100%;
