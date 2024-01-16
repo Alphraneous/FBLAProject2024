@@ -6,7 +6,7 @@ const sql_lib = require('mysql')
 const app  = express();
 const port = 3000;
 const sql = sql_lib.createPool({
-    host: '192.168.1.5',
+    host: 'localhost',
     user: 'fbla_user',
     password: 'orlando2024',
     database: 'fblaproject2024_node',
