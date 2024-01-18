@@ -202,6 +202,27 @@
     
 }
 
+.account_container {
+    overflow: hidden;
+    align-items: left;
+    text-align: left;
+    border: 5px solid #4c82ee;
+    border-radius: 20px;
+    transition: opacity 0.3s ease-in-out, z-index 0.3s;
+    width: 25%;
+    height: 80%;
+    cursor: move;
+    position: fixed;
+    opacity: 100%;
+    padding: 20px;
+    margin-right: 10%;
+    top: 2%;
+    left: 2%;
+    background-color: #f1f1f1;
+    z-index: 9;
+    
+}
+
 .add_container_inner {
     overflow-y: scroll;
     position: relative;
