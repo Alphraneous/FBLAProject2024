@@ -223,6 +223,15 @@
     
 }
 
+#accDeleteButton {
+    margin-top: 2%;
+    border-color: var(--universalRedDark);
+    background-color: var(--universalRed);
+}
+
+#accDeleteButton:hover {
+    background-color: var(--universalRedLight);
+}
 .add_container_inner {
     overflow-y: scroll;
     position: relative;

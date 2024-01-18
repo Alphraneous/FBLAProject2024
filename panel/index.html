@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Beacon</title>
-    <link rel="icon" type="image/x-icon" href="/login/images/favicon.ico">
-    <link href="/login/universalStyles.css?v=1.8" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
+    <link href="/public/universalStyles.css?v=1.8" rel="stylesheet" type="text/css" />
     <link href="panel.css?v=1.9" rel="stylesheet" type="text/css" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -15,7 +15,7 @@
 <body>
     <div id="wrapper" class="wrapper">
         <div class="top_bar">
-            <img class="logo" src="/login/images/bblogo.png" alt="fbla logo">
+            <img class="logo" src="/public/images/bblogo.png" alt="fbla logo">
             <input type="text" id="textSearch" class="text_search" placeholder="Search..." />
             <label for="dropdown" style="display: none;">Select search category</label>
             <select class="dropdown_search" id="dropdown">
@@ -75,10 +75,20 @@
 
         <div class="account_container draggable" id="addContainer">
             <div class="add_container_inner" id="addContainerInner">
-                <p id="addTitle" class="add_title"><b>Add New Company</b></p>
-                <button id="accSubmitButton" class="submit_button" type="submit"><b>Submit</b></button>
+                <p id="addTitle" class="add_title"><b>Account Settings</b></p>
+                <div>
+                <p class="add_label"><b>Name</b></p>
+                <input type="text" id="accName" class="add_input" placeholder="John Doe">
+                <p class="add_label"><b>Old Password</b></p>
+                <input type="password" id="accOldPassword" class="add_input" placeholder="AwesomeP@ssword">
+                <p class="add_label"><b>New Password</b></p>
+                <input type="password" id="accNewPassword" class="add_input" placeholder="AwesomeP@ssword">
+                <p class="add_label"><b>Confirm New Password</b></p>
+                <input type="password" id="accNewPasswordC" class="add_input" placeholder="AwesomeP@ssword">
+                <button id="accSubmitButton" class="submit_button" type="submit"><b>Save</b></button>
                 <button id="accCancelButton" class="submit_button" type="button"><b>Cancel</b></button>
                 </div>
+                <button id="accDeleteButton" class="submit_button" type="button"><b>Delete Account</b></button>
             </div>
         </div>
 
