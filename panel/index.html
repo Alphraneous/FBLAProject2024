@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Beacon</title>
     <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/login/images/favicon.ico">
     <link href="/public/universalStyles.css?v=1.8" rel="stylesheet" type="text/css" />
+    <link href="/login/universalStyles.css?v=1.8" rel="stylesheet" type="text/css" />
     <link href="panel.css?v=1.9" rel="stylesheet" type="text/css" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -15,7 +17,7 @@
 <body>
     <div id="wrapper" class="wrapper">
         <div class="top_bar">
-            <img class="logo" src="/public/images/bblogo.png" alt="fbla logo">
+            <img class="logo" src="/login/images/bblogo.png" alt="fbla logo">
             <input type="text" id="textSearch" class="text_search" placeholder="Search..." />
             <label for="dropdown" style="display: none;">Select search category</label>
             <select class="dropdown_search" id="dropdown">
@@ -38,6 +40,7 @@
                     <button id="importButton" class="additional_button file_input_label"><b>Import</b></button>
                     <input type="file" id="fileInput" class="file_input" style="display: none;" accept=".json">
                     <button id="exportButton" class="additional_button" type="button"><b>Export</b></button>
+                    <button id="accSettingsButton" class="additional_button" type="button" onclick="openAccSettings()"><b>Account Settings</b></button>
                     <button id="logoutButton" class="additional_button" type="button"><b>Logout</b></button>
                 </div>
             </div>
@@ -73,8 +76,8 @@
             </div>
         </div>
 
-        <div class="account_container draggable" id="addContainer">
-            <div class="add_container_inner" id="addContainerInner">
+        <div class="account_container draggable" id="accContainer">
+            <div class="add_container_inner" id="accContainerInner">
                 <p id="addTitle" class="add_title"><b>Account Settings</b></p>
                 <div>
                 <p class="add_label"><b>Name</b></p>
@@ -86,7 +89,7 @@
                 <p class="add_label"><b>Confirm New Password</b></p>
                 <input type="password" id="accNewPasswordC" class="add_input" placeholder="AwesomeP@ssword">
                 <button id="accSubmitButton" class="submit_button" type="submit"><b>Save</b></button>
-                <button id="accCancelButton" class="submit_button" type="button"><b>Cancel</b></button>
+                <button id="accCancelButton" class="submit_button" type="button" onclick="accCancel()"><b>Cancel</b></button>
                 </div>
                 <button id="accDeleteButton" class="submit_button" type="button"><b>Delete Account</b></button>
             </div>

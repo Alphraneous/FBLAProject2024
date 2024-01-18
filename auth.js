@@ -78,18 +78,29 @@ function userExists(user, connection, released, callback) {
 }
 
 function checkPassword(user, password, connection, callback) {
-    connection.query('SELECT password FROM userData WHERE username = ?', [user], (queryError, results) => {
+    connection.query('SELECT password,name FROM userData WHERE username = ?', [user], (queryError, results) => {
         connection.release()
         if (queryError) {
             callback(queryError, null)
             return
         }
 
-        callback(null, results[0].password == password)
+        callback(null, {result: results[0].password == password, name: results[0].name})
     })
 }
 
-function getList(user, connection, callback) {
+function setPassword(user, newPassword, connection, callback) {
+    connection.query('UPDATE userData SET password = ? WHERE username = ?', [newPassword,user], (queryError, results) => {
+        connection.release()
+        if (queryError) {
+            callback(queryError, false)
+            return
+        }
+        callback(null, true)
+    })
+}
+
+function getList(req, user, connection, callback) {
     connection.query('SELECT companyList FROM userData WHERE username = ?', [user], (queryError, results) => {
         connection.release()
         //console.log(results)
@@ -97,12 +108,25 @@ function getList(user, connection, callback) {
             callback(queryError, null)
             return
         }
-        callback(null, JSON.parse(results[0].companyList))
+        let data = {name: req.session.user.name, companyList: JSON.parse(results[0].companyList)}
+        callback(null, data)
     })
 }
 
-function setList(user,data, connection, callback) {
+function setList(user, data, connection, callback) {
     connection.query('UPDATE userData SET companyList = ? WHERE username = ?', [JSON.stringify(data),user], (queryError, results) => {
+        connection.release()
+        //console.log(results)
+        if (queryError) {
+            callback(queryError, false)
+            return
+        }
+        callback(null, true)
+    })
+}
+
+function setName(user, newName, connection, callback) {
+    connection.query('UPDATE userData SET name = ? WHERE username = ?', [newName, user], (queryError, results) => {
         connection.release()
         //console.log(results)
         if (queryError) {
@@ -170,7 +194,7 @@ app.post('/getCList', (req, res) => {
                 return
             }
 
-            userExists(req.session.user, connection, true, (queryError, userExistsResult) => {
+            userExists(req.session.user.username, connection, true, (queryError, userExistsResult) => {
                 if (queryError) {
                     console.error('Error checking user existence:', queryError)
                     res.status(500).send('Internal Server Error')
@@ -182,7 +206,7 @@ app.post('/getCList', (req, res) => {
                     return
                 }
                 else {
-                    getList(req.session.user, connection, (queryError, listResult) => {
+                    getList(req, req.session.user.username, connection, (queryError, listResult) => {
                         if (queryError) {
                             console.error('Error checking user existence:', queryError)
                             res.status(500).send('Internal Server Error')
@@ -211,7 +235,7 @@ app.post('/setCList', (req, res) => {
                 return
             }
 
-            userExists(req.session.user, connection, true, (queryError, userExistsResult) => {
+            userExists(req.session.user.username, connection, true, (queryError, userExistsResult) => {
                 if (queryError) {
                     console.error('Error checking user existence:', queryError)
                     res.status(500).send('Internal Server Error')
@@ -223,9 +247,9 @@ app.post('/setCList', (req, res) => {
                     return
                 }
                 else {
-                    setList(req.session.user, data, connection, (queryError, result) => {
+                    setList(req.session.user.username, data, connection, (queryError, result) => {
                         if (queryError) {
-                            console.error('Error checking user existence:', queryError)
+                            console.error('Unidentified query error:', queryError)
                             res.status(500).send('Internal Server Error')
                             return
                         }
@@ -241,6 +265,83 @@ app.post('/setCList', (req, res) => {
         })
     }
 })
+
+app.post('/setName', (req, res) => {
+    if (req.session && req.session.user) {
+        let newName = req.body.newName
+        sql.getConnection((err, connection) => {
+            if (err) {
+                console.error('Error connecting to database:', err)
+                res.status(500).send('Internal Server Error')
+                return
+            }
+
+            userExists(req.session.user.username, connection, true, (queryError, userExistsResult) => {
+                if (queryError) {
+                    console.error('Error checking user existence:', queryError)
+                    res.status(500).send('Internal Server Error')
+                    return
+                }
+
+                if (!userExistsResult) {
+                    res.status(401).json({ success: false, message: 'Username does not exist' })
+                    return
+                }
+                else {
+                    setName(req.session.user.username, newName, connection, (queryError, result) => {
+                        if (queryError) {
+                            console.error('Unidentified query error:', queryError)
+                            res.status(500).send('Internal Server Error')
+                            return
+                        }
+
+                        if (!result) {
+                            res.status(418).json({ success: false, message: 'List not set' })
+                            return
+                        }
+                        res.status(200).send('Name Set Successfully')
+                    })
+                }
+            })
+        })
+    }
+})
+
+app.post('/setPwd', (req, res) => {
+    const { password, newPassword } = req.body;
+    sql.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error connecting to database:', err)
+            res.status(500).send('Internal Server Error')
+            return
+        }
+        checkPassword(req.session.user.username, password, connection, (queryError, passwordMatchResult) => {
+            if (queryError) {
+                console.error('Error checking user existence:', queryError)
+                res.status(500).send('Internal Server Error')
+                return
+            }
+
+            if (!passwordMatchResult) {
+                res.status(401).json({ success: false, message: 'Wrong Password' })
+                return
+            }
+            setPassword(username, newPassword, connection, (queryError, passwordSetResult) => {
+                if (queryError) {
+                    console.error('Error checking user existence:', queryError)
+                    res.status(500).send('Internal Server Error')
+                    return
+                }
+    
+                if (!passwordSetResult) {
+                    res.status(401).json({ success: false, message: 'Unidentified password set error' })
+                    return
+                }
+                res.status(200).send('Password Set Successfully')
+            })
+        })
+    })
+});
 
 app.post('/auth', (req, res) => {
     const { username, password } = req.body;
@@ -276,13 +377,14 @@ app.post('/auth', (req, res) => {
                         return
                     }
 
-                    req.session.user = username
+                    req.session.user = {username: username, name: passwordMatchResult.name}
                     res.status(200).send('Authenticated')
                 })
             }
         })
     })
 });
+
 
 // Logout route
 app.post('/logout', (req, res) => {

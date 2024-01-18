@@ -18,6 +18,8 @@ class CompanyElement {
     }
 }
 
+//Global variables
+var accName = ""
 var companyElements = []
 var companiesList = []
 var currentIndex = -1;
@@ -38,6 +40,9 @@ const logoutButton = document.getElementById('logoutButton')
 const fileInput = document.getElementById('fileInput')
 const exportButton = document.getElementById('exportButton')
 const removeButton = document.getElementById('removeButton')
+const accSubmitButton = document.getElementById("accSubmitButton")
+const accCancelButton = document.getElementById("accCancelButton")
+const accDeleteButton = document.getElementById("accDeleteButton")
 
 var newCompanyInput = new Company(
     document.getElementById('newCompanyName'),
@@ -56,10 +61,10 @@ var newCompanyInput = new Company(
 const submitButton = document.getElementById('addSubmitButton')
 const cancelButton = document.getElementById('addCancelButton')
 
-//companiesList = await retrieveList();
+//companiesList = await retrieveData();
     
 // Now you can use the companiesList variable in the rest of your code
-console.log(companiesList);
+//console.log(companiesList);
 
 // if (getCompaniesList()) {
 //     companiesList = getCompaniesList();
@@ -67,8 +72,9 @@ console.log(companiesList);
 // }
 //console.log(companiesList[0].contact.name);
 document.addEventListener('DOMContentLoaded', async function () {
-    companiesList = await retrieveList();
-    
+    let retrievedData = await retrieveData();
+    accName = retrievedData.name
+    companiesList = retrievedData.companyList
     refreshList(false)
     //console.log(companiesList);
 
@@ -349,9 +355,22 @@ exportButton.addEventListener('click', () => {
 
 })
 
+function openAccSettings() {
+    document.getElementById("accContainer").classList.remove("disappear")
+    document.getElementById("accContainer").classList.add("appear")
+    document.getElementById("accName").value = accName
+}
+
+function accCancel() {
+    document.getElementById("accContainer").classList.remove("appear")
+    document.getElementById("accContainer").classList.add("disappear")
+}
+
 logoutButton.addEventListener('click', () => {
     logout()
 })
+
+
 
 async function logout()
 {
@@ -434,6 +453,34 @@ submitButton.addEventListener("click", () => {
     ))
     storeCompaniesList()
 })
+
+accSubmitButton.onclick=async() => {
+    if(document.getElementById("accName").value != accName) {
+        let nameSetResult = await setName()
+        if(!nameSetResult) {
+            alert("Unidentified error setting name")
+            return
+        }
+    }
+    if(document.getElementById("accNewPassword").value.trim() != "") {
+        if(document.getElementById("accNewPassword").value.trim() != document.getElementById("accNewPasswordC").value.trim()) {
+            alert("New passwords must match!")
+        } else {
+            let passwordSetResult = await setPwd() 
+            switch(passwordSetResult) {
+                case 200:
+                    alert("Changes saved successfully")
+                case 401:
+                    alert("Old password is incorrect")
+                case 500:
+                    alert("Internal server error")
+                default:
+                    alert("unidentified error")
+            }
+        }
+    }
+
+};
 
 function addListItem(newCompany) {
     if(editIndex != -1) { 
@@ -670,7 +717,7 @@ async function initMap(company) {
   });
 }
 
-async function retrieveList()
+async function retrieveData()
 {
     try {
         const response = await fetch(location.protocol + '//' + location.host + "/getCList", {
@@ -722,6 +769,58 @@ async function storeList()
         console.error('Error during list store')
         console.error(error)
         return false
+
+    }
+}
+
+async function setName()
+{
+    try {
+        const response = await fetch(location.protocol + '//' + location.host + "/setName", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                newName: document.getElementById("accName").value.trim()
+            }
+        })
+
+        if (response.status == 200) 
+        {   
+            return true;
+        }
+        else 
+        {    
+            return false
+        }
+    } 
+    catch(error) {
+        console.error('Error during nameSetting')
+        return false
+
+    }
+}
+
+async function setPwd()
+{
+    try {
+        const response = await fetch(location.protocol + '//' + location.host + "/setPwd", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                password: document.getElementById("accOldPassword").value.trim(),
+                newPassword: document.getElementById("accNewPassword").value.trim()
+            }
+        })
+
+        return response.status
+    } 
+    catch(error) {
+        console.error('Error during pwdSetting')
+        return 418
 
     }
 }

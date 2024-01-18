@@ -213,13 +213,13 @@
     height: 80%;
     cursor: move;
     position: fixed;
-    opacity: 100%;
+    opacity: 0%;
     padding: 20px;
     margin-right: 10%;
     top: 2%;
     left: 2%;
     background-color: #f1f1f1;
-    z-index: 9;
+    z-index: -1;
     
 }
 
