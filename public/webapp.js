@@ -59,7 +59,7 @@ async function createAccountSubmit() {
                 name: nameC.value,
                 username: userC.value,
                 password: passC.value,
-            }),
+            })
         })
 
         switch(response.status)

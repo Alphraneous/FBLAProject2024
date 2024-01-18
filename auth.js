@@ -77,9 +77,9 @@ function userExists(user, connection, released, callback) {
     })
 }
 
-function checkPassword(user, password, connection, callback) {
+function checkPassword(user, password, connection, release, callback) {
     connection.query('SELECT password,name FROM userData WHERE username = ?', [user], (queryError, results) => {
-        connection.release()
+        if(release){connection.release()}
         if (queryError) {
             callback(queryError, null)
             return
@@ -127,6 +127,18 @@ function setList(user, data, connection, callback) {
 
 function setName(user, newName, connection, callback) {
     connection.query('UPDATE userData SET name = ? WHERE username = ?', [newName, user], (queryError, results) => {
+        connection.release()
+        //console.log(results)
+        if (queryError) {
+            callback(queryError, false)
+            return
+        }
+        callback(null, true)
+    })
+}
+
+function accDelete(user, connection, callback) {
+    connection.query('DELETE FROM userData WHERE username = ?', [user], (queryError, results) => {
         connection.release()
         //console.log(results)
         if (queryError) {
@@ -307,6 +319,8 @@ app.post('/setName', (req, res) => {
     }
 })
 
+
+
 app.post('/setPwd', (req, res) => {
     const { password, newPassword } = req.body;
     sql.getConnection((err, connection) => {
@@ -315,18 +329,18 @@ app.post('/setPwd', (req, res) => {
             res.status(500).send('Internal Server Error')
             return
         }
-        checkPassword(req.session.user.username, password, connection, (queryError, passwordMatchResult) => {
+        checkPassword(req.session.user.username, password, connection, false, (queryError, passwordMatchResult) => {
             if (queryError) {
                 console.error('Error checking user existence:', queryError)
                 res.status(500).send('Internal Server Error')
                 return
             }
 
-            if (!passwordMatchResult) {
+            if (!passwordMatchResult.result) {
                 res.status(401).json({ success: false, message: 'Wrong Password' })
                 return
             }
-            setPassword(username, newPassword, connection, (queryError, passwordSetResult) => {
+            setPassword(req.session.user.username, newPassword, connection, (queryError, passwordSetResult) => {
                 if (queryError) {
                     console.error('Error checking user existence:', queryError)
                     res.status(500).send('Internal Server Error')
@@ -338,6 +352,42 @@ app.post('/setPwd', (req, res) => {
                     return
                 }
                 res.status(200).send('Password Set Successfully')
+            })
+        })
+    })
+});
+
+app.post('/delete', (req, res) => {
+    const password = req.body.password;
+    sql.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error connecting to database:', err)
+            res.status(500).send('Internal Server Error')
+            return
+        }
+        checkPassword(req.session.user.username, password, connection, false, (queryError, passwordMatchResult) => {
+            if (queryError) {
+                console.error('Error checking user existence:', queryError)
+                res.status(500).send('Internal Server Error')
+                return
+            }
+
+            if (!passwordMatchResult.result) {
+                res.status(401).json({ success: false, message: 'Wrong Password' })
+                return
+            }
+            accDelete(req.session.user.username, connection, (queryError, deletionResult) => {
+                if (queryError) {
+                    console.error('Error deleting user:', queryError)
+                    res.status(500).send('Internal Server Error')
+                    return
+                }
+    
+                if (!deletionResult) {
+                    res.status(400).json({ success: false, message: 'Unidentified user deletion error' })
+                    return
+                }
+                res.status(200).send('User Deleted Successfully')
             })
         })
     })
@@ -365,14 +415,14 @@ app.post('/auth', (req, res) => {
                 return
             }
             else {
-                checkPassword(username, password, connection, (queryError, passwordMatchResult) => {
+                checkPassword(username, password, connection, true, (queryError, passwordMatchResult) => {
                     if (queryError) {
                         console.error('Error checking user existence:', queryError)
                         res.status(500).send('Internal Server Error')
                         return
                     }
 
-                    if (!passwordMatchResult) {
+                    if (!passwordMatchResult.result) {
                         res.status(401).json({ success: false, message: 'Invalid Password' })
                         return
                     }

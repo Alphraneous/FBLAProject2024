@@ -455,29 +455,70 @@ submitButton.addEventListener("click", () => {
 })
 
 accSubmitButton.onclick=async() => {
-    if(document.getElementById("accName").value != accName) {
+    if(document.getElementById("accName").value.trim() != accName) {
+        let newInitialName = document.getElementById("accName").value.trim()
         let nameSetResult = await setName()
         if(!nameSetResult) {
             alert("Unidentified error setting name")
             return
+        } else {
+            accName = newInitialName
         }
     }
     if(document.getElementById("accNewPassword").value.trim() != "") {
         if(document.getElementById("accNewPassword").value.trim() != document.getElementById("accNewPasswordC").value.trim()) {
             alert("New passwords must match!")
+            return
         } else {
             let passwordSetResult = await setPwd() 
             switch(passwordSetResult) {
                 case 200:
                     alert("Changes saved successfully")
+                    document.getElementById("accContainer").classList.remove("appear")
+                    document.getElementById("accContainer").classList.add("disappear")
+                    document.getElementById("accNewPassword").value = ""
+                    document.getElementById("accNewPasswordC").value = ""
+                    return
                 case 401:
                     alert("Old password is incorrect")
+                    return
                 case 500:
                     alert("Internal server error")
+                    return
                 default:
                     alert("unidentified error")
+                    return
             }
         }
+    }
+    alert("Changes saved successfully")
+    document.getElementById("accContainer").classList.remove("appear")
+    document.getElementById("accContainer").classList.add("disappear")
+    document.getElementById("accNewPassword").value = ""
+    document.getElementById("accNewPasswordC").value = ""
+};
+
+accDeleteButton.onclick=async() => {
+    let oldPwd = prompt("Enter your password to confirm deletion")
+    if(oldPwd.trim == "") {
+        alert("Incorrect password")
+        return
+    }
+    let accDeleteResult = await accDelete(oldPwd)
+    switch(accDeleteResult) {
+        case 200:
+            alert("Account deleted successfully")
+            location.href = "/login/"
+            return
+        case 401:
+            alert("Incorrect password")
+            return
+        case 500:
+            alert("Internal server error")
+            return
+        default:
+            alert("unidentified error")
+            return
     }
 
 };
@@ -781,9 +822,9 @@ async function setName()
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: {
+            body: JSON.stringify({
                 newName: document.getElementById("accName").value.trim()
-            }
+            })
         })
 
         if (response.status == 200) 
@@ -810,10 +851,10 @@ async function setPwd()
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: {
+            body: JSON.stringify({
                 password: document.getElementById("accOldPassword").value.trim(),
                 newPassword: document.getElementById("accNewPassword").value.trim()
-            }
+            })
         })
 
         return response.status
@@ -825,3 +866,24 @@ async function setPwd()
     }
 }
 
+async function accDelete(oldPwd)
+{
+    try {
+        const response = await fetch(location.protocol + '//' + location.host + "/delete", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                password: oldPwd
+            })
+        })
+
+        return response.status
+    } 
+    catch(error) {
+        console.error('Error during accDelete')
+        return 418
+
+    }
+}
