@@ -1,15 +1,16 @@
+require('dotenv').config()
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const sql_lib = require('mysql')
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const sql = sql_lib.createPool({
-    host: '192.168.1.5',
-    user: 'fbla_user',
-    password: 'orlando2024',
-    database: 'fblaproject2024_node',
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
     waitForConnections: true
 })
 
@@ -19,7 +20,7 @@ app.use(bodyParser.json());
 
 // Use session middleware
 app.use(session({
-    secret: '8oieahtf98oresyg98oeashgoASHKUgh9898432uhijksfx@',
+    secret: process.env.SECRET_KEY,
     resave: true,
     saveUninitialized: true
 }));
