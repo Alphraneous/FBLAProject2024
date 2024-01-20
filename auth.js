@@ -183,7 +183,7 @@ app.post('/create', (req, res) => {
                             return
                         }
 
-                        res.status(200)
+                        res.status(200).send('Account created successfully')
                     })
                     return
                 case true:

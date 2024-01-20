@@ -61,12 +61,12 @@ async function createAccountSubmit() {
                 password: passC.value,
             })
         })
-
+        console.log(response.status)
         switch(response.status)
         {
             case 200:
-                alert("Account successfully created, please login")
                 createAccountHide()
+                alert("Account successfully created, please login")
                 break
             case 409:
                 alert("Username already exists")

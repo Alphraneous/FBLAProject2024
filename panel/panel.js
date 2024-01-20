@@ -500,7 +500,7 @@ accSubmitButton.onclick=async() => {
 
 accDeleteButton.onclick=async() => {
     let oldPwd = prompt("Enter your password to confirm deletion")
-    if(oldPwd.trim == "") {
+    if(oldPwd.trim == "" || !oldPwd) {
         alert("Incorrect password")
         return
     }
