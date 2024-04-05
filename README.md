@@ -1,6 +1,6 @@
 # Installation Instructions
 
-If you simply want to use the program, then I've taken the liberty of hosting it live at [redacted-url]
+If you simply want to use the program, then I've taken the liberty of hosting it live at https://fbla.ajaxcore.com
 
 More advanced users that want to host the project for their own have to install nodejs
 
