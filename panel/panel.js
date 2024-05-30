@@ -887,3 +887,32 @@ async function accDelete(oldPwd)
 
     }
 }
+
+async function promptAI(prompt)
+{
+    try {
+        const response = await fetch(location.protocol + '//' + location.host + "/prompt", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                newName: document.getElementById("accName").value.trim()
+            })
+        })
+
+        if (response.status == 200) 
+        {   
+            return true;
+        }
+        else 
+        {    
+            return false
+        }
+    } 
+    catch(error) {
+        console.error('Error during nameSetting')
+        return false
+
+    }
+}
