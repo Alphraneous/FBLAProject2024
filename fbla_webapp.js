@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const sql_lib = require('mysql')
+const { Config, OpenAI_API } = require('openai')
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -446,3 +447,29 @@ app.post('/logout', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(__dirname + `/error/errorPage.html`)
 });
+
+//////////////////// OPENAI PROMPT BOT
+const config = new Config({
+    apiKey: process.env.OPENAI_API_KEY,
+})
+const openai_api = new OpenAI_API(config) 
+
+app.post('/prompt', async (req, res) => {
+    const { prompt } = req.body;
+    
+    if(!prompt)
+        return res.status(400).send('Prompt is required')
+
+    try {
+        const response = await openai_api.createChatCompletion({
+            model: 'gpt-3',
+            messages: [{ role: 'user', content: prompt }],
+        })
+
+        res.send({ response: response.data.choices[0].message.content })
+    }
+    catch(error) {
+        console.error('Error on AI prompt response: ', error)
+        res.status(500).send('An error occurred while processing the request')
+    }
+})

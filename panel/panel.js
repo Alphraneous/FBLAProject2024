@@ -797,14 +797,7 @@ async function storeList()
             body: JSON.stringify(companiesList)
         })
 
-        if (response.status == 200) 
-        {   
-            return true
-        }
-        else 
-        {    
-            return false
-        }
+        return response.status == 200
     } 
     catch(error) {
         console.error('Error during list store')
@@ -827,14 +820,7 @@ async function setName()
             })
         })
 
-        if (response.status == 200) 
-        {   
-            return true;
-        }
-        else 
-        {    
-            return false
-        }
+        return response.status == 200
     } 
     catch(error) {
         console.error('Error during nameSetting')
@@ -884,11 +870,10 @@ async function accDelete(oldPwd)
     catch(error) {
         console.error('Error during accDelete')
         return 418
-
     }
 }
 
-async function promptAI(prompt)
+async function promptAI()
 {
     try {
         const response = await fetch(location.protocol + '//' + location.host + "/prompt", {
@@ -897,22 +882,20 @@ async function promptAI(prompt)
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                newName: document.getElementById("accName").value.trim()
+                prompt: document.getElementById("prompt").value.trim()
             })
         })
 
-        if (response.status == 200) 
-        {   
-            return true;
-        }
-        else 
-        {    
-            return false
-        }
+        if(!response.ok)
+            console.error(response.statusText)
+
+        const responseMessage = await response.json().response
+        console.log('Response: ', responseMessage)
+        // Update chatbot box
+        return true
     } 
     catch(error) {
-        console.error('Error during nameSetting')
+        console.error('Error during AI prompt')
         return false
-
     }
 }
