@@ -60,6 +60,7 @@ var newCompanyInput = new Company(
 
 const submitButton = document.getElementById('addSubmitButton')
 const cancelButton = document.getElementById('addCancelButton')
+const aiButton = document.getElementById('addAIfill')
 
 //companiesList = await retrieveData();
     
@@ -453,6 +454,29 @@ submitButton.addEventListener("click", () => {
     ))
     storeCompaniesList()
 })
+
+//AI Autofill Stuff
+aiButton.onclick=async() => {
+    let companyName = newCompanyInput.name.value
+    if(companyName.trim().length < 3) {
+        alert("Please enter a company name with 3 or more letters to use AI Autofill")
+    } else {
+        const response = await promptAI("Find the following pieces of data for the company/organization named " + companyName + ": Services Provided, Short Description, Address, Year Founded, Website, Contact Name, Contact Phone Number, and Contact Email of a contact at the company/organization (this could be the owner, a sales rep, etc). Replace any unknown fields with 'N/A' and keep your data concise");
+        console.log(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
+        //alert(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
+        
+        let parsedResponse = JSON.parse(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
+        newCompanyInput.services.value       = parsedResponse.services.join(",")
+        newCompanyInput.description.value    = parsedResponse.description
+        newCompanyInput.yearFounded.value    = parsedResponse.yearFounded
+        newCompanyInput.address.value        = parsedResponse.address
+        newCompanyInput.websiteURL.value     = parsedResponse.websiteURL
+        newCompanyInput.contact.name.value   = parsedResponse.contact.name
+        newCompanyInput.contact.number.value = parsedResponse.contact.number
+        newCompanyInput.contact.email.value  = parsedResponse.contact.email
+    }
+    
+}
 
 accSubmitButton.onclick=async() => {
     if(document.getElementById("accName").value.trim() != accName) {
@@ -873,7 +897,7 @@ async function accDelete(oldPwd)
     }
 }
 
-async function promptAI()
+async function promptAI(prompt)
 {
     try {
         const response = await fetch(location.protocol + '//' + location.host + "/prompt", {
@@ -882,20 +906,22 @@ async function promptAI()
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                prompt: document.getElementById("prompt").value.trim()
+                prompt: prompt
             })
         })
 
         if(!response.ok)
             console.error(response.statusText)
 
-        const responseMessage = await response.json().response
-        console.log('Response: ', responseMessage)
-        // Update chatbot box
-        return true
+        const responseMessage = await response.json()
+    
+        return responseMessage.choices[0].message.content
     } 
     catch(error) {
         console.error('Error during AI prompt')
         return false
     }
 }
+
+
+

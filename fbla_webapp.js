@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const sql_lib = require('mysql')
-const { Config, OpenAI_API } = require('openai')
+const http = require('https');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -78,6 +78,8 @@ function userExists(user, connection, released, callback) {
         callback(null, results.length > 0)
     })
 }
+
+
 
 function checkPassword(user, password, connection, release, callback) {
     connection.query('SELECT password,name FROM userData WHERE username = ?', [user], (queryError, results) => {
@@ -448,11 +450,36 @@ app.get('*', (req, res) => {
     res.sendFile(__dirname + `/error/errorPage.html`)
 });
 
-//////////////////// OPENAI PROMPT BOT
-const config = new Config({
-    apiKey: process.env.OPENAI_API_KEY,
-})
-const openai_api = new OpenAI_API(config) 
+async function perplexityPrompt(prompt, callback) {
+    try {
+        const options = {
+            method: 'POST',
+            headers: {
+              accept: 'application/json',
+              'content-type': 'application/json',
+              authorization: 'Bearer ' + process.env.PERPLEXITY_API_KEY
+            },
+            body: JSON.stringify({
+              model: 'llama-3-sonar-small-32k-online',
+              messages: [
+                {role: 'system', content: '\
+                    Format the data in JSON using the following as a template:\
+                    {\r\n    \"name\": \"name\",\r\n    \"services\": [ \"service 1, add up to 3 services\"],\r\n    \"description\": \"description\",\r\n    \"address\": \"address\",\r\n    \"yearFounded\": \"yearFounded\",\r\n    \"websiteURL\": \"website\",\r\n    \"contact\": {\r\n      \"name\": \"contactName\",\r\n      \"number\": \"000-000-0000)\",\r\n      \"email\": \"contactEmail\"\r\n    }\r\n  }'
+                },
+                {role: 'user', content: prompt}
+              ]
+            })
+        };
+        let response = await fetch('https://api.perplexity.ai/chat/completions', options)
+        .then(response => response.json())
+        .then(response => {callback(true, response)})
+        .catch(err => console.error(err));
+        
+    }
+    catch(error) {
+        callback(false, null)
+    }
+}
 
 app.post('/prompt', async (req, res) => {
     const { prompt } = req.body;
@@ -461,12 +488,13 @@ app.post('/prompt', async (req, res) => {
         return res.status(400).send('Prompt is required')
 
     try {
-        const response = await openai_api.createChatCompletion({
-            model: 'gpt-3',
-            messages: [{ role: 'user', content: prompt }],
+        perplexityPrompt(prompt, (success, response) => {
+            if(success) {
+                res.json(response)
+            } else {
+                res.status(500).send('An error occurred while processing the request')
+            }
         })
-
-        res.send({ response: response.data.choices[0].message.content })
     }
     catch(error) {
         console.error('Error on AI prompt response: ', error)
