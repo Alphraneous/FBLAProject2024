@@ -486,7 +486,7 @@ async function perplexityPrompt(prompt, callback) {
         let response = await fetch('https://api.perplexity.ai/chat/completions', options)
         .then(response => response.json())
         .then(response => {callback(true, response)})
-        .catch(err => console.error(err));
+        .catch(err => console.log(err));
         
     }
     catch(error) {
@@ -496,7 +496,7 @@ async function perplexityPrompt(prompt, callback) {
 }
 
 app.post('/prompt', async (req, res) => {
-    const {prompt } = req.body;
+    const { prompt } = req.body;
     if (req.session && req.session.user) {
         if(!prompt)
             return res.status(400).send('Prompt is required')
