@@ -48,6 +48,7 @@
 
 
         <div class="add_container draggable" id="addContainer">
+            <div id="loader" class="loader"></div>
             <div class="add_container_inner" id="addContainerInner">
                 <p id="addTitle" class="add_title"><b>Add New Company</b></p>
                 <p class="add_label"><b>Name*</b></p>
@@ -89,10 +90,13 @@
                 <input type="password" id="accNewPassword" class="add_input" placeholder="AwesomeP@ssword">
                 <p class="add_label"><b>Confirm New Password</b></p>
                 <input type="password" id="accNewPasswordC" class="add_input" placeholder="AwesomeP@ssword">
+                <input type="checkbox" id="darkmode-toggle"/>
+                <label for="darkmode-toggle"></label>
                 <button id="accSubmitButton" class="submit_button" type="submit"><b>Save</b></button>
                 <button id="accCancelButton" class="submit_button" type="button" onclick="accCancel()"><b>Cancel</b></button>
-                </div>
                 <button id="accDeleteButton" class="submit_button" type="button"><b>Delete Account</b></button>
+                </div>
+                
             </div>
         </div>
 

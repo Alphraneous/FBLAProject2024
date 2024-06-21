@@ -3,7 +3,6 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const sql_lib = require('mysql')
-const http = require('https');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -41,12 +40,6 @@ app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
 
-const users = [
-    { username: 'user', password: 'password' },
-    { username: 'user2', password: 'password2' },
-    { username: 'a', password: 'a' }
-];
-
 // Middleware to check if the user is authenticated
 const authenticateUser = (req, res, next) => {
     if (req.session && req.session.user) {
@@ -79,22 +72,28 @@ function userExists(user, connection, released, callback) {
     })
 }
 
-
-
-function checkPassword(user, password, connection, release, callback) {
+function checkPassword(user, hashedPassword, connection, release, callback) {
     connection.query('SELECT password,name FROM userData WHERE username = ?', [user], (queryError, results) => {
-        if(release){connection.release()}
+        if(release) {
+            connection.release()
+        }
         if (queryError) {
             callback(queryError, null)
             return
         }
 
-        callback(null, {result: results[0].password == password, name: results[0].name})
+        callback(null, {result: results[0].password == hashedPassword, name: results[0].name})
     })
 }
 
-function setPassword(user, newPassword, connection, callback) {
-    connection.query('UPDATE userData SET password = ? WHERE username = ?', [newPassword,user], (queryError, results) => {
+const isValidSHA256 = (hash) => /^[a-fA-F0-9]{64}$/.test(hash)
+
+function setPassword(user, newHashedPassword, connection, callback) {
+
+    if(!isValidSHA256(newHashedPassword))
+        callback('Invalid password - non SHA256 hash', false)
+
+    connection.query('UPDATE userData SET password = ? WHERE username = ?', [newHashedPassword,user], (queryError, results) => {
         connection.release()
         if (queryError) {
             callback(queryError, false)
@@ -144,7 +143,6 @@ function setName(user, newName, connection, callback) {
 function accDelete(user, connection, callback) {
     connection.query('DELETE FROM userData WHERE username = ?', [user], (queryError, results) => {
         connection.release()
-        //console.log(results)
         if (queryError) {
             callback(queryError, false)
             return
@@ -155,6 +153,10 @@ function accDelete(user, connection, callback) {
 
 app.post('/create', (req, res) => {
     const { name, username, password } = req.body
+    
+
+    if(!isValidSHA256(password))
+        res.status(400).send('Invalid password - non SHA256 hash')
 
     sql.getConnection((err, connection) => {
         if (err) {
@@ -324,9 +326,12 @@ app.post('/setName', (req, res) => {
 })
 
 
-
 app.post('/setPwd', (req, res) => {
     const { password, newPassword } = req.body;
+
+    if(!isValidSHA256(password) || !isValidSHA256(newPassword))
+        res.status(400).send('Invalid password - non SHA256 hash')
+
     sql.getConnection((err, connection) => {
         if (err) {
             console.error('Error connecting to database:', err)
@@ -359,10 +364,14 @@ app.post('/setPwd', (req, res) => {
             })
         })
     })
-});
+})
 
 app.post('/delete', (req, res) => {
     const password = req.body.password;
+
+    if(!isValidSHA256(password))
+        res.status(400).send('Invalid password - non SHA256 hash')
+
     sql.getConnection((err, connection) => {
         if (err) {
             console.error('Error connecting to database:', err)
@@ -399,6 +408,10 @@ app.post('/delete', (req, res) => {
 
 app.post('/auth', (req, res) => {
     const { username, password } = req.body;
+
+    if(!isValidSHA256(password))
+        res.status(400).status('Invalid password - non SHA256 hash')
+
     sql.getConnection((err, connection) => {
         if (err) {
             console.error('Error connecting to database:', err)
@@ -415,7 +428,7 @@ app.post('/auth', (req, res) => {
 
             if (!userExistsResult) {
                 res.status(401).json({ success: false, message: 'Username does not exist' })
-                console.log("username not found")
+                //console.log("Username not found")
                 return
             }
             else {
@@ -477,27 +490,31 @@ async function perplexityPrompt(prompt, callback) {
         
     }
     catch(error) {
+        console.log(error)
         callback(false, null)
     }
 }
 
 app.post('/prompt', async (req, res) => {
-    const { prompt } = req.body;
-    
-    if(!prompt)
-        return res.status(400).send('Prompt is required')
+    const {prompt } = req.body;
+    if (req.session && req.session.user) {
+        if(!prompt)
+            return res.status(400).send('Prompt is required')
 
-    try {
-        perplexityPrompt(prompt, (success, response) => {
-            if(success) {
-                res.json(response)
-            } else {
-                res.status(500).send('An error occurred while processing the request')
-            }
-        })
-    }
-    catch(error) {
-        console.error('Error on AI prompt response: ', error)
-        res.status(500).send('An error occurred while processing the request')
-    }
+        try {
+            perplexityPrompt(prompt, (success, response) => {
+                if(success) {
+                    res.json(response)
+                } else {
+                    res.status(500).send('An error occurred while processing the request')
+                }
+            })
+        }
+        catch(error) {
+            console.error('Error on AI prompt response: ', error)
+            res.status(500).send('An error occurred while processing the request')
+        }
+    } else {
+        res.status(401).send('Stop trying to use my damn AI this shit aint free')
+    }   
 })

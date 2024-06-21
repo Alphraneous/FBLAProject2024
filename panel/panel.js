@@ -461,11 +461,17 @@ aiButton.onclick=async() => {
     if(companyName.trim().length < 3) {
         alert("Please enter a company name with 3 or more letters to use AI Autofill")
     } else {
+        document.getElementById("addContainerInner").style = "filter:grayscale(); pointer-events: none; opacity: 0.5;";
+        document.getElementById("loader").style.display = "block";
+
         const response = await promptAI("Find the following pieces of data for the company/organization named " + companyName + ": Services Provided, Short Description, Address, Year Founded, Website, Contact Name, Contact Phone Number, and Contact Email of a contact at the company/organization (this could be the owner, a sales rep, etc). Replace any unknown fields with 'N/A' and keep your data concise");
-        console.log(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
+        
+        document.getElementById("addContainerInner").style = "";
+        document.getElementById("loader").style.display = "none"
+        //console.log(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
         //alert(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
         
-        let parsedResponse = JSON.parse(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
+        let parsedResponse  = JSON.parse(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
         newCompanyInput.services.value       = parsedResponse.services.join(",")
         newCompanyInput.description.value    = parsedResponse.description
         newCompanyInput.yearFounded.value    = parsedResponse.yearFounded
@@ -510,7 +516,7 @@ accSubmitButton.onclick=async() => {
                     alert("Internal server error")
                     return
                 default:
-                    alert("unidentified error")
+                    alert("Unidentified error")
                     return
             }
         }
@@ -541,7 +547,7 @@ accDeleteButton.onclick=async() => {
             alert("Internal server error")
             return
         default:
-            alert("unidentified error")
+            alert("Unidentified error")
             return
     }
 
@@ -853,17 +859,29 @@ async function setName()
     }
 }
 
+async function SHA256_hash(str)
+{
+    const encoder = new TextEncoder()
+    const data = encoder.encode(str)
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+    const hashArr = Array.from(new Uint8Array(hashBuffer))
+    return hashArr.map(byte => byte.toString(16).padStart(2, '0')).join('')   
+}
+
 async function setPwd()
 {
     try {
+        const hashedPassword = await SHA256_hash(document.getElementById("accOldPassword").value.trim())
+        const hashedNewPassword = await SHA256_hash(document.getElementById("accNewPassword").value.trim())
+
         const response = await fetch(location.protocol + '//' + location.host + "/setPwd", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                password: document.getElementById("accOldPassword").value.trim(),
-                newPassword: document.getElementById("accNewPassword").value.trim()
+                password: hashedPassword,
+                newPassword: hashedNewPassword
             })
         })
 
@@ -879,13 +897,15 @@ async function setPwd()
 async function accDelete(oldPwd)
 {
     try {
+        const hashedOldPassword = await SHA256_hash(oldPwd)
+
         const response = await fetch(location.protocol + '//' + location.host + "/delete", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                password: oldPwd
+                password: hashedOldPassword
             })
         })
 
@@ -922,6 +942,3 @@ async function promptAI(prompt)
         return false
     }
 }
-
-
-

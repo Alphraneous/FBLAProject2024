@@ -18,7 +18,7 @@ const quotes = [
     "Sometimes it is the people nobody imagines anything of who do the things nobody can imagine.",
     "Intel® Inside™",
     "Few know the violence it takes to make a peaceful man"
-  ];
+];
   
   // Feel free to use or modify these quotes as needed.
   
@@ -48,8 +48,19 @@ function createAccountHide() {
     
 }
 
+async function SHA256_hash(str)
+{
+    const encoder = new TextEncoder()
+    const data = encoder.encode(str)
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+    const hashArr = Array.from(new Uint8Array(hashBuffer))
+    return hashArr.map(byte => byte.toString(16).padStart(2, '0')).join('')   
+}
+
 async function createAccountSubmit() {
     try {
+        const hashedPassword = await SHA256_hash(passC.value)
+
         const response = await fetch(location.protocol + '//' + location.host + "/create", {
             method: 'POST',
             headers: {
@@ -58,7 +69,7 @@ async function createAccountSubmit() {
             body: JSON.stringify({
                 name: nameC.value,
                 username: userC.value,
-                password: passC.value,
+                password: hashedPassword,
             })
         })
         console.log(response.status)
@@ -77,14 +88,16 @@ async function createAccountSubmit() {
                 break
         }
     } 
-    catch {
-        console.error('Unidentified error during account creation')
+    catch (error) {
+        console.error('Unidentified error during account creation: ' + error)
     }
 }
 
 async function loginAuth()
 {
     try {
+        const hashedPassword = await SHA256_hash(document.getElementById('pass').value)
+
         const response = await fetch(location.protocol + '//' + location.host + "/auth", {
             method: 'POST',
             headers: {
@@ -92,7 +105,7 @@ async function loginAuth()
             },
             body: JSON.stringify({
                 username: document.getElementById('user').value,
-                password: document.getElementById('pass').value,
+                password: hashedPassword,
             }),
         })
 
