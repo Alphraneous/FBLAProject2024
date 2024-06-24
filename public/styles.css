@@ -23,6 +23,11 @@
     padding-bottom: 2%;
 }
 
+.login_input {
+    border-color: #666666 ;
+    color: black;
+}
+
 #loginButton {
     margin-top: 5%;
     width: 100%;

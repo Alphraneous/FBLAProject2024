@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     font-family: abel;
+    transition: 0.3s linear;
+
 }
 :root {
     --universalRed: #c72626;
@@ -10,10 +12,10 @@
     --universalBlueLight: #376dda;
     --universalBlueDark: #143d8f;
 
-    --universalBackground: #fafafa;
-    --universalBlue: #2960ce;
-    --universalText: #000;
-    --universalBorder:#2d2b2b;
+    --universalBackground: #2d2b2b;
+    --universalBlue: #143d8f;
+    --universalText: #EBE7E7;
+    --universalBorder:#c4b9b9;
     --universalDeleteBorder:#c55d5d;
     --universalUnderline: #666666;
 
@@ -107,7 +109,7 @@
     padding-bottom: 0;
     margin-bottom: 2%;
     border: 0;
-    background-color: var(--universalBackground);
+    background-color: rgba(0, 0, 0,0);
     border-bottom: 1.5px solid var(--universalUnderline);
 }
 

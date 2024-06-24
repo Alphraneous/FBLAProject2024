@@ -747,7 +747,7 @@ function loadDarkMode() {
     if (darkmodeState !== null) {
         darkModeCheckBox.checked = JSON.parse(darkmodeState)
     } else {
-        darkModeCheckBox.checked = false
+        darkModeCheckBox.checked = true
     }
     updateDarkmode()
 }
@@ -757,16 +757,16 @@ function updateDarkmode() {
     localStorage.setItem('darkmode', darkModeCheckBox.checked);
     if (darkModeCheckBox.checked) { /*dark mode*/
       root.style.setProperty("--universalBackground", "#2d2b2b")
-      root.style.setProperty("--universalText", "#fff")
       root.style.setProperty("--universalBlue", "#143d8f")
-      root.style.setProperty("--universalBorder", "#dfd8d8")
+      root.style.setProperty("--universalText", "#EBE7E7")
+      root.style.setProperty("--universalBorder", "#c4b9b9")
       root.style.setProperty("--universalDeleteBorder", "#c55d5d")
       root.style.setProperty("--universalUnderline", "#fff")
       
     } else { /*light mode*/
       root.style.setProperty("--universalBackground", " #fafafa")
-      root.style.setProperty("--universalText", "#000")
       root.style.setProperty("--universalBlue", "#2960ce")
+      root.style.setProperty("--universalText", "#000")
       root.style.setProperty("--universalBorder", "#2d2b2b")
       root.style.setProperty("--universalDeleteBorder", "#5a0000")
       root.style.setProperty("--universalUnderline", "#666666")

@@ -29,6 +29,8 @@ const nameC = document.getElementById("nameC")
 const userC = document.getElementById("userC")
 const passC = document.getElementById("passC")
 
+let darkModeCheckBox = true;
+
 function toLogin()
 {
     window.location.href = '/login/'
@@ -123,7 +125,41 @@ async function loginAuth()
     }
 }
 
+document.addEventListener('DOMContentLoaded', async function () {
+    loadDarkMode()
+});
 
+function loadDarkMode() {
+    const darkmodeState = localStorage.getItem('darkmode');
+
+    if (darkmodeState !== null) {
+        darkModeCheckBox = JSON.parse(darkmodeState)
+    } else {
+        darkModeCheckBox = true
+    }
+    updateDarkmode()
+}
+function updateDarkmode() {
+    
+    const root = document.documentElement
+    localStorage.setItem('darkmode', darkModeCheckBox);
+    if (darkModeCheckBox) { /*dark mode*/
+      root.style.setProperty("--universalBackground", "#2d2b2b")
+      root.style.setProperty("--universalText", "#fff")
+      root.style.setProperty("--universalBlue", "#143d8f")
+      root.style.setProperty("--universalBorder", "#c4b9b9")
+      root.style.setProperty("--universalDeleteBorder", "#c55d5d")
+      root.style.setProperty("--universalUnderline", "#fff")
+      
+    } else { /*light mode*/
+      root.style.setProperty("--universalBackground", " #fafafa")
+      root.style.setProperty("--universalText", "#000")
+      root.style.setProperty("--universalBlue", "#2960ce")
+      root.style.setProperty("--universalBorder", "#2d2b2b")
+      root.style.setProperty("--universalDeleteBorder", "#5a0000")
+      root.style.setProperty("--universalUnderline", "#666666")
+  }
+}
 
 // let isDragging = false
 // let initialX = 0
