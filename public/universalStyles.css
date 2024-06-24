@@ -2,14 +2,21 @@
     margin: 0;
     padding: 0;
     font-family: abel;
+}
+:root {
     --universalRed: #c72626;
     --universalRedLight:#c55d5d;
     --universalRedDark: #5a0000;
     --universalBlueLight: #376dda;
-    --universalBlue: #1d52bc;
-    --universalBlueDark: #1d52bc;
-    --universalDarkBorder: #2d2b2b;
-    --universalLightBorder: #ffffff;
+    --universalBlueDark: #143d8f;
+
+    --universalBackground: #fafafa;
+    --universalBlue: #2960ce;
+    --universalText: #000;
+    --universalBorder:#2d2b2b;
+    --universalDeleteBorder:#c55d5d;
+    --universalUnderline: #666666;
+
 
 }
 
@@ -19,7 +26,7 @@
 }
 
 .body {
-    background-color: var(--universalDarkBorder);
+    background-color: var(--universalBackground);
 }
 
 .logo {
@@ -40,7 +47,7 @@
 .wrapper {
     position: relative;
     overflow-x: hidden;
-    background-color: var(--universalDarkBorder);
+    background-color: var(--universalBackground);
     height: 100vh;
 }
 
@@ -48,11 +55,11 @@
     /* background-color: var(--universalBlue); */
     background-color: var(--universalBlue);
     width: 100%;
-    color:black;
+    color: var(--universalText);
     height: 40px;
     font-size: 1em;
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--universalBorder);
     font-family: abel;
     overflow: hidden;
 }
@@ -72,7 +79,7 @@
     padding-right: 10%;
     height: 40px;
     border-radius: 10px;
-    border: 3px solid #2d2b2b;
+    border: 3px solid var(--universalBorder);
     font-size: 1em;
 }
 
@@ -85,6 +92,7 @@
     font-family: abel;
     align-self: center;
     text-align: center;
+    color: var(--universalText);
     font-size: 1em;
 }
 
@@ -92,14 +100,15 @@
     width: 95%;
     height: 50px;
     font-size: 1em;
+    color: var(--universalText);
     outline: none;
     padding-left: 1%;
     padding-right: 1%;
     padding-bottom: 0;
     margin-bottom: 2%;
     border: 0;
-    background-color: #ffffff00;
-    border-bottom: 1.5px solid #666666;
+    background-color: var(--universalBackground);
+    border-bottom: 1.5px solid var(--universalUnderline);
 }
 
 .loader {

@@ -43,6 +43,7 @@ const removeButton = document.getElementById('removeButton')
 const accSubmitButton = document.getElementById("accSubmitButton")
 const accCancelButton = document.getElementById("accCancelButton")
 const accDeleteButton = document.getElementById("accDeleteButton")
+const darkModeCheckBox = document.getElementById("darkmodeToggleCheckbox")
 
 var newCompanyInput = new Company(
     document.getElementById('newCompanyName'),
@@ -73,6 +74,7 @@ const aiButton = document.getElementById('addAIfill')
 // }
 //console.log(companiesList[0].contact.name);
 document.addEventListener('DOMContentLoaded', async function () {
+    loadDarkMode()
     let retrievedData = await retrieveData();
     accName = retrievedData.name
     companiesList = retrievedData.companyList
@@ -474,12 +476,12 @@ aiButton.onclick=async() => {
         let parsedResponse  = JSON.parse(response.substring(response.indexOf('{'), response.lastIndexOf('}')+1))
         newCompanyInput.services.value       = parsedResponse.services.join(",")
         newCompanyInput.description.value    = parsedResponse.description
-        newCompanyInput.yearFounded.value    = parsedResponse.yearFounded
+        newCompanyInput.yearFounded.value    = parsedResponse.yearFounded == "N/A" ? "" : parsedResponse.yearFounded 
         newCompanyInput.address.value        = parsedResponse.address
         newCompanyInput.websiteURL.value     = parsedResponse.websiteURL
         newCompanyInput.contact.name.value   = parsedResponse.contact.name
-        newCompanyInput.contact.number.value = parsedResponse.contact.number
-        newCompanyInput.contact.email.value  = parsedResponse.contact.email
+        newCompanyInput.contact.number.value = parsedResponse.contact.number == "N/A" ? "555-555-5555" : parsedResponse.contact.number
+        newCompanyInput.contact.email.value  = parsedResponse.contact.email == "N/A" ? "example@example.com" : parsedResponse.contact.email
     }
     
 }
@@ -738,6 +740,39 @@ wrapper.addEventListener('scroll', function () {
     }
 });
 
+
+function loadDarkMode() {
+    const darkmodeState = localStorage.getItem('darkmode');
+
+    if (darkmodeState !== null) {
+        darkModeCheckBox.checked = JSON.parse(darkmodeState)
+    } else {
+        darkModeCheckBox.checked = false
+    }
+    updateDarkmode()
+}
+function updateDarkmode() {
+    
+    const root = document.documentElement
+    localStorage.setItem('darkmode', darkModeCheckBox.checked);
+    if (darkModeCheckBox.checked) { /*dark mode*/
+      root.style.setProperty("--universalBackground", "#2d2b2b")
+      root.style.setProperty("--universalText", "#fff")
+      root.style.setProperty("--universalBlue", "#143d8f")
+      root.style.setProperty("--universalBorder", "#dfd8d8")
+      root.style.setProperty("--universalDeleteBorder", "#c55d5d")
+      root.style.setProperty("--universalUnderline", "#fff")
+      
+    } else { /*light mode*/
+      root.style.setProperty("--universalBackground", " #fafafa")
+      root.style.setProperty("--universalText", "#000")
+      root.style.setProperty("--universalBlue", "#2960ce")
+      root.style.setProperty("--universalBorder", "#2d2b2b")
+      root.style.setProperty("--universalDeleteBorder", "#5a0000")
+      root.style.setProperty("--universalUnderline", "#666666")
+  }
+}
+  
 //Data persistence stuff
 function storeCompaniesList() {
     //localStorage.setItem('companiesList', JSON.stringify(companiesList));

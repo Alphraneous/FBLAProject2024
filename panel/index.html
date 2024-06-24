@@ -90,8 +90,9 @@
                 <input type="password" id="accNewPassword" class="add_input" placeholder="AwesomeP@ssword">
                 <p class="add_label"><b>Confirm New Password</b></p>
                 <input type="password" id="accNewPasswordC" class="add_input" placeholder="AwesomeP@ssword">
-                <input type="checkbox" id="darkmode-toggle"/>
-                <label for="darkmode-toggle"></label>
+                <p class="add_label"><b>Dark Mode</b></p>
+                <input type ="checkbox" class="darkmode_toggle_checkbox" id="darkmodeToggleCheckbox" onclick="updateDarkmode()"/>
+                <label class ="darkmode_toggle" id="darkmodeToggleLabel" for="darkmodeToggleCheckbox"></label>
                 <button id="accSubmitButton" class="submit_button" type="submit"><b>Save</b></button>
                 <button id="accCancelButton" class="submit_button" type="button" onclick="accCancel()"><b>Cancel</b></button>
                 <button id="accDeleteButton" class="submit_button" type="button"><b>Delete Account</b></button>

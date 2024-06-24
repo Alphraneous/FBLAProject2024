@@ -15,18 +15,21 @@
 
 .text_search {
     align-self: center;
+    background-color: var(--universalBackground);
     width: 30%;
     height: 50px;
     font-size: 2em;
+    background-color: --v;
     border-radius: 30px;
     outline: none;
     padding-left: 1%;
     padding-right: 1%;
-    border: 3px solid #2d2b2b;
+    border: 3px solid var(--universalBorder);
 }
 
 .dropdown_search {
     background-color: rgba(0, 0, 0, 0);
+    color: var(--universalText);
     outline: none;
     width: 10%;
     height: 50px;
@@ -90,10 +93,10 @@
     display: block;
     background-color: var(--universalBlue);
     width: 100%;
-    color: black;
+    color: var(--universalText);
     height: 40px;
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--universalBorder);
     font-size: 1em;
     font-family: abel;
     text-align: center;
@@ -123,10 +126,10 @@
     justify-content: center;  /* Align horizontally in the center */
     background-color: var(--universalBlue);
     width: 100%;
-    color: black;
+    color: var(--universalText);
     height: 40px;
     border-radius: 10px;
-    border: 3px solid black;
+    border: 3px solid var(--universalBorder);
     font-size: 1em;
     font-family: abel;
     text-align: center;
@@ -197,7 +200,7 @@
     margin-right: 10%;
     top: 2%;
     left: 2%;
-    background-color: #f1f1f1;
+    background-color: var(--universalBackground);
     z-index: -1;
     
 }
@@ -218,14 +221,14 @@
     margin-right: 10%;
     top: 2%;
     left: 2%;
-    background-color: #f1f1f1;
+    background-color: var(--universalBackground);
     z-index: -1;
     
 }
 
 #accDeleteButton {
     margin-top: 2%;
-    border-color: var(--universalRedDark);
+    border-color: var(--universalDeleteBorder);
     background-color: var(--universalRed);
 }
 
@@ -243,12 +246,14 @@
     overflow-y: scroll;
     position: relative;
     box-sizing: content-box;
-    height: 50vh;
+    height: 50.5vh;
 }
 
 .add_label {
     font-family: abel;
     font-size: 100%;
+    color: var(--universalText);
+
 }
 
 .button_box {
@@ -259,7 +264,7 @@
     padding-left: 2%;
     padding-right: 2%;
 
-    background-color: #2d2b2b;
+    background-color: var(--universalBackground);
 
     width: 100%;
 }
@@ -275,7 +280,7 @@
     font-size: 1.4em;
     border-width: 4px;
     border-style: solid;
-    border-color: var(--universalBlue);
+    border-color: var(--universalBorder);
     border-radius: 25px;
     transition: background-color 0.3s ease-in-out;
 }
@@ -329,6 +334,7 @@
     margin-left: 2%;
     align-self: left;
     text-align: left;
+    color: var(--universalText);
 }
 
 .company_resources_button {
@@ -337,6 +343,7 @@
     margin-right: 2%;
     text-align: right;
     font-size: 0.7em;
+    color: var(--universalText);
 }
 
 
@@ -363,6 +370,7 @@
 .resources_title {
     font-size: 2.3vh;
     margin: 10px;
+    color: var(--universalText);
     margin-left: 10%;
     font-family: abel;
     text-align: left;
@@ -380,6 +388,7 @@
 .info_label {
     font-size: 2.3vh;
     margin-left: 2%;
+    color: var(--universalText);
     font-family: abel;
     text-align: left;
     font-weight: bold;
@@ -388,6 +397,7 @@
 
 .title_header {
     font-size: 4vh;
+    color: var(--universalText);
     margin: 0px;
     margin-left: 10px;
     margin-right: 10px;
@@ -397,6 +407,7 @@
 
 .year_title {
     font-size: 2vh;
+    color: var(--universalText);
     font-family: abel;
     text-align: center;
 }
@@ -404,6 +415,7 @@
 .addr_title {
     font-size: 2vh;
     font-family: abel;
+    color: var(--universalText);
     text-align: center;
 }
 
@@ -423,11 +435,12 @@
 
 .remove_button {
     background-color: #c72626;
+    color: var(--universalText);
     width: 25%;
     margin-top: 20px;
     height: 6vh;
     border-radius: 10px;
-    border: 3px solid #5a0000;
+    border: 3px solid var(--universalDeleteBorder);
     font-size: 2vh;
     margin-left: 2%;
     margin-right: 2%;
@@ -437,8 +450,9 @@
 }
 
 #editButton {
+    color: var(--universalText);
     background-color: var(--universalBlue);
-    border-color: var(--universalDarkBorder);
+    border-color: var(--universalBorder);
 }
 
 #editButton:hover {
@@ -454,6 +468,7 @@
 
 .exit_button {
     height: 35px;
+    color: var(--universalText);
     aspect-ratio: 1/1;
     right: 20px;
     background-color: var(--universalRed);
@@ -464,7 +479,7 @@
     text-align: center;
     font-family: abel;
     transition: all 0.3s ease-in-out;
-    border: 3px solid var(--universalRedDark);
+    border: 3px solid var(--universalDeleteBorder);
 }
 
 .exit_button:hover {
@@ -472,56 +487,47 @@
 }
 
 /*dark/light mode toggle*/
-body {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
-label {
-    width: 40px;
-    height: 20px;
+/*label is darkmode_toggle, input is darkmode_toggle_checkbox*/
+
+.darkmode_toggle {
+    width: 10%;
+    aspect-ratio: 2/1;
     position: relative;
     display: block;
     background-color: #ebebeb;
     border-radius: 100px;
     box-shadow: inset 0px 5px 15px rgba(0,0,0,0.4), inset 0px -5px 15px rgba(255,255,255,0.4);
     cursor: pointer;
+    margin-bottom: 2%;
 }
 
-label:after {
+.darkmode_toggle:after {
     content: "";
-    width:20px;
-    height:20px;
+    width:50%;
+    aspect-ratio: 1/1;
     position: absolute;
     background: linear-gradient(180deg,#ffcc89,#d8860b);
     border-radius: 100px;
     box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
 }
 
-input {
+.darkmode_toggle_checkbox {
     width: 0;
     height: 0;
     visibility: hidden;
 }
 
-input:checked + label {
+.darkmode_toggle_checkbox:checked + .darkmode_toggle {
     background-color: #242424;
   }
 
-input:checked + label:after {
-    left:40px;
-    transform: translateX(-100%);
+.darkmode_toggle_checkbox:checked + label:after {
+    left:5%;
+    transform: translateX(100%);
     background: linear-gradient(180deg,#777,#3a3a3a);
 }
-label, label:after {
+.darkmode_toggle, .darkmode_toggle:after {
     transition: 0.3s
 }
 
-input:checked + label + .button_box {
-    background-color: #2d2b2b;
-  }
