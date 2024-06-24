@@ -488,7 +488,6 @@
 
 /*dark/light mode toggle*/
 
-/*label is darkmode_toggle, input is darkmode_toggle_checkbox*/
 
 .darkmode_toggle {
     width: 10%;
@@ -507,9 +506,8 @@
     width:50%;
     aspect-ratio: 1/1;
     position: absolute;
-    background: linear-gradient(180deg,#ffcc89,#d8860b);
+    background-color: #ebebeb;
     border-radius: 100px;
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
 }
 
 .darkmode_toggle_checkbox {
@@ -519,13 +517,13 @@
 }
 
 .darkmode_toggle_checkbox:checked + .darkmode_toggle {
-    background-color: #242424;
+    background-color: #3cff00;
   }
 
 .darkmode_toggle_checkbox:checked + label:after {
     left:5%;
     transform: translateX(100%);
-    background: linear-gradient(180deg,#777,#3a3a3a);
+    background-color: #ebebeb;
 }
 .darkmode_toggle, .darkmode_toggle:after {
     transition: 0.3s
