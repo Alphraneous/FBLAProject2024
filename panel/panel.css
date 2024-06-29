@@ -16,6 +16,7 @@
 .text_search {
     align-self: center;
     background-color: var(--universalBackground);
+    color: var(--universalText);
     width: 30%;
     height: 50px;
     font-size: 2em;
