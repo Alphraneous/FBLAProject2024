@@ -48,6 +48,7 @@ const authenticateUser = (req, res, next) => {
     res.redirect('/login/'); // Redirect to login if not authenticated
 };
 
+//Serve files for the application page individually
 function getPanelPage() {
     const pages = ['index.html', 'googleAPI.js', 'panel.css', 'panel.js']
     for (const page of pages) {
@@ -56,8 +57,10 @@ function getPanelPage() {
         })
     }
 }
+//Call above function
 getPanelPage()
 
+//Check for existing user when making one
 function userExists(user, connection, released, callback) {
     connection.query('SELECT username FROM userData WHERE username = ?', [user], (queryError, results) => {
         if (!released)
@@ -72,6 +75,7 @@ function userExists(user, connection, released, callback) {
     })
 }
 
+//Check password hash against entered password
 function checkPassword(user, hashedPassword, connection, release, callback) {
     connection.query('SELECT password,name FROM userData WHERE username = ?', [user], (queryError, results) => {
         if(release) {
@@ -103,6 +107,7 @@ function setPassword(user, newHashedPassword, connection, callback) {
     })
 }
 
+//Route to get the companies list
 function getList(req, user, connection, callback) {
     connection.query('SELECT companyList FROM userData WHERE username = ?', [user], (queryError, results) => {
         connection.release()
@@ -116,6 +121,7 @@ function getList(req, user, connection, callback) {
     })
 }
 
+//Route to set the companieslist
 function setList(user, data, connection, callback) {
     connection.query('UPDATE userData SET companyList = ? WHERE username = ?', [JSON.stringify(data),user], (queryError, results) => {
         connection.release()
